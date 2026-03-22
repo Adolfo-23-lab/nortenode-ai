@@ -12,13 +12,13 @@ const features = [
   },
   {
     title: "SEO Local Dominante",
-    description: "Posicionamento orgânico no Porto & Gaia para estética.",
+    description: "Domine o Google Maps: posicionamento n.º 1 em Gaia & Porto para clínicas de estética.",
     icon: <LineChart className="w-8 h-8 text-blue-400" />,
     className: "md:col-span-1 lg:col-span-1 glass",
   },
   {
     title: "Carga Inferior a 1s",
-    description: "Otimizado para mobile onde estão 90% dos seus pacientes.",
+    description: "Websites mobile-first ultra rápidos, essenciais para pacientes na Área Metropolitana do Porto.",
     icon: <Zap className="w-8 h-8 text-amber-400" />,
     className: "md:col-span-1 lg:col-span-1 glass",
   },

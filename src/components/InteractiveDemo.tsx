@@ -63,84 +63,73 @@ export default function InteractiveDemo() {
   };
 
   return (
-    <section className="py-24 relative px-4 md:px-6 max-w-5xl mx-auto" id="demo">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-          Demo: Experimente a Diferença
-        </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-          Teste o fluxo conversacional real. Escreva &quot;Botox&quot;, &quot;Preenchimento&quot; ou &quot;Preço&quot; para ver como a nossa IA do Porto/Gaia pré-qualifica e agenda por si.
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-2xl glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col h-[500px]">
-        {/* Chat Header */}
-        <div className="bg-white/5 border-b border-white/10 p-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-emerald-400" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-white">NorteNode Rececionista IA</h3>
-              <p className="text-xs text-emerald-400 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                Em Linha
-              </p>
-            </div>
+    <div className="w-full glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col h-[500px]">
+      {/* Chat Header */}
+      <div className="bg-white/5 border-b border-white/10 p-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <Bot className="w-5 h-5 text-emerald-400" />
+          </div>
+          <div>
+            <h3 className="font-semibold text-white">NorteNode Rececionista IA</h3>
+            <p className="text-xs text-emerald-400 flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Em Linha
+            </p>
           </div>
         </div>
-
-        {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
-          <AnimatePresence>
-            {messages.map((msg, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex gap-3 max-w-[80%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
-              >
-                <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-emerald-500/20"}`}>
-                  {msg.role === "user" ? (
-                    <User className="w-4 h-4 text-blue-400" />
-                  ) : (
-                    <Bot className="w-4 h-4 text-emerald-400" />
-                  )}
-                </div>
-                <div
-                  className={`p-3 rounded-2xl text-sm leading-relaxed ${
-                    msg.role === "user"
-                      ? "bg-blue-600 text-white rounded-tr-none"
-                      : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Chat Input */}
-        <div className="p-4 bg-white/5 border-t border-white/10">
-          <form onSubmit={handleSend} className="flex gap-2 relative">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Perguntar por preços, tratamentos..."
-              className="flex-1 bg-slate-950/50 border border-white/10 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
-            />
-            <button
-              type="submit"
-              disabled={!input.trim()}
-              className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
-            >
-              <Send className="w-4 h-4" />
-            </button>
-          </form>
-        </div>
       </div>
-    </section>
+
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
+        <AnimatePresence>
+          {messages.map((msg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`flex gap-3 max-w-[80%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
+            >
+              <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-emerald-500/20"}`}>
+                {msg.role === "user" ? (
+                  <User className="w-4 h-4 text-blue-400" />
+                ) : (
+                  <Bot className="w-4 h-4 text-emerald-400" />
+                )}
+              </div>
+              <div
+                className={`p-3 rounded-2xl text-sm leading-relaxed ${
+                  msg.role === "user"
+                    ? "bg-blue-600 text-white rounded-tr-none"
+                    : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
+                }`}
+              >
+                {msg.text}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Chat Input */}
+      <div className="p-4 bg-white/5 border-t border-white/10">
+        <form onSubmit={handleSend} className="flex gap-2 relative">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Perguntar por preços, tratamentos..."
+            className="flex-1 bg-slate-950/50 border border-white/10 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          />
+          <button
+            type="submit"
+            disabled={!input.trim()}
+            className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
+          >
+            <Send className="w-4 h-4" />
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
