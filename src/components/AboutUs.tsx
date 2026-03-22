@@ -22,6 +22,7 @@ export default function AboutUs() {
               src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000"
               alt="Equipa NorteNode AI"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
             />
           </div>
@@ -31,6 +32,7 @@ export default function AboutUs() {
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
               alt="Escritório em Vila Nova de Gaia"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
             />
           </div>

@@ -13,19 +13,24 @@ export async function submitLeadAction(data: { name: string, email: string, what
   // Cremos un cliente con Service Role para saltar las políticas de RLS.
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-  const { error } = await supabase.from("leads").upsert([
-    {
-      name: data.name,
-      email: data.email,
-      whatsapp: data.whatsapp,
-      treatment: data.treatment,
-      status_ia: "pending_demo"
-    }
-  ], { onConflict: "whatsapp" });
+  try {
+    const { error } = await supabase.from("leads").upsert([
+      {
+        name: data.name,
+        email: data.email,
+        whatsapp: data.whatsapp,
+        treatment: data.treatment,
+        status_ia: "pending_demo"
+      }
+    ], { onConflict: "whatsapp" });
 
-  if (error) {
-    console.error("Supabase insert error (Server Action):", error);
-    throw new Error(error.message);
+    if (error) {
+      console.error("Supabase insert error (Server Action):", error);
+      throw new Error(error.message);
+    }
+  } catch (err: unknown) {
+    console.error("Unexpected Database Exception:", err);
+    throw new Error(err instanceof Error ? err.message : "Erro crítico de base de dados.");
   }
 
   return { success: true };

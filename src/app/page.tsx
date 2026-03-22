@@ -11,8 +11,10 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950 font-[family-name:var(--font-geist-sans)]">
       {/* Navigation (Simplified) */}
       <nav className="fixed top-0 w-full z-50 glass border-b-0 border-white/5 py-4 px-6 flex justify-between items-center bg-slate-950/50 backdrop-blur-md">
-        <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-400">
-          NorteNode AI
+        <div className="flex items-center">
+          <span className="text-xl font-bold tracking-tight text-white">
+            NorteNode <span className="text-emerald-500">AI</span>
+          </span>
         </div>
         <div className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
           <a href="#about" className="hover:text-white transition-colors">Missão</a>

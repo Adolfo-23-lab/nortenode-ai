@@ -14,7 +14,7 @@ export default function InteractiveDemo() {
   useEffect(() => {
     // Check if env variables are set
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.warn("Aviso: Falta configurar as chaves do Supabase no ficheiro .env.local para gravar as mensagens.");
+      
     }
   }, []);
 

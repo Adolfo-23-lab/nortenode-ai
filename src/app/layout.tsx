@@ -13,8 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NorteNode AI | Agentes de IA para Clínicas de Estética en Porto",
-  description: "Instalamos Agentes de IA que facturan por ti 24/7. Webs autogestionadas con triaje inteligente en Gaia y Porto.",
+  title: "NorteNode AI | Automação e IA para Clínicas no Porto e Gaia",
+  description: "Instalamos Agentes de IA e automatizamos agendamentos para clínicas de estética em Vila Nova de Gaia e Porto. Aumente as suas marcações 24/7.",
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  }
 };
 
 export default function RootLayout({

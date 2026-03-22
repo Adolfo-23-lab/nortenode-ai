@@ -1,10 +1,10 @@
-import { Bot } from "lucide-react";
+import { Bot, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black/20 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
@@ -22,10 +22,22 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Contacto</h4>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li>geral@nortenode.ai</li>
+              <li>contacto@nortenode.pt</li>
               <li>+351 912 345 678</li>
               <li>Vila Nova de Gaia, Portugal</li>
             </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Siga-nos</h4>
+            <div className="flex gap-4 text-slate-400">
+              <a href="#" className="hover:text-emerald-400 transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="hover:text-emerald-400 transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           <div>
