@@ -1,0 +1,37 @@
+import Hero from "@/components/Hero";
+import BentoGrid from "@/components/BentoGrid";
+import InteractiveDemo from "@/components/InteractiveDemo";
+import Pricing from "@/components/Pricing";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-slate-950 font-[family-name:var(--font-geist-sans)]">
+      {/* Navigation (Simplified) */}
+      <nav className="fixed top-0 w-full z-50 glass border-b-0 border-white/5 py-4 px-6 flex justify-between items-center">
+        <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-400">
+          NorteNode AI
+        </div>
+        <div className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+          <a href="#benefits" className="hover:text-white transition-colors">Benefícios</a>
+          <a href="#demo" className="hover:text-white transition-colors">Demo IA</a>
+          <a href="#pricing" className="hover:text-white transition-colors">Preços</a>
+        </div>
+        <a href="#pricing" className="px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold hover:bg-emerald-500/20 transition-colors">
+          Agendar Chamada
+        </a>
+      </nav>
+
+      <Hero />
+      <BentoGrid />
+      
+      <div className="my-16" />
+      
+      <InteractiveDemo />
+      <Pricing />
+      
+      <footer className="py-8 text-center text-slate-500 text-sm border-t border-white/5 mt-20">
+        <p>© {new Date().getFullYear()} NorteNode AI. Vila Nova de Gaia, Portugal.</p>
+      </footer>
+    </main>
+  );
+}

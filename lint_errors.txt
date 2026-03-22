@@ -1,0 +1,22 @@
+
+C:\Users\abyrn\OneDrive\Desktop\NorteNode AI\src\components\InteractiveDemo.tsx
+   5:27  warning  'AlertCircle' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  16:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\abyrn\OneDrive\Desktop\NorteNode AI\src\components\InteractiveDemo.tsx:16:5
+  14 |   useEffect(() => {
+  15 |     // Generate a random ID for the demo session to use as 'whatsapp' to satisfy the table schema
+> 16 |     setSessionId(`demo-web-${Math.floor(Math.random() * 100000)}`);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  17 |     
+  18 |     // Check if env variables are set
+  19 |     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {  react-hooks/set-state-in-effect
+
+✖ 2 problems (1 error, 1 warning)
+
