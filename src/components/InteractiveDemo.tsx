@@ -1,33 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useChat } from "@ai-sdk/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send, User } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function InteractiveDemo() {
-  const [messages, setMessages] = useState([
-    { role: "agent", text: "Olá, muito gosto. Sou a assistente IA da clínica em Gaia/Porto. Em que tratamento tem interesse para o seu rosto ou corpo?" }
-  ]);
-  const [input, setInput] = useState("");
   const [sessionId] = useState(() => `demo-web-${Math.floor(Math.random() * 100000)}`);
+  const [input, setInput] = useState("");
+
+  const { messages, sendMessage, status } = useChat({
+    messages: [
+      {
+        id: "msg-1",
+        role: "assistant",
+        content: "Olá, muito gosto. Sou a assistente IA da clínica em Gaia/Porto. Em que tratamento tem interesse para o seu rosto ou corpo?",
+      } as any,
+    ],
+  });
+
   useEffect(() => {
-    // Check if env variables are set
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      
+      // Env vars not set — Supabase saving silently disabled
     }
   }, []);
 
   const saveToSupabase = async (userMsg: string) => {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return; // Prevent error if not configured
-
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
     try {
       await supabase.from("leads").upsert(
-        { 
-          whatsapp: sessionId, 
+        {
+          whatsapp: sessionId,
           name: "Demo User",
-          treatment: userMsg, // Guardamos el último mensaje de interés
-          status_ia: "pending" 
+          treatment: userMsg,
+          status_ia: "pending",
         },
         { onConflict: "whatsapp" }
       );
@@ -36,31 +43,30 @@ export default function InteractiveDemo() {
     }
   };
 
-  const handleSend = async (e: React.FormEvent) => {
+  const handleSendWrapper = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    const trimmed = input.trim();
+    if (!trimmed) return;
 
-    const userMsg = input.trim();
-    setMessages((prev) => [...prev, { role: "user", text: userMsg }]);
     setInput("");
-
-    // Save user message to Supabase
-    await saveToSupabase(userMsg);
-
-    // Simulate AI response logic (PT-PT y ES)
-    setTimeout(() => {
-      let reply = "Percebido. Tem preferência por algum dia ou horário para fazer uma avaliação inicial nas nossas instalações em Gaia?";
-      const lower = userMsg.toLowerCase();
-
-      if (lower.includes("botox") || lower.includes("preenchimento")) {
-        reply = "Excelente escolha. Somos uma clínica de referência no Porto e em Gaia para Harmonização Facial (Botox e Preenchimento). Trabalhamos com produtos premium para um resultado natural e duradouro. Tenho disponibilidade para uma avaliação gratuita esta semana, na quarta-feira à tarde ou sexta de manhã. Qual prefere?";
-      } else if (lower.includes("preço") || lower.includes("precio")) {
-        reply = "O valor dos nossos tratamentos premium varia de acordo com a fisionomia e o objetivo de cada paciente. Gostaríamos de lhe oferecer uma avaliação gratuita e sem compromisso na nossa clínica no Porto/Gaia para lhe dar um orçamento exato. Prefere agendar para amanhã ou depois?";
-      }
-
-      setMessages((prev) => [...prev, { role: "agent", text: reply }]);
-    }, 1500);
+    sendMessage({ text: trimmed });
+    await saveToSupabase(trimmed);
   };
+
+  // Helper to extract plain text from a UIMessage
+  const getMessageText = (msg: any): string => {
+    // New v3 format: message.parts array
+    if (Array.isArray(msg.parts)) {
+      return msg.parts
+        .filter((p: any) => p.type === "text")
+        .map((p: any) => p.text)
+        .join("");
+    }
+    // Fallback: plain string content
+    return msg.content ?? "";
+  };
+
+  const isLoading = status === "streaming" || status === "submitted";
 
   return (
     <div className="w-full glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col h-[500px]">
@@ -83,9 +89,9 @@ export default function InteractiveDemo() {
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
         <AnimatePresence>
-          {messages.map((msg, i) => (
+          {messages.map((msg: any, i: number) => (
             <motion.div
-              key={i}
+              key={msg.id ?? i}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className={`flex gap-3 max-w-[80%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
@@ -104,16 +110,31 @@ export default function InteractiveDemo() {
                     : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
                 }`}
               >
-                {msg.text}
+                {getMessageText(msg)}
               </div>
             </motion.div>
           ))}
+          {isLoading && (
+            <motion.div
+              key="typing"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex gap-3 max-w-[80%]"
+            >
+              <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-emerald-500/20">
+                <Bot className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="p-3 rounded-2xl text-sm bg-slate-800 text-slate-400 rounded-tl-none border border-white/5">
+                <span className="animate-pulse">...</span>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 
       {/* Chat Input */}
       <div className="p-4 bg-white/5 border-t border-white/10">
-        <form onSubmit={handleSend} className="flex gap-2 relative">
+        <form onSubmit={handleSendWrapper} className="flex gap-2 relative">
           <input
             type="text"
             value={input}
@@ -123,7 +144,7 @@ export default function InteractiveDemo() {
           />
           <button
             type="submit"
-            disabled={!input.trim()}
+            disabled={!input.trim() || isLoading}
             className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
           >
             <Send className="w-4 h-4" />
