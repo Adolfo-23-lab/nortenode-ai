@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bot, Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 const mainLinks = [
   { label: "Início", href: "/" },
@@ -48,8 +49,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-            <Bot className="w-4 h-4 text-emerald-400" />
+          <div className="w-8 h-8 flex items-center justify-center">
+            <Image
+              src="/nortenode_star_icon.png"
+              alt="NorteNode AI Logo"
+              width={28}
+              height={28}
+              className="object-contain"
+            />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
             NorteNode <span className="text-emerald-500">AI</span>
@@ -72,11 +79,10 @@ export default function Navbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setSolucoesOpen((prev) => !prev)}
-              className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                pathname.startsWith("/solucoes")
+              className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pathname.startsWith("/solucoes")
                   ? "text-emerald-400"
                   : "text-slate-300 hover:text-white"
-              }`}
+                }`}
             >
               Soluções
               <ChevronDown

@@ -121,11 +121,10 @@ export default function FloatingSalesBot() {
                     )}
                   </div>
                   <div
-                    className={`px-3 py-2 rounded-xl text-sm leading-relaxed ${
-                      msg.role === "user"
+                    className={`px-3 py-2 rounded-xl text-sm leading-relaxed ${msg.role === "user"
                         ? "bg-blue-600 text-white rounded-tr-none"
                         : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
-                    }`}
+                      }`}
                   >
                     {getMessageText(msg)}
                   </div>
@@ -178,7 +177,7 @@ export default function FloatingSalesBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isOpen ? "Fechar assistente NorteNode AI" : "Abrir assistente NorteNode AI"}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/30 flex items-center justify-center overflow-hidden border-2 border-emerald-400/50"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-emerald-950 to-zinc-950 hover:from-emerald-900 hover:to-black shadow-lg shadow-emerald-900/40 flex items-center justify-center overflow-hidden border-2 border-emerald-800/50 transition-colors"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -189,7 +188,7 @@ export default function FloatingSalesBot() {
               exit={{ opacity: 0, rotate: 90 }}
               transition={{ duration: 0.15 }}
             >
-              <X className="w-6 h-6 text-slate-950" />
+              <X className="w-6 h-6 text-white" />
             </motion.div>
           ) : (
             <motion.div
