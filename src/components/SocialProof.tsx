@@ -16,7 +16,7 @@ export default function SocialProof() {
     <section className="py-12 border-y border-white/5 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <p className="text-center text-sm font-medium text-slate-400 mb-8 uppercase tracking-widest">
-          Ajudamos Clínicas de Elite a Crescer
+          O tipo de clínicas que podem beneficiar com a nossa IA
         </p>
         
         <div className="flex overflow-hidden relative">

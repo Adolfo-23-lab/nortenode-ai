@@ -1,16 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send, User } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { saveChatLeadAction } from "@/app/actions/saveChatLead";
 
 export default function InteractiveDemo() {
-  const [sessionId] = useState(() => `demo-web-${Math.floor(Math.random() * 100000)}`);
+  const [sessionId] = useState(() => {
+    if (typeof window === "undefined") return `demo-web-${Math.floor(Math.random() * 1000000)}`;
+    const stored = localStorage.getItem("nn_demo_session");
+    if (stored) return stored;
+    const id = `demo-web-${Math.floor(Math.random() * 1000000)}`;
+    localStorage.setItem("nn_demo_session", id);
+    return id;
+  });
+
   const [input, setInput] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const { messages, sendMessage, status } = useChat({
+    // body is a valid runtime feature; cast needed due to SDK v3 type gap
+    ...(({ body: { botType: "demo" } }) as any),
     messages: [
       {
         id: "msg-1",
@@ -18,51 +29,31 @@ export default function InteractiveDemo() {
         content: "Olá, muito gosto. Sou a assistente IA da clínica em Gaia/Porto. Em que tratamento tem interesse para o seu rosto ou corpo?",
       } as any,
     ],
-  });
+  } as any);
 
+  // Auto-scroll to latest message
   useEffect(() => {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      // Env vars not set — Supabase saving silently disabled
-    }
-  }, []);
-
-  const saveToSupabase = async (userMsg: string) => {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
-    try {
-      await supabase.from("leads").upsert(
-        {
-          whatsapp: sessionId,
-          name: "Demo User",
-          treatment: userMsg,
-          status_ia: "pending",
-        },
-        { onConflict: "whatsapp" }
-      );
-    } catch (error) {
-      console.error("Error saving lead to Supabase:", error);
-    }
-  };
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSendWrapper = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmed = input.trim();
     if (!trimmed) return;
-
     setInput("");
     sendMessage({ text: trimmed });
-    await saveToSupabase(trimmed);
+    // Server Action (uses SERVICE_ROLE_KEY — respects RLS)
+    await saveChatLeadAction({ sessionId, userMessage: trimmed, source: "demo" });
   };
 
   // Helper to extract plain text from a UIMessage
   const getMessageText = (msg: any): string => {
-    // New v3 format: message.parts array
     if (Array.isArray(msg.parts)) {
       return msg.parts
         .filter((p: any) => p.type === "text")
         .map((p: any) => p.text)
         .join("");
     }
-    // Fallback: plain string content
     return msg.content ?? "";
   };
 
@@ -79,7 +70,7 @@ export default function InteractiveDemo() {
           <div>
             <h3 className="font-semibold text-white">NorteNode Rececionista IA</h3>
             <p className="text-xs text-emerald-400 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Em Linha
             </p>
           </div>
@@ -130,6 +121,8 @@ export default function InteractiveDemo() {
             </motion.div>
           )}
         </AnimatePresence>
+        {/* Auto-scroll anchor */}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Chat Input */}

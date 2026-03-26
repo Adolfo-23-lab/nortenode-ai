@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import FloatingSalesBot from "@/components/FloatingSalesBot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt"
+      lang="pt-PT"
       className={`${geistSans.variable} ${geistMono.variable} dark antialiased h-full`}
     >
       <body className="min-h-full bg-slate-950 text-slate-50 flex flex-col selection:bg-emerald-500/30">
         <Navbar />
         {children}
-        <WhatsAppFloat />
+        <FloatingSalesBot />
       </body>
     </html>
   );
