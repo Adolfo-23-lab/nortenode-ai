@@ -1,7 +1,11 @@
 import { groq } from '@ai-sdk/groq';
 import { convertToModelMessages, streamText, UIMessage } from 'ai';
+import { createRateLimiter } from '@/lib/rate-limit';
 
 export const maxDuration = 30;
+
+// Real rate limiter: max 20 requests per 60 seconds per IP
+const chatLimiter = createRateLimiter({ windowMs: 60_000, maxRequests: 20 });
 
 const PROMPT_DEMO = `És a assistente virtual de receção de uma clínica de estética premium no Porto/Gaia.
 REGRAS CRÍTICAS:
@@ -19,10 +23,41 @@ REGRAS DE OURO:
 4. Sê extremamente conciso (máximo 2-3 frases) e termina com uma pergunta amigável para captar o lead.`;
 
 export async function POST(req: Request) {
-  const { messages, botType }: { messages: UIMessage[]; botType?: string } = await req.json();
+  // --- Rate limiting by client IP ---
+  const forwarded = req.headers.get('x-forwarded-for');
+  const ip = forwarded?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'unknown';
+
+  if (!chatLimiter.check(ip)) {
+    return new Response(
+      JSON.stringify({ error: 'Too many requests. Please wait before sending more messages.' }),
+      { status: 429, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  // --- Parse and validate body ---
+  let messages: UIMessage[];
+  let botType: string | undefined;
+
+  try {
+    const body = await req.json();
+    messages = body.messages;
+    botType = body.botType;
+  } catch {
+    return new Response(
+      JSON.stringify({ error: 'Invalid request body.' }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  if (!Array.isArray(messages)) {
+    return new Response(
+      JSON.stringify({ error: 'Messages must be an array.' }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
 
   const systemPrompt = botType === 'demo' ? PROMPT_DEMO : PROMPT_SALES;
-  const safeMessages = messages.slice(-20); // Rate-limit: cap context to last 20 messages
+  const safeMessages = messages.slice(-20); // Cap context to last 20 messages
 
   const result = streamText({
     model: groq('llama-3.3-70b-versatile'),

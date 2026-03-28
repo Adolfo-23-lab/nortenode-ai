@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@supabase/supabase-js";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 type ChatLeadData = {
   sessionId: string;
@@ -9,12 +9,13 @@ type ChatLeadData = {
 };
 
 export async function saveChatLeadAction(data: ChatLeadData) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!supabaseUrl || !supabaseServiceKey) return; // Silent fail — don't crash chat UX
-
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+  let supabase;
+  try {
+    supabase = getSupabaseAdmin();
+  } catch {
+    console.warn("saveChatLeadAction: Supabase credentials missing. Lead NOT saved.");
+    return; // Don't crash chat UX
+  }
 
   try {
     await supabase.from("leads").upsert(
