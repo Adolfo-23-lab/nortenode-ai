@@ -84,7 +84,7 @@ export default function FloatingSalesBot() {
                     alt="NorteNode AI"
                     width={24}
                     height={24}
-                    className="object-contain"
+                    className="object-contain w-auto h-auto"
                   />
                 </div>
                 <div>
@@ -203,7 +203,7 @@ export default function FloatingSalesBot() {
                 alt="NorteNode AI"
                 width={30}
                 height={30}
-                className="object-contain"
+                className="object-contain w-auto h-auto"
               />
             </motion.div>
           )}

@@ -55,7 +55,7 @@ export default function Navbar() {
               alt="NorteNode AI Logo"
               width={28}
               height={28}
-              className="object-contain"
+              className="object-contain w-auto h-auto"
             />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
