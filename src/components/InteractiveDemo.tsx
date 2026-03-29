@@ -17,6 +17,7 @@ export default function InteractiveDemo() {
   });
 
   const [input, setInput] = useState("");
+  const [isInitialized, setIsInitialized] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const { messages, sendMessage, status } = useChat({
@@ -31,10 +32,17 @@ export default function InteractiveDemo() {
     ],
   } as any);
 
-  // Auto-scroll to latest message
+  // Auto-scroll to latest message (only after component initializes)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    // Only scroll if component has been initialized and there are user messages
+    if (isInitialized && messages.length > 1) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isInitialized]);
 
   const handleSendWrapper = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
