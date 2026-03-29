@@ -13,13 +13,13 @@ const brands = [
 
 export default function SocialProof() {
   return (
-    <section className="py-12 border-y border-white/5 bg-white/[0.02]">
+    <section className="py-12 border-y border-white/5 bg-white/[0.02] overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <p className="text-center text-sm font-medium text-slate-400 mb-8 uppercase tracking-widest">
           O tipo de clínicas que podem beneficiar com a nossa IA
         </p>
         
-        <div className="flex overflow-hidden relative">
+        <div className="w-full overflow-hidden relative">
           {/* Fading edges */}
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-950 to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-950 to-transparent z-10" />

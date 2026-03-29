@@ -11,10 +11,16 @@
   }
 }
 
-body {
-  @apply bg-slate-950 text-slate-50 antialiased;
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-html {
-  scroll-behavior: smooth;
+body {
+  @apply bg-slate-950 text-slate-50 antialiased;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
