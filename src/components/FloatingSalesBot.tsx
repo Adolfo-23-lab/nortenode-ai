@@ -72,7 +72,7 @@ export default function FloatingSalesBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 z-50 w-[340px] sm:w-[380px] flex flex-col glass rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+            className="fixed bottom-24 left-4 right-4 sm:left-auto sm:right-6 z-50 w-auto sm:w-[380px] flex flex-col glass rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
             style={{ height: "480px" }}
           >
             {/* Header */}
@@ -177,7 +177,7 @@ export default function FloatingSalesBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isOpen ? "Fechar assistente NorteNode AI" : "Abrir assistente NorteNode AI"}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-emerald-950 to-zinc-950 hover:from-emerald-900 hover:to-black shadow-lg shadow-emerald-900/40 flex items-center justify-center overflow-hidden border-2 border-emerald-800/50 transition-colors"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-emerald-950 to-zinc-950 hover:from-emerald-900 hover:to-black shadow-lg shadow-emerald-900/40 flex items-center justify-center overflow-hidden border-2 border-emerald-800/50 transition-colors"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
