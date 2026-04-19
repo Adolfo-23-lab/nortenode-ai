@@ -3,6 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import { useT } from "@/i18n/provider";
 
@@ -20,6 +22,7 @@ import { useT } from "@/i18n/provider";
  */
 export default function Hero() {
   const t = useT();
+  const rootRef = React.useRef<HTMLElement | null>(null);
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
 
   // Pause when the hero leaves the viewport — saves decode cycles on
@@ -38,8 +41,64 @@ export default function Hero() {
     return () => io.disconnect();
   }, []);
 
+  // GSAP entrance choreography. matchMedia branches on reduced-motion
+  // so the whole animation is skipped — elements render in their
+  // final state and the background video stays perfectly still.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean; isReduced: boolean };
+          const targets = gsap.utils.toArray<HTMLElement>("[data-hero-reveal]");
+
+          if (!isMotion) {
+            // Reduced motion: land everything at its final state, no video zoom.
+            gsap.set(targets, { clearProps: "all" });
+            return;
+          }
+
+          gsap.from(targets, {
+            y: 28,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out",
+          });
+
+          // Micro zoom on the video — 1 → 1.05 over 8s, yo-yo loop.
+          const video = rootRef.current?.querySelector<HTMLElement>("[data-hero-video]");
+          if (video) {
+            gsap.fromTo(
+              video,
+              { scale: 1 },
+              {
+                scale: 1.05,
+                duration: 8,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                transformOrigin: "50% 50%",
+              },
+            );
+          }
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
+
   return (
     <section
+      ref={rootRef}
       className="relative isolate h-[100svh] min-h-[640px] w-full overflow-hidden bg-[var(--color-ink-0)]"
       aria-label={t.hero.eyebrow}
     >
