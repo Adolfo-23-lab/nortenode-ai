@@ -56,6 +56,9 @@ lint_output.txt
 
 # large media — keep on CDN, not in repo
 /public/assets/*.mp4
+# Hero asset is intentionally tracked (optimized, < 5 MB).
+!/public/assets/hero/
+!/public/assets/hero/**
 
 # playwright-mcp screenshot cache (scratch only)
 .playwright-mcp/
