@@ -75,7 +75,7 @@ export default function ContactosPage() {
                     {c.value}
                   </span>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-zinc-700 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 shrink-0" />
+                <ArrowUpRight className="w-4 h-4 text-zinc-700 group-hover:text-signal-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 shrink-0" />
               </a>
             ) : (
               <div

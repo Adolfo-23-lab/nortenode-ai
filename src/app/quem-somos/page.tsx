@@ -90,7 +90,7 @@ export default function QuemSomosPage() {
                     key={p.num}
                     className="py-6 grid grid-cols-[48px_1fr] gap-4 group cursor-default"
                   >
-                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-emerald-500 transition-colors duration-200">
+                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-signal-500 transition-colors duration-200">
                       {p.num}
                     </span>
                     <div>
@@ -105,7 +105,7 @@ export default function QuemSomosPage() {
             {/* CTA */}
             <Link
               href="/contactos"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-medium hover:border-emerald-500/50 hover:text-white transition-all duration-200 group w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-medium hover:border-signal-500/50 hover:text-white transition-all duration-200 group w-fit"
             >
               Falar connosco
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />

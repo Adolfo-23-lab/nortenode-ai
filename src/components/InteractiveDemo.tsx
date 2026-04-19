@@ -104,13 +104,13 @@ export default function InteractiveDemo() {
       {/* Chat Header */}
       <div className="bg-white/5 border-b border-white/10 p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-            <Bot className="w-5 h-5 text-emerald-400" />
+          <div className="w-10 h-10 rounded-full bg-signal-500/20 flex items-center justify-center">
+            <Bot className="w-5 h-5 text-signal-400" />
           </div>
           <div>
             <h3 className="font-semibold text-white">NorteNode Rececionista IA</h3>
-            <p className="text-xs text-emerald-400 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <p className="text-xs text-signal-400 flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-signal-400 animate-pulse" />
               Em Linha
             </p>
           </div>
@@ -127,11 +127,11 @@ export default function InteractiveDemo() {
               animate={{ opacity: 1, y: 0 }}
               className={`flex gap-3 max-w-[80%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
             >
-              <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-emerald-500/20"}`}>
+              <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-signal-500/20"}`}>
                 {msg.role === "user" ? (
                   <User className="w-4 h-4 text-blue-400" />
                 ) : (
-                  <Bot className="w-4 h-4 text-emerald-400" />
+                  <Bot className="w-4 h-4 text-signal-400" />
                 )}
               </div>
               <div
@@ -152,8 +152,8 @@ export default function InteractiveDemo() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 max-w-[80%]"
             >
-              <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-emerald-500/20">
-                <Bot className="w-4 h-4 text-emerald-400" />
+              <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-signal-500/20">
+                <Bot className="w-4 h-4 text-signal-400" />
               </div>
               <div className="p-3 rounded-2xl text-sm bg-zinc-800 text-zinc-500 rounded-tl-none border border-zinc-700/50">
                 <span className="animate-pulse">...</span>
@@ -173,12 +173,12 @@ export default function InteractiveDemo() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Perguntar por preços, tratamentos..."
-            className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder:text-zinc-700"
+            className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-signal-500 placeholder:text-zinc-700"
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-zinc-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
+            className="w-11 h-11 rounded-full bg-signal-500 flex items-center justify-center text-white disabled:opacity-50 transition-all hover:bg-signal-400"
           >
             <Send className="w-4 h-4" />
           </button>

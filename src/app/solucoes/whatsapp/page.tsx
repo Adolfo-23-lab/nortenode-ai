@@ -90,7 +90,7 @@ export default function WhatsAppPage() {
                     key={f.num}
                     className="py-5 grid grid-cols-[48px_1fr] gap-4 group cursor-default"
                   >
-                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-emerald-500 transition-colors duration-200">
+                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-signal-500 transition-colors duration-200">
                       {f.num}
                     </span>
                     <div>
@@ -105,7 +105,7 @@ export default function WhatsAppPage() {
             {/* CTA */}
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-sm font-bold transition-all group w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-signal-500 hover:bg-signal-400 text-white text-sm font-bold transition-all group w-fit"
             >
               Experimentar Demo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

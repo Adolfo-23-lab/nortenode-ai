@@ -103,9 +103,9 @@ export default function FloatingSalesBot() {
             style={{ height: "480px" }}
           >
             {/* Header */}
-            <div className="bg-emerald-500/10 border-b border-white/10 px-4 py-3 flex items-center justify-between">
+            <div className="bg-signal-500/10 border-b border-white/10 px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center overflow-hidden border border-emerald-500/30">
+                <div className="w-9 h-9 rounded-full bg-signal-500/20 flex items-center justify-center overflow-hidden border border-signal-500/30">
                   <Image
                     src="/nortenode_star_icon.png"
                     alt="NorteNode"
@@ -116,8 +116,8 @@ export default function FloatingSalesBot() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white">NorteNode</p>
-                  <p className="text-xs text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                  <p className="text-xs text-signal-400 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-signal-400 animate-pulse inline-block" />
                     Em Linha
                   </p>
                 </div>
@@ -140,11 +140,11 @@ export default function FloatingSalesBot() {
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex gap-2 max-w-[85%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
                 >
-                  <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-emerald-500/20"}`}>
+                  <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center ${msg.role === "user" ? "bg-blue-500/20" : "bg-signal-500/20"}`}>
                     {msg.role === "user" ? (
                       <User className="w-3.5 h-3.5 text-blue-400" />
                     ) : (
-                      <Bot className="w-3.5 h-3.5 text-emerald-400" />
+                      <Bot className="w-3.5 h-3.5 text-signal-400" />
                     )}
                   </div>
                   <div
@@ -163,8 +163,8 @@ export default function FloatingSalesBot() {
                   animate={{ opacity: 1 }}
                   className="flex gap-2 max-w-[85%]"
                 >
-                  <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <Bot className="w-3.5 h-3.5 text-emerald-400" />
+                  <div className="w-7 h-7 rounded-full bg-signal-500/20 flex items-center justify-center">
+                    <Bot className="w-3.5 h-3.5 text-signal-400" />
                   </div>
                   <div className="px-3 py-2 rounded-xl text-sm bg-zinc-800 text-zinc-500 rounded-tl-none border border-zinc-700/50">
                     <span className="animate-pulse">...</span>
@@ -183,12 +183,12 @@ export default function FloatingSalesBot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escreva a sua mensagem..."
-                  className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder:text-zinc-700"
+                  className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-signal-500 placeholder:text-zinc-700"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-zinc-950 disabled:opacity-50 transition-all hover:bg-emerald-400 shrink-0"
+                  className="w-10 h-10 rounded-full bg-signal-500 flex items-center justify-center text-white disabled:opacity-50 transition-all hover:bg-signal-400 shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -204,7 +204,7 @@ export default function FloatingSalesBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isOpen ? "Fechar assistente NorteNode" : "Abrir assistente NorteNode"}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-emerald-950 to-zinc-950 hover:from-emerald-900 hover:to-black shadow-lg shadow-emerald-900/40 flex items-center justify-center overflow-hidden border-2 border-emerald-800/50 transition-colors"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-[color:var(--color-signal-600)] to-[color:var(--color-ink-0)] hover:from-[color:var(--color-signal-500)] hover:to-black shadow-lg shadow-[color:var(--color-signal-600)]/40 flex items-center justify-center overflow-hidden border-2 border-[color:var(--color-signal-600)]/50 transition-colors"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

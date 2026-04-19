@@ -57,10 +57,10 @@ export default function ContactForm() {
       <motion.div
         initial={mInit({ opacity: 0, scale: 0.97 })}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-zinc-900 rounded-2xl border border-emerald-500/20 min-h-[400px]"
+        className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-zinc-900 rounded-2xl border border-signal-500/20 min-h-[400px]"
       >
-        <div className="w-14 h-14 bg-emerald-500/10 rounded-full flex items-center justify-center mb-5">
-          <CheckCircle2 className="w-7 h-7 text-emerald-400" />
+        <div className="w-14 h-14 bg-signal-500/10 rounded-full flex items-center justify-center mb-5">
+          <CheckCircle2 className="w-7 h-7 text-signal-400" />
         </div>
         <h3 className="text-xl font-bold text-white mb-2">Pedido Recebido!</h3>
         <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
@@ -92,7 +92,7 @@ export default function ContactForm() {
             placeholder="Ex: Prime Estética Porto"
             value={formData.nomeClinica}
             onChange={(e) => setFormData((prev) => ({ ...prev, nomeClinica: e.target.value }))}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-zinc-700"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
           />
         </div>
 
@@ -108,7 +108,7 @@ export default function ContactForm() {
               placeholder="geral@clinica.pt"
               value={formData.email}
               onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-zinc-700"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
             />
           </div>
           <div>
@@ -122,7 +122,7 @@ export default function ContactForm() {
               placeholder="+351 900 000 000"
               value={formData.whatsapp}
               onChange={(e) => setFormData((prev) => ({ ...prev, whatsapp: e.target.value }))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-zinc-700"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
             />
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function ContactForm() {
             placeholder="Ex: Harmonização Facial, Preenchimento..."
             value={formData.tratamento}
             onChange={(e) => setFormData((prev) => ({ ...prev, tratamento: e.target.value }))}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-zinc-700"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
           />
         </div>
 
@@ -152,7 +152,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full h-12 rounded-xl bg-emerald-500 flex items-center justify-center text-zinc-950 font-semibold disabled:opacity-60 transition-all hover:bg-emerald-400 mt-1"
+          className="w-full h-12 rounded-xl bg-signal-500 flex items-center justify-center text-white font-semibold disabled:opacity-60 transition-all hover:bg-signal-400 mt-1"
         >
           {status === "submitting" ? (
             <>

@@ -68,7 +68,7 @@ export default function WidgetWebPage() {
                     key={f.num}
                     className="py-5 grid grid-cols-[48px_1fr] gap-4 group cursor-default"
                   >
-                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-emerald-500 transition-colors duration-200">
+                    <span className="text-xs font-mono text-zinc-700 pt-1 group-hover:text-signal-500 transition-colors duration-200">
                       {f.num}
                     </span>
                     <div>
@@ -83,7 +83,7 @@ export default function WidgetWebPage() {
             {/* CTA */}
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-sm font-bold transition-all group w-fit"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-signal-500 hover:bg-signal-400 text-white text-sm font-bold transition-all group w-fit"
             >
               Ver Demo ao Vivo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -96,13 +96,13 @@ export default function WidgetWebPage() {
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl w-full max-w-[340px]">
               {/* Header */}
               <div className="bg-zinc-800/80 px-5 py-4 flex items-center gap-3 border-b border-zinc-700/50">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                  <span className="text-emerald-400 text-[10px] font-bold">IA</span>
+                <div className="w-8 h-8 rounded-full bg-signal-500/20 border border-signal-500/30 flex items-center justify-center shrink-0">
+                  <span className="text-signal-400 text-[10px] font-bold">IA</span>
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">Assistente IA</p>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-signal-400" />
                     <p className="text-zinc-500 text-[11px]">Online agora</p>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export default function WidgetWebPage() {
                     <div
                       className={`max-w-[82%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed ${
                         msg.role === "user"
-                          ? "bg-emerald-500 text-zinc-950 font-semibold rounded-br-sm"
+                          ? "bg-signal-500 text-white font-semibold rounded-br-sm"
                           : "bg-zinc-800 text-zinc-300 rounded-bl-sm"
                       }`}
                     >
@@ -136,16 +136,16 @@ export default function WidgetWebPage() {
                 <div className="flex-1 bg-zinc-800 rounded-full px-4 py-2">
                   <p className="text-zinc-600 text-[11px]">Escreva uma mensagem...</p>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-                  <Send className="w-3 h-3 text-zinc-950" />
+                <div className="w-7 h-7 rounded-full bg-signal-500 flex items-center justify-center shrink-0">
+                  <Send className="w-3 h-3 text-white" />
                 </div>
               </div>
             </div>
 
             {/* Floating trigger button */}
-            <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/25 mr-1">
+            <div className="w-12 h-12 rounded-full bg-signal-500 flex items-center justify-center shadow-lg shadow-signal-500/25 mr-1">
               <svg
-                className="w-5 h-5 text-zinc-950"
+                className="w-5 h-5 text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
