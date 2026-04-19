@@ -35,7 +35,7 @@ export default function QuemSomosPage() {
 
           {/* Left — sticky photo */}
           <div className="lg:sticky lg:top-28 self-start">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800">
+            <div className="relative w-full aspect-[3/4] rounded-sm overflow-hidden border border-white/[0.06]">
               <Image
                 src="/adolfo_nortenode.jpg"
                 alt="Adolfo — Fundador da NorteNode"
