@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUTHORITY - The New Standard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-dim": "#9fb7ff",
+                        "background": "#0e0e0e",
+                        "surface-container-low": "#131313",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-secondary-container": "#c1bfbe",
+                        "on-background": "#e5e5e5",
+                        "inverse-primary": "#0055d7",
+                        "secondary": "#9f9d9d",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-tint": "#b3c5ff",
+                        "on-surface-variant": "#ababab",
+                        "tertiary": "#f9f9f9",
+                        "on-error-container": "#ff9993",
+                        "inverse-surface": "#f9f9f9",
+                        "on-secondary": "#202020",
+                        "primary": "#b3c5ff",
+                        "error-container": "#7f2927",
+                        "on-error": "#490106",
+                        "surface-container-highest": "#262626",
+                        "on-tertiary-fixed-variant": "#656667",
+                        "on-tertiary-fixed": "#484a4a",
+                        "on-primary-fixed": "#003894",
+                        "outline-variant": "#484848",
+                        "error": "#ee7d77",
+                        "surface-container-high": "#1f1f1f",
+                        "tertiary-fixed": "#f3f3f4",
+                        "on-surface": "#e5e5e5",
+                        "on-tertiary-container": "#555757",
+                        "surface": "#0e0e0e",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-dim": "#ebebeb",
+                        "primary-fixed": "#dae1ff",
+                        "surface-variant": "#262626",
+                        "secondary-container": "#3c3b3b",
+                        "outline": "#757575",
+                        "surface-bright": "#2c2c2c",
+                        "primary-fixed-dim": "#c7d3ff",
+                        "error-dim": "#bb5551",
+                        "surface-container": "#191919",
+                        "on-primary": "#003996",
+                        "inverse-on-surface": "#555555",
+                        "secondary-dim": "#9f9d9d",
+                        "on-primary-fixed-variant": "#0052d0",
+                        "on-tertiary": "#5e5f60",
+                        "primary-container": "#003fa4",
+                        "tertiary-container": "#ebebeb",
+                        "surface-dim": "#0e0e0e",
+                        "secondary-fixed-dim": "#d7d4d3",
+                        "on-secondary-fixed": "#403f3f",
+                        "on-primary-container": "#c1cfff",
+                        "tertiary-fixed-dim": "#e5e5e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased selection:bg-primary selection:text-on-primary">
+<nav class="fixed top-0 w-full z-[100] bg-black/70 backdrop-blur-2xl">
+<div class="flex justify-between items-center w-full px-12 py-8 mx-auto">
+<div class="text-xl font-black tracking-[-0.04em] text-white">AUTHORITY</div>
+<div class="hidden md:flex gap-8 items-center font-['Inter'] font-medium tracking-[0.05em] uppercase text-[12px]">
+<a class="text-white border-b border-[#b3c5ff] pb-1 scale-95 active:scale-100 transition-transform" href="#">Showcase</a>
+<a class="text-white/50 hover:text-white transition-opacity duration-500 scale-95 active:scale-100 transition-transform" href="#">The System</a>
+<a class="text-white/50 hover:text-white transition-opacity duration-500 scale-95 active:scale-100 transition-transform" href="#">Journal</a>
+<a class="text-white/50 hover:text-white transition-opacity duration-500 scale-95 active:scale-100 transition-transform" href="#">Access</a>
+</div>
+<button class="bg-tertiary text-on-tertiary px-6 py-3 rounded text-[12px] font-['Inter'] font-medium tracking-[0.05em] uppercase scale-95 active:scale-100 transition-transform">
+                Get Started
+            </button>
+</div>
+</nav>
+<header class="relative w-full h-screen min-h-[800px] flex items-end pb-24 px-12 overflow-hidden bg-surface-container-lowest">
+<img alt="Monochrome abstract architectural space" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity" data-alt="High contrast black and white abstract architectural interior with sweeping concrete curves and deep shadows creating a sense of massive scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL6O5kPTSKJE4ivdmUPpTbnuOgp73Xml3DJztGJoC9keuiI0XBl700qqMp7wP9cHJ5326egYaNJhUCE7CQhCFoQ1SM0Uxh60PS0Muze8i9Hnt4kJYrFRBa3tqgjkvhqRa-hybIanRskDPl771kGt-FyQrZWNPuvCfrpsP5QG8Xx4IWaRvIEpo2qLUMO15ZP5whTLUky5mNXoAbkr3h5qpco7GeeW4iVU--6nhzObl_IOtw11BXpt-NORvoVU7W5gtrc2-sYa1L-yI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-container/10 via-transparent to-transparent"></div>
+<div class="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-end gap-12">
+<h1 class="font-headline font-black text-[5rem] md:text-[8rem] lg:text-[10rem] leading-[0.85] tracking-[-0.04em] text-white">
+                THE NEW<br/>STANDARD
+            </h1>
+<div class="max-w-sm pb-4">
+<p class="font-body text-on-surface-variant text-sm md:text-base leading-relaxed">
+                    Uncompromising functionalism meets editorial precision. Authority is the definitive platform for enterprises demanding architectural dominance over their data streams.
+                </p>
+<div class="mt-8 flex items-center gap-4 text-primary">
+<span class="font-label text-xs uppercase tracking-[0.1em] font-medium">Explore Architecture</span>
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+</div>
+</div>
+</div>
+</header>
+<section class="w-full bg-surface-container-low py-48 px-12">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row gap-24 items-start">
+<div class="md:w-5/12 sticky top-48">
+<h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight text-on-background leading-tight">
+                    Absolute Control.<br/>Zero Friction.
+                </h2>
+<p class="mt-8 text-on-surface-variant leading-relaxed max-w-md">
+                    We eliminated the noise. By discarding legacy borders and forced constraints, we engineered an interface that respects your focus and elevates your operational capacity.
+                </p>
+</div>
+<div class="md:w-7/12 grid grid-cols-1 gap-16">
+<div class="w-full h-[500px] bg-surface rounded overflow-hidden">
+<img alt="Server room infrastructure" class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="Dark moody close-up of high-end server rack equipment with glowing subtle blue indicator lights in a totally black environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT6ymdKa_lRtdUT3hhOPL6b0zkdM98nPUQ0FWo2Hnb1x6SrY_9jZHC2qUrJXIDh973s2MKOjDoN2UUhKeAWsdGZrFrpj-uoG3HGcSV2jbjtx7McJeiYRwgT5sW9nD0rU_4UYFCKkIbZ28Pa1nq9kl2vHhUbFRipp42NxouVbNJG5zIShAmtvBvu0sVjU6fxgNGTTtQ6AcPn0z86A-5WZPe435iPOWdVc3ZgAd-cJKpaT3zklCTsqjgXd5CeIDVICEDyV7SQMm1N9I"/>
+</div>
+<div class="w-full h-[600px] bg-surface rounded overflow-hidden md:-ml-24 relative z-10 shadow-[0_64px_64px_-16px_rgba(0,0,0,0.5)]">
+<img alt="Minimalist data dashboard" class="w-full h-full object-cover opacity-90 mix-blend-luminosity" data-alt="Sleek abstract data visualization showing minimal geometric wireframes overlapping in dark charcoal tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZl5MRydHKWTAfFAJl7GicNSJn0THKNdHXTSacur08WHxP9ft3fqMR8WT6S5Rsxj-U49FkaGbWR__YZ9cJheB19OyKS_Qai391t-IAIEX1ZwqyF53pZ1vWGCYvKhnVb855ardB4NifYLIBVXhbNyAAiUgQjAz2_EX65xLY2YzerePolCim56t-u6KetxrH2NB-hkrwOCzZGyRYlbTJPkBRz6wEAcqKg0jVSaB43w3eERo7HTSMNKrrtC7y6ymH05iAGJTz9Rgm_NA"/>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-background py-32 px-12 relative">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
+<div class="md:w-1/2 md:sticky md:top-32 h-[512px] md:h-[716px]">
+<div class="w-full h-full bg-surface-container-high rounded overflow-hidden relative">
+<img alt="Software interface mockup" class="absolute inset-0 w-full h-full object-cover opacity-70" data-alt="Abstract rendering of layered glass panels over a deep black background representing a complex digital system architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH3nJ-qS2KOKSyRAvpF4BFDnWWQLe3Y-26IWVahf7ORqD9d9ItIfFV6bDCDCiU8Rt9qQ2XMK2xhZIh8LSUuJ_XOl_PLw7YvmCdNr9Qqhwj2e7iUpV-D62QXuP_5Q0Ng_BQCaGGpTat2BYD0lr-ahijB-rL_Zs7c2BDYY7ZVM_ASzQSnIDANhbM2qcTita1CaaBXRYC5NH4RlWimlqgtTvZ9HdMkQ4bIV77fCmdmCVKfSM5mLWqPuqae541CaBJ2N6mNVH8IJfZ1sM"/>
+<div class="absolute bottom-8 left-8">
+<div class="text-xs font-label uppercase tracking-[0.1em] text-primary mb-2">System Core</div>
+<div class="text-2xl font-headline font-bold">Engineered for Scale</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 flex flex-col pt-12 pb-48 gap-48">
+<div class="flex flex-col gap-6">
+<div class="text-primary font-label text-xs uppercase tracking-[0.1em]">01 / Architecture</div>
+<h3 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">Data Sovereignty</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        Maintain absolute ownership over your infrastructure. Our isolated environments ensure that your proprietary models remain untainted and completely secure within our dark-fiber network.
+                    </p>
+</div>
+<div class="flex flex-col gap-6">
+<div class="text-primary font-label text-xs uppercase tracking-[0.1em]">02 / Intelligence</div>
+<h3 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">Algorithmic Purity</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        Strip away the redundant compute layers. Authority executes raw, uncompromised algorithms directly at the edge, delivering microscopic latency under massive synthetic loads.
+                    </p>
+</div>
+<div class="flex flex-col gap-6">
+<div class="text-primary font-label text-xs uppercase tracking-[0.1em]">03 / Interface</div>
+<h3 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">Quiet Luxury UI</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        A visual environment designed for extended professional use. We utilize vast negative space and precise typographic hierarchies to guide focus, eliminating cognitive fatigue.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-surface-container-low py-32 px-12">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-24 flex justify-between items-end">
+<h2 class="font-headline text-4xl md:text-6xl font-black tracking-tight text-on-background">
+                    OPERATIONAL<br/>MODULES
+                </h2>
+<a class="hidden md:flex items-center gap-2 text-on-surface hover:text-primary transition-colors text-sm font-label uppercase tracking-widest" href="#">
+                    View All Architecture <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group cursor-pointer">
+<div class="w-full aspect-[4/5] bg-surface-container-highest rounded overflow-hidden relative mb-6">
+<img alt="Network nodes" class="w-full h-full object-cover opacity-60 mix-blend-luminosity transition-transform duration-1000 group-hover:scale-105" data-alt="Monochrome macro photography of intricate metallic mesh structure looking like abstract digital network nodes in low light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCruQfMG-ir0yvDgbdakVwb5L0KVraHqpkpvwXuhfd3WpxL8iO-qdm0Mk7ZNFZGHrE2ykDcEWRbSiSZWoudNCaXtnZvO17WFK21gzYz4GK1ORQY44HJdgyodNfe7QQREOYiz-5JWNhKY6exIZZWp37HOVWemFxOu2MOYtS7ibeUHtjmBwAxlv7xyj1RDWrLMSOKTQvIS69Kime_W9cECQMJ7JjZIcl0iDKP-gDdbvu_j63ExuW_-9bgWvH1G2wpIkqUN_t8hlVL9uw"/>
+<div class="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-700"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Module Alpha</div>
+<h4 class="font-headline text-xl font-bold tracking-tight">Neural Distribution</h4>
+</div>
+</div>
+<div class="group cursor-pointer md:mt-16">
+<div class="w-full aspect-[4/5] bg-surface-container-highest rounded overflow-hidden relative mb-6">
+<img alt="Hardware circuitry" class="w-full h-full object-cover opacity-60 mix-blend-luminosity transition-transform duration-1000 group-hover:scale-105" data-alt="Extremely close up dark shot of a high end computer microchip processing unit showing precise metallic linear patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2vyx8j5G4lTDK1a91IciPVm7Wzyq77TkeKW-uHi_ZY8szU0Zvnkx1F7YXLM0EbA43sAuIyUBAqHujgmvcKyKgLZIheW5WyGsjveG090hsGtV63mOAbjf-XUiUna3Y0wquHNglFaHVTV4eLGS_fClIW0iMw4dApT1zq4XLUzc1Kbz2xfEeGb4wOn1TJbS2Vf1RbtdgHObVMEdWDJZIzynqmX33e3LhHtnhsqS_khxns3JlnyaN3Ag2lQkpOtSH_H0cckuLxBvp76c"/>
+<div class="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-700"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Module Beta</div>
+<h4 class="font-headline text-xl font-bold tracking-tight">Quantum Ledger</h4>
+</div>
+</div>
+<div class="group cursor-pointer md:mt-32">
+<div class="w-full aspect-[4/5] bg-surface-container-highest rounded overflow-hidden relative mb-6">
+<img alt="Financial data abstraction" class="w-full h-full object-cover opacity-60 mix-blend-luminosity transition-transform duration-1000 group-hover:scale-105" data-alt="Abstract representation of vertical financial market data lines in pure black and white with a subtle focal blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhakhpgDEtMnleJ-FAlPdlZxBd5-gGqPmFLDBMrswWYuM2CIJacvgZo7q6uqdV7ddmAd7JArcJF3DXQ9I5NXSYjYVI74-fp2DvwyD3zT0tt7Ssm1qQvxOT2nRPUOZ0F2SVvJ2Iko3K2VN52KrS8FOD0S_1Wfl4hBpVhpeRrQuV6OTOncGREW-DVAPkbmbuBiDXOmF7FzFZPjOB7KUSp0l0mxAzEFeFLdeQsigy17_-eJJWOZMeUOc0P3vsDD8KAqB1OXaw6JMCymU"/>
+<div class="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-700"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Module Gamma</div>
+<h4 class="font-headline text-xl font-bold tracking-tight">Velocity Engine</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="w-full py-24 bg-[#0e0e0e] bg-[#131313] tonal-shift">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-[1440px] mx-auto gap-8">
+<div class="text-lg font-bold text-white">AUTHORITY</div>
+<div class="flex gap-6 font-['Inter'] text-[10px] tracking-[0.1em] uppercase">
+<a class="text-white/30 hover:text-white transition-colors duration-300" href="#">Privacy</a>
+<a class="text-white/30 hover:text-white transition-colors duration-300" href="#">Archive</a>
+<a class="text-white/30 hover:text-white transition-colors duration-300" href="#">Terms</a>
+<a class="text-white/30 hover:text-white transition-colors duration-300" href="#">Contact</a>
+</div>
+<div class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase text-[#b3c5ff]">
+                © 2024 THE CINEMATIC AUTHORITY. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>

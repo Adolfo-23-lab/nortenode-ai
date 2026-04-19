@@ -1,18 +1,19 @@
 # Design References — Cinematic Authority (Phase 4)
 
 This directory holds the canonical visual + editorial references for the NorteNode landing.
-Three files are expected and must be placed here by Adolfo (they were not recoverable from
-the post-`/compact` session state):
 
-| File                           | Source                | Purpose                                           |
-|--------------------------------|-----------------------|---------------------------------------------------|
-| `DESIGN.md`                    | drop-in               | Full design system spec (tokens, motion, copy).   |
-| `authority-reference.html`     | drop-in (was code.html) | Tailwind-config snapshot with full palette.     |
-| `authority-reference.png`      | drop-in (was screen.png) | Visual target "THE NEW STANDARD".              |
+| File                           | Status               | Purpose                                           |
+|--------------------------------|----------------------|---------------------------------------------------|
+| `DESIGN.md`                    | ✓ landed             | Full design system spec (tokens, motion, copy).   |
+| `authority-reference.html`     | ✓ landed             | Tailwind-config snapshot with full palette.       |
+| `authority-reference.png`      | pending manual drop  | Visual target "THE NEW STANDARD".                 |
+
+> **Note on `authority-reference.png`**: the image was shown in-session but never
+> arrived as a binary file Claude could access. Drop it manually at
+> `docs/design-refs/authority-reference.png` when convenient.
 
 The skill at `.claude/skills/design-system-cinematic-authority.md` loads the design stance
-into every UI-touching conversation. Once the three files above exist, the skill should
-reference them directly.
+into every UI-touching conversation. It references this directory.
 
 ## Direction (captured from Adolfo's brief)
 
@@ -26,7 +27,8 @@ reference them directly.
   *editorial monochrome*, *luxury texture*, *slow motion hands*.
 - **Bilingual**: pt-PT primary, es-ES secondary.
 
-## Baseline
+## Baselines
 
-`baseline/` holds before-refactor screenshots from the Playwright audit of Fase A, one per
-route × viewport. Use these as the diff when Fase B lands.
+- `baseline/` — screenshots pre-refactor (committed as `d227d4f`).
+- `post-b1/` — screenshots after B.1 (committed as `4691bde`).
+- `hero-candidates.md` — curated media options for the Hero (Fase B.2).
