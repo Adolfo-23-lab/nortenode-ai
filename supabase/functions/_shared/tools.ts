@@ -272,12 +272,24 @@ export async function executeBotTool(
 // Time hint helper (mirrors Next bookingTimeHint)
 // ---------------------------------------------------------------------
 export function bookingTimeHint(timezone: string, now = new Date()): string {
-  const localISO = new Intl.DateTimeFormat("sv-SE", {
+  const days: string[] = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now.getTime() + i * 86400000);
+    const iso = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: timezone, year: "numeric", month: "2-digit", day: "2-digit",
+    }).format(d);
+    const dow = new Intl.DateTimeFormat("pt-PT", {
+      timeZone: timezone, weekday: "long",
+    }).format(d);
+    days.push(`${iso}=${dow}`);
+  }
+  const nowLocal = new Intl.DateTimeFormat("sv-SE", {
     timeZone: timezone,
     year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit",
-    hour12: false,
+    hour: "2-digit", minute: "2-digit", hour12: false,
   }).format(now).replace(" ", "T");
-  return `Hora local atual do negócio (${timezone}): ${localISO}. ` +
-         `Usa este valor como referência ao emitir ISO 8601 para o campo starts_at.`;
+  return `Hora local atual (${timezone}): ${nowLocal}. ` +
+         `Próximos 7 dias (ISO=weekday): ${days.join(", ")}. ` +
+         `IMPORTANTE: quando o cliente disser um dia da semana (ex: "sábado"), ` +
+         `deves mapear exatamente para a data ISO correspondente desta lista. Nunca inventes.`;
 }
