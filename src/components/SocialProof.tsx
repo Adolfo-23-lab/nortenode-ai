@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion, useInView, useMotionValue, animate } from "framer-motion";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { useMotionInitial } from "@/lib/motion-safe";
 import { useT } from "@/i18n/provider";
 
 /**
@@ -25,6 +26,7 @@ const stats: Stat[] = [
 
 export default function SocialProof() {
   const t = useT();
+  const mInit = useMotionInitial();
   const ref = React.useRef<HTMLDivElement | null>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
 
@@ -41,7 +43,7 @@ export default function SocialProof() {
           {stats.map((s, i) => (
             <motion.div
               key={s.labelKey}
-              initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+              initial={mInit({ opacity: 0, y: 18, filter: "blur(10px)" })}
               animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.9, delay: i * 0.08, ease: [0.19, 1, 0.22, 1] }}
               className="flex flex-col gap-2 px-6 first:pl-0 md:px-8 md:first:pl-0"

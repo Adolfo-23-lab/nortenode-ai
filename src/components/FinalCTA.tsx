@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 /**
  * Full-bleed closing section.  No card, no container.  The AI video
@@ -16,6 +17,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
  * cinematic feel and gives a strong last CTA.
  */
 export default function FinalCTA() {
+  const mInit = useMotionInitial();
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
 
   React.useEffect(() => {
@@ -78,7 +80,7 @@ export default function FinalCTA() {
         <FadeIn delay={0.35}>
           <motion.div
             className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:gap-8"
-            initial={{ opacity: 0, y: 20 }}
+            initial={mInit({ opacity: 0, y: 20 })}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.0, ease: [0.19, 1, 0.22, 1] }}

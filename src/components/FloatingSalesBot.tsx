@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, User, Bot, X } from "lucide-react";
 import Image from "next/image";
 import { saveChatLeadAction } from "@/app/actions/saveChatLead";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 type ChatMessage = {
   id: string;
@@ -32,6 +33,7 @@ export default function FloatingSalesBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const mInit = useMotionInitial();
 
   const [sessionId] = useState(() => {
     if (typeof window === "undefined") return `sales-web-${Math.floor(Math.random() * 1000000)}`;
@@ -93,7 +95,7 @@ export default function FloatingSalesBot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={mInit({ opacity: 0, y: 20, scale: 0.95 })}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
@@ -134,7 +136,7 @@ export default function FloatingSalesBot() {
               {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
                 <motion.div
                   key={msg.id ?? i}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={mInit({ opacity: 0, y: 8 })}
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex gap-2 max-w-[85%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
                 >
@@ -157,7 +159,7 @@ export default function FloatingSalesBot() {
               ))}
               {isLoading && (
                 <motion.div
-                  initial={{ opacity: 0 }}
+                  initial={mInit({ opacity: 0 })}
                   animate={{ opacity: 1 }}
                   className="flex gap-2 max-w-[85%]"
                 >
@@ -208,7 +210,7 @@ export default function FloatingSalesBot() {
           {isOpen ? (
             <motion.div
               key="close"
-              initial={{ opacity: 0, rotate: -90 }}
+              initial={mInit({ opacity: 0, rotate: -90 })}
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: 90 }}
               transition={{ duration: 0.15 }}
@@ -218,7 +220,7 @@ export default function FloatingSalesBot() {
           ) : (
             <motion.div
               key="logo"
-              initial={{ opacity: 0, rotate: 90 }}
+              initial={mInit({ opacity: 0, rotate: 90 })}
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: -90 }}
               transition={{ duration: 0.15 }}

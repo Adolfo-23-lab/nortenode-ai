@@ -6,6 +6,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send, User } from "lucide-react";
 import { saveChatLeadAction } from "@/app/actions/saveChatLead";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 type ChatMessage = {
   id: string;
@@ -30,6 +31,7 @@ const INITIAL_GREETING: UIMessage[] = [
 ];
 
 export default function InteractiveDemo() {
+  const mInit = useMotionInitial();
   const [sessionId] = useState(() => {
     if (typeof window === "undefined") return `demo-web-${Math.floor(Math.random() * 1000000)}`;
     const stored = localStorage.getItem("nn_demo_session");
@@ -121,7 +123,7 @@ export default function InteractiveDemo() {
           {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
             <motion.div
               key={msg.id ?? i}
-              initial={{ opacity: 0, y: 10 }}
+              initial={mInit({ opacity: 0, y: 10 })}
               animate={{ opacity: 1, y: 0 }}
               className={`flex gap-3 max-w-[80%] ${msg.role === "user" ? "ml-auto flex-row-reverse" : ""}`}
             >
@@ -146,7 +148,7 @@ export default function InteractiveDemo() {
           {isLoading && (
             <motion.div
               key="typing"
-              initial={{ opacity: 0, y: 10 }}
+              initial={mInit({ opacity: 0, y: 10 })}
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 max-w-[80%]"
             >

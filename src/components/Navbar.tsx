@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLocale, useT } from "@/i18n/provider";
 import { LOCALES, type Locale } from "@/i18n/dictionary";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export default function Navbar() {
   const { locale, setLocale } = useLocale();
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const mInit = useMotionInitial();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -113,7 +115,7 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -6 }}
+            initial={mInit({ opacity: 0, y: -6 })}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
@@ -156,6 +158,7 @@ function LocaleMenu({
 }) {
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
+  const mInit = useMotionInitial();
 
   React.useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -183,7 +186,7 @@ function LocaleMenu({
         {open && (
           <motion.div
             role="listbox"
-            initial={{ opacity: 0, y: 4 }}
+            initial={mInit({ opacity: 0, y: 4 })}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.15 }}

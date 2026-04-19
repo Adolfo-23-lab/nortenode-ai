@@ -11,6 +11,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { cn } from "@/lib/utils";
 import { useT } from "@/i18n/provider";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 /**
  * Pricing without boxes.  Tiers are vertical columns separated by
@@ -80,6 +81,7 @@ function Column({
   currency: string;
 }) {
   const featured = !!tier.featured;
+  const mInit = useMotionInitial();
 
   return (
     <FadeIn
@@ -106,7 +108,7 @@ function Column({
       {/* Featured badge — floats above, not attached */}
       {featured && (
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
+          initial={mInit({ opacity: 0, y: -8 })}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}

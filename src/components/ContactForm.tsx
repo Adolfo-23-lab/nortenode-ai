@@ -4,8 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { submitLeadAction } from "@/app/actions/submitLead";
+import { useMotionInitial } from "@/lib/motion-safe";
 
 export default function ContactForm() {
+  const mInit = useMotionInitial();
   const [formData, setFormData] = useState({
     nomeClinica: "",
     email: "",
@@ -53,7 +55,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.97 }}
+        initial={mInit({ opacity: 0, scale: 0.97 })}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-zinc-900 rounded-2xl border border-emerald-500/20 min-h-[400px]"
       >

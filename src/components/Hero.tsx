@@ -124,7 +124,7 @@ export default function Hero() {
         <div className="flex flex-col gap-8">
           {/* Eyebrow (no badge box — just a dot + micro text) */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
             className="flex items-center gap-3"
@@ -164,7 +164,7 @@ export default function Hero() {
           </div>
 
           <motion.p
-            initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+            initial={reduce ? false : { opacity: 0, y: 18, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, delay: 0.8, ease: [0.19, 1, 0.22, 1] }}
             className="max-w-xl text-[15px] leading-relaxed text-white/70 md:text-lg"
@@ -174,7 +174,7 @@ export default function Hero() {
 
           {/* CTAs + trust — no box, no separator bar */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={reduce ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 1.0, ease: [0.19, 1, 0.22, 1] }}
             className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6"
@@ -200,7 +200,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.1, delay: 1.25 }}
             className="flex items-center gap-2 text-[11px] text-white/40"
@@ -356,7 +356,7 @@ function FloatingWidget({
             <AnimatePresence mode="wait">
               <motion.div
                 key={verticalKey}
-                initial={{ opacity: 0, filter: "blur(14px)" }}
+                initial={reduce ? false : { opacity: 0, filter: "blur(14px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 exit={{   opacity: 0, filter: "blur(14px)" }}
                 transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
@@ -406,6 +406,7 @@ function ConversationStream({ verticalKey }: { verticalKey: VerticalKey }) {
   const messages = conversations[verticalKey].messages;
   const [visible, setVisible] = React.useState(0);
   const [typing, setTyping]   = React.useState(false);
+  const reduce = useReducedMotion();
 
   React.useEffect(() => {
     setVisible(0);
@@ -440,7 +441,7 @@ function ConversationStream({ verticalKey }: { verticalKey: VerticalKey }) {
       {messages.map((msg, i) => (
         <motion.div
           key={msg.id}
-          initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+          initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(6px)" }}
           animate={{
             opacity: i < visible ? 1 : 0,
             y:       i < visible ? 0 : 10,
@@ -463,7 +464,7 @@ function ConversationStream({ verticalKey }: { verticalKey: VerticalKey }) {
 
       {typing && (
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           className="flex justify-start"
         >
