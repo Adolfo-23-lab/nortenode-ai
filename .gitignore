@@ -54,3 +54,6 @@ lint_output.txt
 
 # large media — keep on CDN, not in repo
 /public/assets/*.mp4
+
+# playwright-mcp screenshot cache (scratch only)
+.playwright-mcp/
