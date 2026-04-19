@@ -87,8 +87,24 @@
 html {
   width: 100%;
   overflow-x: hidden;
+  /* Native scroll fallback for reduced-motion; Lenis takes over otherwise. */
   scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+/* Lenis hooks — when smooth scroll is active it toggles these classes. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 body {

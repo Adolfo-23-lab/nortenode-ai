@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { LenisProvider } from "@/components/motion/LenisProvider";
 import { I18nProvider } from "@/i18n/provider";
 
 const geistSans = Geist({
@@ -92,8 +93,10 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] flex flex-col">
         <I18nProvider>
-          <Navbar />
-          {children}
+          <LenisProvider>
+            <Navbar />
+            {children}
+          </LenisProvider>
         </I18nProvider>
       </body>
     </html>
