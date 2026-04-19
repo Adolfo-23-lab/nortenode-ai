@@ -46,7 +46,9 @@ next-env.d.ts
 supabase/.temp/
 supabase_schema.sql
 .vscode/
-.claude/
+.claude/*
+!.claude/skills/
+!.claude/skills/**
 lint_errors.txt
 lint_output.txt
 *_eslint_output.txt
