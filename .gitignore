@@ -49,3 +49,8 @@ supabase_schema.sql
 .claude/
 lint_errors.txt
 lint_output.txt
+*_eslint_output.txt
+*_lint_output.txt
+
+# large media — keep on CDN, not in repo
+/public/assets/*.mp4
