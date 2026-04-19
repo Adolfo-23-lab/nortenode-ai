@@ -1,4 +1,5 @@
 import ConversionZone from "@/components/ConversionZone";
+import FloatingSalesBot from "@/components/FloatingSalesBot";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -28,6 +29,7 @@ export default function DemoPage() {
       <ConversionZone />
 
       <Footer />
+      <FloatingSalesBot />
     </main>
   );
 }

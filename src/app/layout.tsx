@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import FloatingSalesBot from "@/components/FloatingSalesBot";
 import { I18nProvider } from "@/i18n/provider";
 
 const geistSans = Geist({
@@ -95,7 +94,6 @@ export default function RootLayout({
         <I18nProvider>
           <Navbar />
           {children}
-          <FloatingSalesBot />
         </I18nProvider>
       </body>
     </html>
