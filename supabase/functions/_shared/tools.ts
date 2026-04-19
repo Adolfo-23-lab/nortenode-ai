@@ -82,7 +82,11 @@ export const BOT_TOOL_SPECS: OpenAIToolSpec[] = [
         "hours and existing bookings are validated server-side. On error codes: " +
         "'service_not_found' → clarify with customer; 'conflict' or " +
         "'outside_business_hours' → suggest another time; 'past_time' → explain " +
-        "and ask for a future slot.",
+        "and ask for a future slot. " +
+        "PRECONDITIONS: You MUST have collected customer_name AND customer_phone " +
+        "before calling this. If you don't have them, ask the customer first — " +
+        "do not call with empty or placeholder values. Only after this tool " +
+        "returns ok:true you may tell the customer 'agendado' or 'confirmado'.",
       parameters: {
         type: "object",
         properties: {
