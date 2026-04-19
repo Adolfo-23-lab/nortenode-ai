@@ -86,13 +86,11 @@ export const es: Dictionary = {
     widget: "Widget Web",
   },
   hero: {
-    eyebrow: "SaaS · Tecnología conversacional",
-    headline_l1: "El cliente escribe.",
-    headline_l2: "La IA responde.",
-    headline_l3: "Tú cobras.",
-    sub:
-      "Barbería, tatuaje, cerrajería, gimnasio. Una recepcionista IA que contesta en segundos, " +
-      "cualifica al cliente y reserva la cita, aunque sea domingo a las 3 de la madrugada.",
+    eyebrow: "NORTENODE · RECEPCIÓN IA",
+    headline_l1: "LA RECEPCIÓN",
+    headline_l2: "INVISIBLE.",
+    headline_l3: "",
+    sub: "Respondemos por ti, 24 horas al día.",
     metric_response_label: "Tiempo de respuesta medio",
     metric_response_value: "1.2s",
     metric_coverage_label: "Cobertura",
@@ -234,13 +232,11 @@ export const en: Dictionary = {
     widget: "Web Widget",
   },
   hero: {
-    eyebrow: "SaaS · Conversational tech",
-    headline_l1: "They message.",
-    headline_l2: "The AI replies.",
-    headline_l3: "You get paid.",
-    sub:
-      "Barbershop, tattoo studio, locksmith, gym. An AI receptionist that answers in seconds, " +
-      "qualifies the lead and books the slot — even on Sunday at 3 am.",
+    eyebrow: "NORTENODE · AI RECEPTION",
+    headline_l1: "THE INVISIBLE",
+    headline_l2: "RECEPTION.",
+    headline_l3: "",
+    sub: "We answer for you, around the clock.",
     metric_response_label: "Avg. response",
     metric_response_value: "1.2s",
     metric_coverage_label: "Coverage",
@@ -342,13 +338,11 @@ export const pt: Dictionary = {
     widget: "Widget Web",
   },
   hero: {
-    eyebrow: "SaaS · Tecnologia conversacional",
-    headline_l1: "O cliente escreve.",
-    headline_l2: "A IA responde.",
-    headline_l3: "Tu recebes.",
-    sub:
-      "Barbearia, tatuagem, serralharia, ginásio. Uma rececionista IA que responde em segundos, " +
-      "qualifica o cliente e marca a consulta — mesmo ao domingo às 3h da manhã.",
+    eyebrow: "NORTENODE · RECEÇÃO IA",
+    headline_l1: "A RECEÇÃO",
+    headline_l2: "INVISÍVEL.",
+    headline_l3: "",
+    sub: "Respondemos por ti, 24 horas por dia.",
     metric_response_label: "Resposta média",
     metric_response_value: "1.2s",
     metric_coverage_label: "Cobertura",
