@@ -1,174 +1,214 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
-
-const mainLinks = [
-  { label: "Início", href: "/" },
-  { label: "Quem Somos", href: "/quem-somos" },
-  { label: "Demo", href: "/demo" },
-  { label: "Contactos", href: "/contactos" },
-];
-
-const solucoesLinks = [
-  { label: "Widget Web IA", href: "/solucoes/widget-web" },
-  { label: "WhatsApp IA", href: "/solucoes/whatsapp" },
-];
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Globe, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useLocale, useT } from "@/i18n/provider";
+import { LOCALES, type Locale } from "@/i18n/dictionary";
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [solucoesOpen, setSolucoesOpen] = useState(false);
   const pathname = usePathname();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const t = useT();
+  const { locale, setLocale } = useLocale();
+  const [open, setOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
-  // Close dropdown on click outside
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setSolucoesOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-    setSolucoesOpen(false);
-  }, [pathname]);
+  React.useEffect(() => { setOpen(false); }, [pathname]);
 
-  const isActive = (href: string) =>
-    pathname === href ? "text-emerald-400" : "text-slate-300 hover:text-white";
+  const links: Array<{ href: string; label: string }> = [
+    { href: "/solucoes/whatsapp",   label: t.nav.whatsapp },
+    { href: "/solucoes/widget-web", label: t.nav.widget },
+    { href: "/#pricing",            label: t.nav.pricing },
+    { href: "/quem-somos",          label: t.nav.about },
+    { href: "/contactos",           label: t.nav.contact },
+  ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 flex items-center justify-center">
-            <Image
-              src="/nortenode_star_icon.png"
-              alt="NorteNode AI Logo"
-              width={28}
-              height={28}
-              className="object-contain w-auto h-auto"
-            />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-white">
-            NorteNode <span className="text-emerald-500">AI</span>
-          </span>
-        </Link>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
-          {mainLinks.slice(0, 1).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive(link.href)}`}
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Soluções dropdown — click-outside pattern instead of onBlur */}
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setSolucoesOpen((prev) => !prev)}
-              className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pathname.startsWith("/solucoes")
-                  ? "text-emerald-400"
-                  : "text-slate-300 hover:text-white"
-                }`}
-            >
-              Soluções
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${solucoesOpen ? "rotate-180" : ""}`}
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled ? "py-3" : "py-5",
+      )}
+    >
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 md:px-8">
+        <div
+          className={cn(
+            "flex w-full items-center justify-between rounded-full border transition-all duration-300",
+            scrolled
+              ? "glass-strong border-white/10 px-3 py-2"
+              : "border-transparent bg-transparent px-3 py-2",
+          )}
+        >
+          {/* Brand */}
+          <Link href="/" className="group flex items-center gap-2.5 pl-2" aria-label="NorteNode">
+            <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-transform group-hover:scale-105">
+              <Image
+                src="/nortenode_star_icon.png"
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5"
+                priority
               />
-            </button>
+            </span>
+            <span className="text-sm font-semibold tracking-tight text-white">
+              NorteNode
+            </span>
+          </Link>
 
-            {solucoesOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl py-2 shadow-2xl">
-                {solucoesLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`block px-4 py-2.5 text-sm transition-colors hover:bg-white/5 ${isActive(link.href)}`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Desktop links */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {links.map((l) => {
+              const href0 = l.href.split("#")[0] || "/";
+              const active = href0 === "/"
+                ? pathname === "/"
+                : pathname.startsWith(href0);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={cn(
+                    "rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
+                    active ? "text-white" : "text-white/60 hover:text-white",
+                  )}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-          {mainLinks.slice(1).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive(link.href)}`}
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <LocaleMenu current={locale} onChange={setLocale} />
+
+            <Button asChild size="sm" className="hidden md:inline-flex">
+              <Link href="/demo">{t.common.cta_primary}</Link>
+            </Button>
+
+            <button
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white md:hidden"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
             >
-              {link.label}
-            </Link>
-          ))}
+              {open ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
         </div>
-
-        {/* Desktop CTA */}
-        <Link
-          href="/demo"
-          className="hidden md:inline-flex items-center px-5 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold hover:bg-emerald-500/20 transition-colors"
-        >
-          Agendar Chamada
-        </Link>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-          aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-slate-950/95 backdrop-blur-xl border-t border-white/5 px-4 pb-6 pt-2">
-          {mainLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`block py-3 text-sm font-medium border-b border-white/5 transition-colors ${isActive(link.href)}`}
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Soluções section */}
-          <div className="py-3 border-b border-white/5">
-            <p className="text-xs uppercase tracking-widest text-slate-500 mb-2">Soluções</p>
-            {solucoesLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block py-2 pl-3 text-sm font-medium transition-colors ${isActive(link.href)}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <Link
-            href="/demo"
-            className="mt-4 w-full inline-flex items-center justify-center px-5 py-3 rounded-full bg-emerald-500 text-slate-950 text-sm font-bold hover:bg-emerald-400 transition-colors"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
+            className="mx-auto mt-3 w-full max-w-7xl px-5 md:hidden"
           >
-            Agendar Chamada
-          </Link>
-        </div>
-      )}
-    </nav>
+            <div className="glass-strong rounded-2xl p-2">
+              <nav className="flex flex-col">
+                {links.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="rounded-xl px-4 py-3 text-sm font-medium text-white/80 hover:bg-white/[0.06] hover:text-white"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <div className="mt-1 p-2">
+                  <Button asChild size="lg" className="w-full">
+                    <Link href="/demo">{t.common.cta_primary}</Link>
+                  </Button>
+                </div>
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
+
+// ---------------------------------------------------------------------
+// Locale picker
+// ---------------------------------------------------------------------
+function LocaleMenu({
+  current,
+  onChange,
+}: {
+  current: Locale;
+  onChange: (l: Locale) => void;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    function onDoc(e: MouseEvent) {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    }
+    window.addEventListener("mousedown", onDoc);
+    return () => window.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const labels: Record<Locale, string> = { es: "ES", en: "EN", pt: "PT" };
+  const names:  Record<Locale, string> = { es: "Español", en: "English", pt: "Português" };
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        className="inline-flex h-9 items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 text-[11px] font-medium tracking-wide text-white/80 hover:text-white"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <Globe size={12} strokeWidth={1.75} />
+        {labels[current]}
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            role="listbox"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full z-50 mt-2 w-36 overflow-hidden rounded-xl border border-white/10 bg-[var(--color-ink-100)]/95 p-1 shadow-[var(--shadow-panel)] backdrop-blur-xl"
+          >
+            {LOCALES.map((l) => (
+              <button
+                key={l}
+                role="option"
+                aria-selected={l === current}
+                onClick={() => { onChange(l); setOpen(false); }}
+                className={cn(
+                  "flex w-full items-center justify-between rounded-lg px-3 py-2 text-xs transition-colors",
+                  l === current
+                    ? "bg-white/[0.08] text-white"
+                    : "text-white/60 hover:bg-white/[0.04] hover:text-white",
+                )}
+              >
+                <span>{labels[l]}</span>
+                <span className="text-[10px] text-white/40">{names[l]}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

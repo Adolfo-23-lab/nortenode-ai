@@ -1,10 +1,33 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport, type UIMessage } from "ai";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send, User } from "lucide-react";
 import { saveChatLeadAction } from "@/app/actions/saveChatLead";
+
+type ChatMessage = {
+  id: string;
+  role: "system" | "user" | "assistant" | "data";
+  content: string;
+  parts?: Array<{ type: string; text?: string }>;
+};
+
+const INITIAL_GREETING: UIMessage[] = [
+  {
+    id: "demo-msg-1",
+    role: "assistant",
+    parts: [
+      {
+        type: "text",
+        text:
+          "Olá, muito gosto. Sou a assistente IA da clínica em Gaia/Porto. " +
+          "Em que tratamento tem interesse para o seu rosto ou corpo?",
+      },
+    ],
+  },
+];
 
 export default function InteractiveDemo() {
   const [sessionId] = useState(() => {
@@ -20,20 +43,27 @@ export default function InteractiveDemo() {
   const [isInitialized, setIsInitialized] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // AI SDK v6: `body` and `initialMessages` live on the transport, not on
+  // useChat() directly.  Passing them as top-level options (v5-style) is
+  // silently ignored, which was causing /api/chat to reject requests for
+  // lack of botType/sessionId.
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        body: { botType: "demo", sessionId },
+      }),
+    [sessionId],
+  );
+
   const { messages, sendMessage, status } = useChat({
-    // body is a valid runtime feature; cast needed due to SDK v3 type gap
-    ...(({ body: { botType: "demo" } }) as any),
-    messages: [
-      {
-        id: "msg-1",
-        role: "assistant",
-        content: "Olá, muito gosto. Sou a assistente IA da clínica em Gaia/Porto. Em que tratamento tem interesse para o seu rosto ou corpo?",
-      } as any,
-    ],
-  } as any);
+    transport,
+    messages: INITIAL_GREETING,
+  });
 
   // Auto-scroll to latest message (only after component initializes)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsInitialized(true);
   }, []);
 
@@ -55,11 +85,11 @@ export default function InteractiveDemo() {
   };
 
   // Helper to extract plain text from a UIMessage
-  const getMessageText = (msg: any): string => {
-    if (Array.isArray(msg.parts)) {
-      return msg.parts
-        .filter((p: any) => p.type === "text")
-        .map((p: any) => p.text)
+  const getMessageText = (msg: ChatMessage): string => {
+    if ("parts" in msg && Array.isArray((msg as ChatMessage).parts)) {
+      return (msg as ChatMessage).parts!
+        .filter((p) => p.type === "text")
+        .map((p) => p.text)
         .join("");
     }
     return msg.content ?? "";
@@ -88,7 +118,7 @@ export default function InteractiveDemo() {
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
         <AnimatePresence>
-          {messages.map((msg: any, i: number) => (
+          {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
             <motion.div
               key={msg.id ?? i}
               initial={{ opacity: 0, y: 10 }}
@@ -106,7 +136,7 @@ export default function InteractiveDemo() {
                 className={`p-3 rounded-2xl text-sm leading-relaxed ${
                   msg.role === "user"
                     ? "bg-blue-600 text-white rounded-tr-none"
-                    : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
+                    : "bg-zinc-800 text-zinc-200 rounded-tl-none border border-zinc-700/50"
                 }`}
               >
                 {getMessageText(msg)}
@@ -123,7 +153,7 @@ export default function InteractiveDemo() {
               <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-emerald-500/20">
                 <Bot className="w-4 h-4 text-emerald-400" />
               </div>
-              <div className="p-3 rounded-2xl text-sm bg-slate-800 text-slate-400 rounded-tl-none border border-white/5">
+              <div className="p-3 rounded-2xl text-sm bg-zinc-800 text-zinc-500 rounded-tl-none border border-zinc-700/50">
                 <span className="animate-pulse">...</span>
               </div>
             </motion.div>
@@ -141,12 +171,12 @@ export default function InteractiveDemo() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Perguntar por preços, tratamentos..."
-            className="flex-1 bg-slate-950/50 border border-white/10 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder:text-zinc-700"
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
+            className="w-11 h-11 rounded-full bg-emerald-500 flex items-center justify-center text-zinc-950 disabled:opacity-50 transition-all hover:bg-emerald-400"
           >
             <Send className="w-4 h-4" />
           </button>

@@ -1,123 +1,132 @@
-import { Bot, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { Instagram, Linkedin, Mail } from "lucide-react";
+import { useT } from "@/i18n/provider";
 
 export default function Footer() {
+  const t = useT();
+  const year = new Date().getFullYear();
+
+  const cols: Array<{ title: string; links: Array<{ href: string; label: string }> }> = [
+    {
+      title: t.footer.sections.product,
+      links: [
+        { href: "/demo",                   label: t.nav.demo },
+        { href: "/solucoes/whatsapp",      label: t.nav.whatsapp },
+        { href: "/solucoes/widget-web",    label: t.nav.widget },
+        { href: "/#pricing",               label: t.nav.pricing },
+      ],
+    },
+    {
+      title: t.footer.sections.company,
+      links: [
+        { href: "/quem-somos", label: t.nav.about },
+        { href: "/contactos",  label: t.nav.contact },
+      ],
+    },
+    {
+      title: t.footer.sections.legal,
+      links: [
+        { href: "/privacy", label: t.footer.privacy },
+        { href: "/terms",   label: t.footer.terms },
+      ],
+    },
+  ];
+
   return (
-    <footer className="border-t border-white/10 bg-black/20 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <Bot className="w-4 h-4 text-emerald-400" />
-              </div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-emerald-400">
-                NorteNode AI
+    <footer className="relative mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--color-ink-50)]">
+      {/* Decorative aurora bleed at top */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[color:var(--color-signal-500)]/50 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60%] -translate-x-1/2 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(47,130,247,0.22) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative mx-auto w-full max-w-7xl px-5 py-20 md:px-8">
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-[1.5fr_2fr] md:gap-20">
+          {/* Brand block */}
+          <div>
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10">
+                <Image src="/nortenode_star_icon.png" alt="" width={22} height={22} />
+              </span>
+              <span className="font-display text-2xl tracking-tight text-white">
+                NorteNode
               </span>
             </Link>
-            <p className="text-slate-400 text-sm max-w-xs leading-relaxed">
-              Engenharia de conversão para clínicas na Área Metropolitana do Porto. Automação inteligente de agendamentos.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
+              {t.footer.blurb}
             </p>
-          </div>
-          
-          {/* Contacto */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contacto</h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <a
-                  href="mailto:nortenode.ia@gmail.com"
-                  className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
-                >
-                  <Mail className="w-4 h-4 shrink-0" />
-                  nortenode.ia@gmail.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+351937809995"
-                  className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
-                >
-                  <Phone className="w-4 h-4 shrink-0" />
-                  +351 937 809 995
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 shrink-0" />
-                Vila Nova de Gaia, Portugal
-              </li>
-            </ul>
-          </div>
 
-          {/* Navegação */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Navegação</h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <Link href="/" className="hover:text-emerald-400 transition-colors">
-                  Início
-                </Link>
-              </li>
-              <li>
-                <Link href="/quem-somos" className="hover:text-emerald-400 transition-colors">
-                  Quem Somos
-                </Link>
-              </li>
-              <li>
-                <Link href="/solucoes/widget-web" className="hover:text-emerald-400 transition-colors">
-                  Widget Web IA
-                </Link>
-              </li>
-              <li>
-                <Link href="/solucoes/whatsapp" className="hover:text-emerald-400 transition-colors">
-                  WhatsApp IA
-                </Link>
-              </li>
-              <li>
-                <Link href="/demo" className="hover:text-emerald-400 transition-colors">
-                  Demo
-                </Link>
-              </li>
-              <li>
-                <Link href="/contactos" className="hover:text-emerald-400 transition-colors">
-                  Contactos
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Redes Sociais */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Siga-nos</h4>
-            <div className="flex gap-4 text-slate-400">
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-emerald-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-emerald-400 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+            <div className="mt-7 flex items-center gap-3">
+              <SocialIconLink href="mailto:adolfo@nortenode.com" label="Email">
+                <Mail size={14} />
+              </SocialIconLink>
+              <SocialIconLink href="https://www.instagram.com/nortenode" label="Instagram">
+                <Instagram size={14} />
+              </SocialIconLink>
+              <SocialIconLink href="https://linkedin.com/company/nortenode" label="LinkedIn">
+                <Linkedin size={14} />
+              </SocialIconLink>
             </div>
           </div>
+
+          {/* Columns */}
+          <div className="grid grid-cols-3 gap-6 md:gap-10">
+            {cols.map((col) => (
+              <div key={col.title}>
+                <p className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+                  {col.title}
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {col.links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="text-sm text-white/70 transition-colors hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-        
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} NorteNode AI. Todos os direitos reservados.</p>
-          <p className="mt-2 md:mt-0">Feito com precisão no Porto & Gaia.</p>
+
+        {/* Bottom rule */}
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-6 text-xs text-white/40 md:flex-row">
+          <p>© {year} NorteNode · {t.footer.rights}</p>
+          <p className="font-mono tracking-wide">nortenode.com</p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function SocialIconLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-all hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+    >
+      {children}
+    </Link>
   );
 }

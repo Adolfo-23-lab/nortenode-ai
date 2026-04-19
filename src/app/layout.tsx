@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import FloatingSalesBot from "@/components/FloatingSalesBot";
+import { I18nProvider } from "@/i18n/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,49 +15,68 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "NorteNode AI | Automação e IA para Clínicas no Porto e Gaia",
-  description: "Instalamos Agentes de IA e automatizamos agendamentos para clínicas de estética em Vila Nova de Gaia e Porto. Aumente as suas marcações 24/7.",
+  metadataBase: new URL("https://nortenode.com"),
+  title: {
+    default: "NorteNode — Recepcionista IA 24/7 para pequeños negocios",
+    template: "%s · NorteNode",
+  },
+  description:
+    "Instalamos agentes de IA que contestan, cualifican y agendan en segundos. " +
+    "WhatsApp, widget web, dashboard multi-tenant. Para barberías, tatuadores, " +
+    "cerrajeros, gimnasios y más.",
+  applicationName: "NorteNode",
+  authors: [{ name: "NorteNode", url: "https://nortenode.com" }],
+  keywords: [
+    "IA", "recepcionista virtual", "WhatsApp business", "agendamiento automático",
+    "chatbot SMB", "SaaS", "pequenos negocios", "small business",
+  ],
   manifest: "/manifest.json",
   icons: {
     icon: [
-      {
-        url: "/favicon-dark-256.png",
-        sizes: "256x256",
-        type: "image/png",
-      },
-      {
-        url: "/icon.png",
-        sizes: "any",
-        type: "image/png",
-      },
+      { url: "/favicon-dark-256.png", sizes: "256x256", type: "image/png" },
+      { url: "/icon.png", sizes: "any", type: "image/png" },
     ],
     apple: [
-      {
-        url: "/apple-touch-icon.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
-      {
-        url: "/apple-icon.png",
-        sizes: "any",
-        type: "image/png",
-      },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-icon.png", sizes: "any", type: "image/png" },
     ],
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "NorteNode AI",
+    title: "NorteNode",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://nortenode.com",
+    siteName: "NorteNode",
+    title: "NorteNode — Recepcionista IA 24/7",
+    description: "La IA que nunca duerme. WhatsApp + Web, listo en 72h.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NorteNode",
+    description: "Recepcionista IA 24/7 para pequeños negocios.",
   },
 };
 
 export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)",  color: "#05060a" },
+    { media: "(prefers-color-scheme: light)", color: "#05060a" },
+  ],
   width: "device-width",
   initialScale: 1,
-  minimumScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
   viewportFit: "cover",
 };
 
@@ -67,16 +87,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt-PT"
-      className={`${geistSans.variable} ${geistMono.variable} dark antialiased h-full`}
+      lang="es"
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} dark antialiased h-full`}
+      suppressHydrationWarning
     >
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-      </head>
-      <body className="min-h-full bg-slate-950 text-slate-50 flex flex-col selection:bg-emerald-500/30">
-        <Navbar />
-        {children}
-        <FloatingSalesBot />
+      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] flex flex-col">
+        <I18nProvider>
+          <Navbar />
+          {children}
+          <FloatingSalesBot />
+        </I18nProvider>
       </body>
     </html>
   );

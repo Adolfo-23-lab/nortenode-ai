@@ -1,11 +1,32 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport, type UIMessage } from "ai";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, User, Bot, X } from "lucide-react";
 import Image from "next/image";
 import { saveChatLeadAction } from "@/app/actions/saveChatLead";
+
+type ChatMessage = {
+  id: string;
+  role: "system" | "user" | "assistant" | "data";
+  content: string;
+  parts?: Array<{ type: string; text?: string }>;
+};
+
+const INITIAL_GREETING: UIMessage[] = [
+  {
+    id: "sales-msg-1",
+    role: "assistant",
+    parts: [
+      {
+        type: "text",
+        text: "¡Hola! 👋 Soy el asistente de NorteNode. Cuéntame del negocio y te explico cómo te ahorramos tiempo.",
+      },
+    ],
+  },
+];
 
 export default function FloatingSalesBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,17 +42,21 @@ export default function FloatingSalesBot() {
     return id;
   });
 
+  // AI SDK v6: `body` and `initialMessages` live on the transport, not on
+  // useChat() directly.
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        body: { botType: "sales", sessionId },
+      }),
+    [sessionId],
+  );
+
   const { messages, sendMessage, status } = useChat({
-    // body is a valid runtime feature; cast needed due to SDK v3 type gap
-    ...(({ body: { botType: "sales" } }) as any),
-    messages: [
-      {
-        id: "sales-msg-1",
-        role: "assistant",
-        content: "Olá! 👋 Sou o assistente da NorteNode AI. Em que posso ajudar a sua clínica hoje?",
-      } as any,
-    ],
-  } as any);
+    transport,
+    messages: INITIAL_GREETING,
+  });
 
   // Auto-scroll to latest message whenever messages change
   useEffect(() => {
@@ -50,11 +75,11 @@ export default function FloatingSalesBot() {
     await saveChatLeadAction({ sessionId, userMessage: trimmed, source: "sales" });
   };
 
-  const getMessageText = (msg: any): string => {
-    if (Array.isArray(msg.parts)) {
-      return msg.parts
-        .filter((p: any) => p.type === "text")
-        .map((p: any) => p.text)
+  const getMessageText = (msg: ChatMessage): string => {
+    if ("parts" in msg && Array.isArray((msg as ChatMessage).parts)) {
+      return (msg as ChatMessage).parts!
+        .filter((p) => p.type === "text")
+        .map((p) => p.text)
         .join("");
     }
     return msg.content ?? "";
@@ -81,14 +106,14 @@ export default function FloatingSalesBot() {
                 <div className="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center overflow-hidden border border-emerald-500/30">
                   <Image
                     src="/nortenode_star_icon.png"
-                    alt="NorteNode AI"
+                    alt="NorteNode"
                     width={24}
                     height={24}
                     className="object-contain w-auto h-auto"
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">NorteNode AI</p>
+                  <p className="text-sm font-semibold text-white">NorteNode</p>
                   <p className="text-xs text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
                     Em Linha
@@ -97,7 +122,7 @@ export default function FloatingSalesBot() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-slate-400 hover:text-white"
+                className="p-1.5 rounded-lg hover:bg-zinc-700/50 transition-colors text-zinc-400 hover:text-white"
                 aria-label="Fechar chat"
               >
                 <X className="w-4 h-4" />
@@ -105,8 +130,8 @@ export default function FloatingSalesBot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col bg-slate-950/60">
-              {messages.map((msg: any, i: number) => (
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col bg-zinc-950">
+              {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
                 <motion.div
                   key={msg.id ?? i}
                   initial={{ opacity: 0, y: 8 }}
@@ -123,7 +148,7 @@ export default function FloatingSalesBot() {
                   <div
                     className={`px-3 py-2 rounded-xl text-sm leading-relaxed ${msg.role === "user"
                         ? "bg-blue-600 text-white rounded-tr-none"
-                        : "bg-slate-800 text-slate-200 rounded-tl-none border border-white/5"
+                        : "bg-zinc-800 text-zinc-200 rounded-tl-none border border-zinc-700/50"
                       }`}
                   >
                     {getMessageText(msg)}
@@ -139,7 +164,7 @@ export default function FloatingSalesBot() {
                   <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center">
                     <Bot className="w-3.5 h-3.5 text-emerald-400" />
                   </div>
-                  <div className="px-3 py-2 rounded-xl text-sm bg-slate-800 text-slate-400 rounded-tl-none border border-white/5">
+                  <div className="px-3 py-2 rounded-xl text-sm bg-zinc-800 text-zinc-500 rounded-tl-none border border-zinc-700/50">
                     <span className="animate-pulse">...</span>
                   </div>
                 </motion.div>
@@ -149,19 +174,19 @@ export default function FloatingSalesBot() {
             </div>
 
             {/* Input */}
-            <div className="p-3 bg-slate-900/80 border-t border-white/10">
+            <div className="p-3 bg-zinc-900 border-t border-zinc-800">
               <form onSubmit={handleSend} className="flex gap-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escreva a sua mensagem..."
-                  className="flex-1 bg-slate-950/50 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder:text-slate-600"
+                  className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder:text-zinc-700"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 disabled:opacity-50 transition-all hover:bg-emerald-400 shrink-0"
+                  className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-zinc-950 disabled:opacity-50 transition-all hover:bg-emerald-400 shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -176,7 +201,7 @@ export default function FloatingSalesBot() {
         onClick={() => setIsOpen((prev) => !prev)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        aria-label={isOpen ? "Fechar assistente NorteNode AI" : "Abrir assistente NorteNode AI"}
+        aria-label={isOpen ? "Fechar assistente NorteNode" : "Abrir assistente NorteNode"}
         className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-emerald-950 to-zinc-950 hover:from-emerald-900 hover:to-black shadow-lg shadow-emerald-900/40 flex items-center justify-center overflow-hidden border-2 border-emerald-800/50 transition-colors"
       >
         <AnimatePresence mode="wait">
@@ -200,7 +225,7 @@ export default function FloatingSalesBot() {
             >
               <Image
                 src="/nortenode_star_icon.png"
-                alt="NorteNode AI"
+                alt="NorteNode"
                 width={30}
                 height={30}
                 className="object-contain w-auto h-auto"

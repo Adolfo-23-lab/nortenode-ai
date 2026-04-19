@@ -1,7 +1,7 @@
 {
-  "name": "NorteNode AI",
+  "name": "NorteNode",
   "short_name": "NorteNode",
-  "description": "Automação e IA para Clínicas no Porto e Gaia",
+  "description": "Recepcionista IA 24/7 para pequenos negócios. Agenda, qualifica e responde em Português, Español e English.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

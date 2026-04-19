@@ -1,102 +1,129 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, MapPin } from "lucide-react";
-import Image from "next/image";
+
+const values = [
+  {
+    label: "Localização",
+    value: "Vila Nova de Gaia",
+    sub: "Portugal",
+  },
+  {
+    label: "Foco",
+    value: "Clínicas de estética",
+    sub: "Porto & Gaia exclusivamente",
+  },
+  {
+    label: "Modelo",
+    value: "Boutique",
+    sub: "Sócios dedicados ao seu projeto",
+  },
+];
 
 export default function AboutUs() {
   return (
-    <section className="py-24 relative px-4 md:px-6 max-w-7xl mx-auto" id="about">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left Side: Images */}
+    <section className="py-28 px-5 md:px-8 max-w-7xl mx-auto" id="about">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+        {/* Left — valores / credenciais */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative w-full aspect-square"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-4"
         >
-          {/* Main Image */}
-          <div className="absolute top-0 left-0 w-4/5 h-4/5 rounded-3xl overflow-hidden shadow-2xl border border-white/10 z-10 glass">
-            <Image
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000"
-              alt="Equipa NorteNode AI"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
-            />
+          {/* Label */}
+          <p className="text-xs uppercase tracking-widest text-zinc-600">Quem somos</p>
+
+          {/* Headline grande */}
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+            Construídos no Norte,
+            <br />
+            <span className="text-zinc-500">para o Norte.</span>
+          </h2>
+
+          {/* Divider */}
+          <div className="w-10 h-px bg-emerald-500 my-6" />
+
+          {/* Stats grid */}
+          <div className="space-y-px rounded-2xl overflow-hidden border border-zinc-800">
+            {values.map((v, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="flex items-center justify-between px-5 py-4 bg-zinc-900 hover:bg-zinc-800/70 transition-colors group"
+              >
+                <span className="text-xs uppercase tracking-widest text-zinc-600 w-28 shrink-0">
+                  {v.label}
+                </span>
+                <div className="text-right">
+                  <p className="text-sm font-semibold text-white">{v.value}</p>
+                  <p className="text-xs text-zinc-600">{v.sub}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          {/* Secondary Image */}
-          <div className="absolute bottom-0 right-0 w-3/5 h-3/5 rounded-3xl overflow-hidden shadow-2xl border border-white/10 z-20 glass">
-            <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
-              alt="Escritório em Vila Nova de Gaia"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
-            />
-          </div>
-          {/* Decorative */}
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-emerald-500/10 rounded-full blur-[60px] -z-10" />
         </motion.div>
 
-        {/* Right Side: Copy */}
+        {/* Right — copy */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.12 },
+            },
           }}
           className="flex flex-col gap-6"
         >
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-              A Nossa Missão no Norte
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full mb-6" />
-          </motion.div>
-
-          <motion.p 
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-lg text-slate-300 leading-relaxed"
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            className="text-lg text-zinc-300 leading-relaxed"
           >
-            Somos uma agência boutique sediada em <span className="text-white font-medium">Vila Nova de Gaia</span>, 
-            exclusivamente focada em engenharia de conversão para o setor da saúde e estética. 
-          </motion.p>
-          
-          <motion.p 
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-lg text-slate-300 leading-relaxed"
-          >
-            Acreditamos que uma clínica moderna não precisa de mais &quot;likes&quot; ou de websites lentos. 
-            Precisa de sistemas inteligentes e automatizados que transformem visitantes locais do Porto 
-            e Gaia em pacientes na sua agenda.
+            Somos uma agência boutique sediada em{" "}
+            <span className="text-white font-medium">Vila Nova de Gaia</span>,
+            exclusivamente focada em engenharia de conversão para clínicas de saúde e estética.
           </motion.p>
 
-          <motion.div 
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8"
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            className="text-lg text-zinc-400 leading-relaxed"
           >
-            <div className="glass p-4 rounded-2xl border border-white/5 flex items-start gap-3">
-              <div className="p-2 bg-emerald-500/10 rounded-lg">
-                <MapPin className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div>
-                <h4 className="text-white font-medium mb-1">Localização</h4>
-                <p className="text-sm text-slate-400">Vila Nova de Gaia, Portugal</p>
-              </div>
-            </div>
-            <div className="glass p-4 rounded-2xl border border-white/5 flex items-start gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <Users className="w-5 h-5 text-blue-400" />
-              </div>
-              <div>
-                <h4 className="text-white font-medium mb-1">Equipa Especializada</h4>
-                <p className="text-sm text-slate-400">Sócios 100% dedicados à sua clínica</p>
-              </div>
-            </div>
+            Acreditamos que uma clínica moderna não precisa de mais &quot;likes&quot;
+            ou websites lentos. Precisa de sistemas inteligentes que transformem
+            visitantes locais em pacientes na sua agenda — sem comissões a terceiros.
+          </motion.p>
+
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            className="text-sm text-zinc-600 leading-relaxed border-l-2 border-zinc-800 pl-4"
+          >
+            &quot;Trabalhamos apenas com um número limitado de clínicas por zona,
+            garantindo atenção total e resultados mensuráveis.&quot;
+          </motion.p>
+
+          {/* Pill tags */}
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            className="flex flex-wrap gap-2 mt-2"
+          >
+            {["Next.js", "IA Conversacional", "WhatsApp API", "Supabase", "SEO Local"].map(
+              (tag) => (
+                <span
+                  key={tag}
+                  className="text-xs px-3 py-1.5 rounded-full border border-zinc-800 text-zinc-500 bg-zinc-900"
+                >
+                  {tag}
+                </span>
+              )
+            )}
           </motion.div>
         </motion.div>
       </div>
