@@ -40,7 +40,7 @@ const contacts = [
 
 export default function ContactosPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 pt-20">
+    <main className="min-h-screen bg-[var(--background)] pt-20">
 
       {/* Heading */}
       <section className="pt-16 pb-12 px-5 md:px-8 max-w-7xl mx-auto">

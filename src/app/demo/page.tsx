@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function DemoPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 pt-20">
+    <main className="min-h-screen bg-[var(--background)] pt-20">
       {/* Minimal header */}
       <section className="pt-16 pb-0 px-5 md:px-8 max-w-7xl mx-auto">
         <p className="text-xs uppercase tracking-widest text-zinc-600 mb-5">Demo IA</p>

@@ -92,7 +92,7 @@ export default function ContactForm() {
             placeholder="Ex: Prime Estética Porto"
             value={formData.nomeClinica}
             onChange={(e) => setFormData((prev) => ({ ...prev, nomeClinica: e.target.value }))}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
+            className="w-full bg-[var(--background)] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
           />
         </div>
 
@@ -108,7 +108,7 @@ export default function ContactForm() {
               placeholder="geral@clinica.pt"
               value={formData.email}
               onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
+              className="w-full bg-[var(--background)] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
             />
           </div>
           <div>
@@ -122,7 +122,7 @@ export default function ContactForm() {
               placeholder="+351 900 000 000"
               value={formData.whatsapp}
               onChange={(e) => setFormData((prev) => ({ ...prev, whatsapp: e.target.value }))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
+              className="w-full bg-[var(--background)] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
             />
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function ContactForm() {
             placeholder="Ex: Harmonização Facial, Preenchimento..."
             value={formData.tratamento}
             onChange={(e) => setFormData((prev) => ({ ...prev, tratamento: e.target.value }))}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
+            className="w-full bg-[var(--background)] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-signal-500/50 transition-colors placeholder:text-zinc-700"
           />
         </div>
 

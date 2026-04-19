@@ -173,7 +173,7 @@ export default function InteractiveDemo() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Perguntar por preços, tratamentos..."
-            className="flex-1 bg-zinc-950 border border-zinc-800 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-signal-500 placeholder:text-zinc-700"
+            className="flex-1 bg-[var(--background)] border border-zinc-800 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-signal-500 placeholder:text-zinc-700"
           />
           <button
             type="submit"

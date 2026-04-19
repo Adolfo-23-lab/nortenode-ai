@@ -39,7 +39,7 @@ const messages = [
 
 export default function WidgetWebPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 pt-20">
+    <main className="min-h-screen bg-[var(--background)] pt-20">
       <section className="pt-16 px-5 md:px-8 max-w-7xl mx-auto pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
