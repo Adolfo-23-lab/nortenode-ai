@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scratch + tooling
+/tmp_app/
+/tmp/
+supabase/.temp/
+supabase_schema.sql
+.vscode/
+.claude/
+lint_errors.txt
+lint_output.txt
