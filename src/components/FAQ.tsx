@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Plus } from "lucide-react";
 import { useT } from "@/i18n/provider";
 import { type FAQEntry } from "@/i18n/dictionary";
@@ -18,9 +20,57 @@ import { type FAQEntry } from "@/i18n/dictionary";
  */
 export default function FAQ() {
   const t = useT();
+  const rootRef = React.useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean; isReduced: boolean };
+          const root = rootRef.current;
+          if (!root) return;
+
+          if (!isMotion) {
+            gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
+            return;
+          }
+
+          gsap.from(root.querySelectorAll("[data-reveal='faq-eyebrow'],[data-reveal='faq-title']"), {
+            y: 32,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 1.0,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 72%" },
+          });
+
+          gsap.from(root.querySelectorAll("[data-reveal='faq-item']"), {
+            y: 24,
+            opacity: 0,
+            duration: 0.85,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 65%" },
+          });
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
 
   return (
     <section
+      ref={rootRef}
       id="faq"
       aria-label={t.faq.title}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-50)] py-36 md:py-52"

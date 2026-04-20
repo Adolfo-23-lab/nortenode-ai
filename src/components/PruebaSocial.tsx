@@ -1,6 +1,9 @@
 "use client";
 
 import * as React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { useT } from "@/i18n/provider";
 
 /**
@@ -16,9 +19,70 @@ import { useT } from "@/i18n/provider";
  */
 export default function PruebaSocial() {
   const t = useT();
+  const rootRef = React.useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean; isReduced: boolean };
+          const root = rootRef.current;
+          if (!root) return;
+
+          if (!isMotion) {
+            gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
+            return;
+          }
+
+          // Header reveal.
+          gsap.from(root.querySelectorAll("[data-reveal='social-eyebrow'],[data-reveal='social-title']"), {
+            y: 32,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 1.0,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 72%" },
+          });
+
+          // Logos band + testimonials as they enter.
+          gsap.from(root.querySelector("[data-reveal='social-logos']"), {
+            y: 28,
+            opacity: 0,
+            duration: 1.0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root.querySelector("[data-reveal='social-logos']"), start: "top 82%" },
+          });
+
+          root.querySelectorAll<HTMLElement>("[data-reveal='social-testimonial']").forEach((card, i) => {
+            gsap.from(card, {
+              y: 36,
+              opacity: 0,
+              filter: "blur(6px)",
+              duration: 1.05,
+              delay: i * 0.12,
+              ease: "power3.out",
+              scrollTrigger: { trigger: card, start: "top 85%" },
+            });
+          });
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
 
   return (
     <section
+      ref={rootRef}
       aria-label={t.social.title}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-36 md:py-52"
     >
