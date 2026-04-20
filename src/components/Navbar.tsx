@@ -32,7 +32,7 @@ export default function Navbar() {
   const links: Array<{ href: string; label: string }> = [
     { href: "/solucoes/whatsapp",   label: t.nav.whatsapp },
     { href: "/solucoes/widget-web", label: t.nav.widget },
-    { href: "/#pricing",            label: t.nav.pricing },
+    { href: "/#servicios",          label: t.services.eyebrow },
     { href: "/quem-somos",          label: t.nav.about },
     { href: "/contactos",           label: t.nav.contact },
   ];

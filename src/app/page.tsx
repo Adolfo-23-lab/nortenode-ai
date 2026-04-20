@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import Servicios from "@/components/Servicios";
 import PruebaSocial from "@/components/PruebaSocial";
 import FAQ from "@/components/FAQ";
-import Pricing from "@/components/Pricing";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -12,9 +11,8 @@ import Footer from "@/components/Footer";
  *   2. Servicios    — what NorteNode builds (WhatsApp, Widget, Landing).
  *   3. PruebaSocial — logos + testimonials scaffolding ("Coming soon").
  *   4. FAQ          — editorial accordion with GSAP-animated panels.
- *   5. Pricing      — legacy pricing grid, pending removal in B.2b.4.
- *   6. FinalCTA     — legacy closing, pending rewrite in B.2b.4.
- *   7. Footer
+ *   5. FinalCTA     — closing full-bleed block, single conversion path.
+ *   6. Footer
  */
 export default function Home() {
   return (
@@ -23,7 +21,6 @@ export default function Home() {
       <Servicios />
       <PruebaSocial />
       <FAQ />
-      <Pricing />
       <FinalCTA />
       <Footer />
     </main>

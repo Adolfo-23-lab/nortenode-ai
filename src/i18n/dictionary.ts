@@ -9,15 +9,6 @@
  * compile error is raised if any key drifts between locales.
  */
 
-export interface PricingTier {
-  name: string;
-  price: number | null;
-  tagline: string;
-  featured?: boolean;
-  features: string[];
-  cta: string;
-}
-
 export interface FAQEntry {
   q: string;
   a: string;
@@ -33,11 +24,11 @@ export interface ServiceItem {
 export interface Dictionary {
   common: {
     brand: string; tagline: string;
-    cta_primary: string; cta_secondary: string; cta_contact: string;
-    badge_live: string; language_label: string;
+    cta_primary: string; cta_secondary: string;
+    language_label: string;
   };
   nav: {
-    home: string; demo: string; solutions: string; pricing: string;
+    home: string; demo: string; solutions: string;
     about: string; contact: string; login: string;
     whatsapp: string; widget: string;
   };
@@ -45,10 +36,6 @@ export interface Dictionary {
     eyebrow: string;
     headline_l1: string; headline_l2: string; headline_l3: string;
     sub: string;
-    metric_response_label: string; metric_response_value: string;
-    metric_coverage_label: string; metric_coverage_value: string;
-    metric_conversion_label: string; metric_conversion_value: string;
-    trust: string;
   };
   services: {
     eyebrow: string;
@@ -66,11 +53,6 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     items: FAQEntry[];
-  };
-  pricing: {
-    eyebrow: string; title: string; sub: string;
-    currency: string; per: string;
-    tiers: PricingTier[];
   };
   cta: {
     eyebrow: string;
@@ -90,16 +72,13 @@ export const es: Dictionary = {
     brand: "NorteNode",
     tagline: "Recepcionista IA 24/7",
     cta_primary: "Ver demo en vivo",
-    cta_secondary: "Ver planes",
-    cta_contact: "Hablar con ventas",
-    badge_live: "Online ahora",
+    cta_secondary: "Hablar con nosotros",
     language_label: "Idioma",
   },
   nav: {
     home: "Inicio",
     demo: "Demo",
     solutions: "Soluciones",
-    pricing: "Precios",
     about: "Nosotros",
     contact: "Contacto",
     login: "Entrar",
@@ -112,13 +91,6 @@ export const es: Dictionary = {
     headline_l2: "INVISIBLE.",
     headline_l3: "",
     sub: "Respondemos por ti, 24 horas al día.",
-    metric_response_label: "Tiempo de respuesta medio",
-    metric_response_value: "1.2s",
-    metric_coverage_label: "Cobertura",
-    metric_coverage_value: "24/7",
-    metric_conversion_label: "Conversión",
-    metric_conversion_value: "+34%",
-    trust: "Sin permanencia · Prueba gratis · GDPR compliant",
   },
   services: {
     eyebrow: "Lo que construimos",
@@ -197,53 +169,6 @@ export const es: Dictionary = {
       },
     ],
   },
-  pricing: {
-    eyebrow: "Planes",
-    title: "Precio cerrado. Sin letra pequeña.",
-    sub: "Cancela cuando quieras. Migración incluida.",
-    currency: "€",
-    per: "/mes",
-    tiers: [
-      {
-        name: "Starter",
-        price: 49,
-        tagline: "Widget web + bot básico",
-        features: [
-          "Agente IA en el widget web",
-          "1 canal, hasta 500 mensajes/mes",
-          "Dashboard multi-usuario",
-          "Notificaciones por email",
-        ],
-        cta: "Empezar con Starter",
-      },
-      {
-        name: "Pro",
-        price: 97,
-        tagline: "+ WhatsApp Meta API 24/7",
-        featured: true,
-        features: [
-          "Todo lo de Starter",
-          "Integración WhatsApp Business oficial",
-          "Respuestas multilingüe (ES/EN/PT)",
-          "Alertas WhatsApp al dueño",
-          "Mensajes ilimitados",
-        ],
-        cta: "Hablar con ventas",
-      },
-      {
-        name: "Agency",
-        price: null,
-        tagline: "Integraciones a medida",
-        features: [
-          "Todo lo de Pro",
-          "Integraciones con tu ERP/CRM",
-          "Soporte dedicado",
-          "SLA empresarial",
-        ],
-        cta: "Solicitar propuesta",
-      },
-    ],
-  },
   cta: {
     eyebrow: "Listos cuando tú lo estés",
     headline: "¿Listo para automatizar tu recepción?",
@@ -268,16 +193,13 @@ export const en: Dictionary = {
     brand: "NorteNode",
     tagline: "AI receptionist 24/7",
     cta_primary: "See live demo",
-    cta_secondary: "View pricing",
-    cta_contact: "Talk to sales",
-    badge_live: "Live now",
+    cta_secondary: "Talk to us",
     language_label: "Language",
   },
   nav: {
     home: "Home",
     demo: "Demo",
     solutions: "Solutions",
-    pricing: "Pricing",
     about: "About",
     contact: "Contact",
     login: "Sign in",
@@ -290,13 +212,6 @@ export const en: Dictionary = {
     headline_l2: "RECEPTION.",
     headline_l3: "",
     sub: "We answer for you, around the clock.",
-    metric_response_label: "Avg. response",
-    metric_response_value: "1.2s",
-    metric_coverage_label: "Coverage",
-    metric_coverage_value: "24/7",
-    metric_conversion_label: "Conversion",
-    metric_conversion_value: "+34%",
-    trust: "No lock-in · Free trial · GDPR ready",
   },
   services: {
     eyebrow: "What we build",
@@ -375,41 +290,6 @@ export const en: Dictionary = {
       },
     ],
   },
-  pricing: {
-    eyebrow: "Pricing",
-    title: "Flat price. No fine print.",
-    sub: "Cancel anytime. Migration included.",
-    currency: "€",
-    per: "/mo",
-    tiers: [
-      {
-        name: "Starter", price: 49, tagline: "Web widget + basic bot",
-        features: [
-          "AI agent on your web widget",
-          "1 channel, up to 500 msgs/mo",
-          "Multi-user dashboard",
-          "Email notifications",
-        ],
-        cta: "Start with Starter",
-      },
-      {
-        name: "Pro", price: 97, tagline: "+ WhatsApp Meta API 24/7", featured: true,
-        features: [
-          "Everything in Starter",
-          "Official WhatsApp Business integration",
-          "Multilingual replies (EN/ES/PT)",
-          "Owner WhatsApp alerts",
-          "Unlimited messages",
-        ],
-        cta: "Talk to sales",
-      },
-      {
-        name: "Agency", price: null, tagline: "Custom integrations",
-        features: ["Everything in Pro", "ERP/CRM integrations", "Dedicated support", "Enterprise SLA"],
-        cta: "Request proposal",
-      },
-    ],
-  },
   cta: {
     eyebrow: "Ready when you are",
     headline: "Ready to automate your reception?",
@@ -430,16 +310,13 @@ export const pt: Dictionary = {
     brand: "NorteNode",
     tagline: "Rececionista IA 24/7",
     cta_primary: "Ver demo ao vivo",
-    cta_secondary: "Ver preços",
-    cta_contact: "Falar com vendas",
-    badge_live: "Em linha",
+    cta_secondary: "Falar connosco",
     language_label: "Idioma",
   },
   nav: {
     home: "Início",
     demo: "Demo",
     solutions: "Soluções",
-    pricing: "Preços",
     about: "Quem somos",
     contact: "Contactos",
     login: "Entrar",
@@ -452,13 +329,6 @@ export const pt: Dictionary = {
     headline_l2: "INVISÍVEL.",
     headline_l3: "",
     sub: "Respondemos por ti, 24 horas por dia.",
-    metric_response_label: "Resposta média",
-    metric_response_value: "1.2s",
-    metric_coverage_label: "Cobertura",
-    metric_coverage_value: "24/7",
-    metric_conversion_label: "Conversão",
-    metric_conversion_value: "+34%",
-    trust: "Sem fidelização · Teste grátis · GDPR",
   },
   services: {
     eyebrow: "O que construímos",
@@ -534,41 +404,6 @@ export const pt: Dictionary = {
           "Monitorizamos cada conversa em tempo real, fazemos ajustes mensais " +
           "sobre o que converte e o que não, e mantemos as actualizações da " +
           "plataforma Meta incluídas sem custo extra.",
-      },
-    ],
-  },
-  pricing: {
-    eyebrow: "Planos",
-    title: "Preço fechado. Sem letras pequenas.",
-    sub: "Cancela quando quiseres. Migração incluída.",
-    currency: "€",
-    per: "/mês",
-    tiers: [
-      {
-        name: "Starter", price: 49, tagline: "Widget web + bot básico",
-        features: [
-          "Agente IA no widget web",
-          "1 canal, até 500 mensagens/mês",
-          "Dashboard multi-utilizador",
-          "Notificações por email",
-        ],
-        cta: "Começar com Starter",
-      },
-      {
-        name: "Pro", price: 97, tagline: "+ WhatsApp Meta API 24/7", featured: true,
-        features: [
-          "Tudo do Starter",
-          "Integração oficial WhatsApp Business",
-          "Respostas multilingue (PT/ES/EN)",
-          "Alertas WhatsApp para o dono",
-          "Mensagens ilimitadas",
-        ],
-        cta: "Falar com vendas",
-      },
-      {
-        name: "Agency", price: null, tagline: "Integrações à medida",
-        features: ["Tudo do Pro", "Integrações ERP/CRM", "Suporte dedicado", "SLA empresarial"],
-        cta: "Pedir proposta",
       },
     ],
   },

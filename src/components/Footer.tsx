@@ -16,7 +16,7 @@ export default function Footer() {
         { href: "/demo",                   label: t.nav.demo },
         { href: "/solucoes/whatsapp",      label: t.nav.whatsapp },
         { href: "/solucoes/widget-web",    label: t.nav.widget },
-        { href: "/#pricing",               label: t.nav.pricing },
+        { href: "/#faq",                   label: t.faq.eyebrow },
       ],
     },
     {
