@@ -18,6 +18,18 @@ export interface PricingTier {
   cta: string;
 }
 
+export interface FAQEntry {
+  q: string;
+  a: string;
+}
+
+export interface ServiceItem {
+  num: string;
+  name: string;
+  desc: string;
+  tag: string;
+}
+
 export interface Dictionary {
   common: {
     brand: string; tagline: string;
@@ -38,24 +50,36 @@ export interface Dictionary {
     metric_conversion_label: string; metric_conversion_value: string;
     trust: string;
   };
-  verticals: {
-    eyebrow: string; title: string; sub: string;
-    barbershop: { name: string; tag: string };
-    tattoo:     { name: string; tag: string };
-    locksmith:  { name: string; tag: string };
-    gym:        { name: string; tag: string };
-  };
-  how: {
-    eyebrow: string; title: string;
-    steps: Array<{ n: string; title: string; body: string }>;
+  services: {
+    eyebrow: string;
+    title: string;
+    items: ServiceItem[];
   };
   stats: {
     leads: string; saved: string; response: string; uptime: string;
+  };
+  social: {
+    eyebrow: string;
+    title: string;
+    logos_label: string;
+    coming_soon: string;
+    testimonial_role_placeholder: string;
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    items: FAQEntry[];
   };
   pricing: {
     eyebrow: string; title: string; sub: string;
     currency: string; per: string;
     tiers: PricingTier[];
+  };
+  cta: {
+    eyebrow: string;
+    headline: string;
+    primary: string;
+    secondary: string;
   };
   footer: {
     blurb: string;
@@ -99,48 +123,33 @@ export const es: Dictionary = {
     metric_conversion_value: "+34%",
     trust: "Sin permanencia · Prueba gratis · GDPR compliant",
   },
-  verticals: {
-    eyebrow: "Negocios que ya lo usan",
-    title: "Una IA por vertical, no un chatbot genérico.",
-    sub: "Cada agente aprende el léxico, los servicios y la agenda de tu negocio.",
-    barbershop: {
-      name: "Barbería",
-      tag: "Corte, barba, agenda cerrada.",
-    },
-    tattoo: {
-      name: "Estudio de Tatuaje",
-      tag: "Pre-cualifica ideas antes de la consulta.",
-    },
-    locksmith: {
-      name: "Cerrajería 24h",
-      tag: "Emergencias con respuesta en 15 min.",
-    },
-    gym: {
-      name: "Gimnasio",
-      tag: "Convierte visitas en clases de prueba.",
-    },
-  },
-  how: {
-    eyebrow: "Cómo funciona",
-    title: "De visita a reserva en menos de 2 minutos.",
-    steps: [
+  services: {
+    eyebrow: "Lo que construimos",
+    title: "Tres piezas. Una sola recepción.",
+    items: [
       {
-        n: "01",
-        title: "El cliente escribe",
-        body:
-          "Vía WhatsApp o widget web, a cualquier hora. En español, portugués o inglés.",
+        num: "01",
+        name: "Recepción WhatsApp con IA",
+        desc:
+          "El agente atiende, cualifica y agenda directamente en el WhatsApp Business " +
+          "de tu negocio. Integración oficial, cero latencia, sin caídas.",
+        tag: "WhatsApp Business API",
       },
       {
-        n: "02",
-        title: "La IA cualifica y agenda",
-        body:
-          "Pregunta por el servicio, verifica disponibilidad y confirma la cita en segundos.",
+        num: "02",
+        name: "Widget web conversacional",
+        desc:
+          "Un chat ligero en tu sitio que responde en menos de dos segundos, capta el " +
+          "lead con contexto completo y lo pasa al equipo listo para cerrar.",
+        tag: "Next.js · 2s de respuesta",
       },
       {
-        n: "03",
-        title: "Tú recibes el lead",
-        body:
-          "Notificación instantánea por WhatsApp y email. Todo en tu panel, en tiempo real.",
+        num: "03",
+        name: "Landing + integración completa",
+        desc:
+          "Diseñamos y entregamos la página nueva con el widget conectado, dominio, " +
+          "analítica y SEO técnico listos para convertir desde el día uno.",
+        tag: "Producción en 72 h",
       },
     ],
   },
@@ -149,6 +158,53 @@ export const es: Dictionary = {
     saved: "Horas ahorradas / semana",
     response: "Respuesta media",
     uptime: "Disponibilidad",
+  },
+  social: {
+    eyebrow: "Prueba social",
+    title: "Historias reales en camino.",
+    logos_label: "Negocios que confían en NorteNode",
+    coming_soon: "Próximamente",
+    testimonial_role_placeholder: "Testimonio pendiente",
+  },
+  faq: {
+    eyebrow: "Preguntas frecuentes",
+    title: "Lo que nos preguntan antes de firmar.",
+    items: [
+      {
+        q: "¿Cuánto tarda en estar listo mi bot?",
+        a:
+          "Configuramos, entrenamos y dejamos operativo tu agente en 72 horas hábiles " +
+          "desde la kick-off. Incluye revisión de flujo y ajuste de guion con tu equipo.",
+      },
+      {
+        q: "¿Qué necesito tener antes de contratar?",
+        a:
+          "Un número WhatsApp Business verificado o la intención de migrar a uno, " +
+          "una lista de servicios y precios, y una persona de contacto para 30 min " +
+          "de alineación inicial. Nosotros hacemos el resto.",
+      },
+      {
+        q: "¿Cómo se integra con mi WhatsApp?",
+        a:
+          "Usamos la API oficial de WhatsApp Business de Meta. Tus conversaciones, " +
+          "plantillas y número quedan bajo tu dominio — no usamos soluciones no " +
+          "oficiales ni cuentas que puedan ser suspendidas.",
+      },
+      {
+        q: "¿Es multilingüe?",
+        a:
+          "Sí. Los agentes responden en portugués, español e inglés de forma nativa. " +
+          "Si un cliente escribe en un idioma, la IA responde en ese idioma " +
+          "sin intervención humana.",
+      },
+      {
+        q: "¿Qué soporte ofrecen después?",
+        a:
+          "Monitorizamos cada conversación en tiempo real, hacemos ajustes mensuales " +
+          "sobre lo que convierte y lo que no, y mantenemos actualizaciones de la " +
+          "plataforma Meta incluidas sin coste extra.",
+      },
+    ],
   },
   pricing: {
     eyebrow: "Planes",
@@ -196,6 +252,12 @@ export const es: Dictionary = {
         cta: "Solicitar propuesta",
       },
     ],
+  },
+  cta: {
+    eyebrow: "Listos cuando tú lo estés",
+    headline: "¿Listo para automatizar tu recepción?",
+    primary: "Hablar con nosotros",
+    secondary: "Ver la demo primero",
   },
   footer: {
     blurb: "Recepcionista IA 24/7 para pequeños negocios.",
@@ -245,25 +307,34 @@ export const en: Dictionary = {
     metric_conversion_value: "+34%",
     trust: "No lock-in · Free trial · GDPR ready",
   },
-  verticals: {
-    eyebrow: "Businesses using it",
-    title: "A vertical-trained AI, not a generic chatbot.",
-    sub: "Each agent learns your services, tone, and booking rules.",
-    barbershop: { name: "Barbershop", tag: "Cut, beard, packed calendar." },
-    tattoo:     { name: "Tattoo Studio", tag: "Pre-qualifies ideas before the consult." },
-    locksmith:  { name: "24h Locksmith", tag: "Emergencies answered in 15 min." },
-    gym:        { name: "Gym", tag: "Turns visitors into free trials." },
-  },
-  how: {
-    eyebrow: "How it works",
-    title: "From visitor to booking in under 2 minutes.",
-    steps: [
-      { n: "01", title: "They message you",
-        body: "Via WhatsApp or web widget, anytime. English, Spanish, Portuguese." },
-      { n: "02", title: "AI qualifies + books",
-        body: "Asks about service, checks availability, confirms the slot in seconds." },
-      { n: "03", title: "You get the lead",
-        body: "Instant alert on WhatsApp and email. Everything in your dashboard, live." },
+  services: {
+    eyebrow: "What we build",
+    title: "Three pieces. One reception.",
+    items: [
+      {
+        num: "01",
+        name: "WhatsApp AI reception",
+        desc:
+          "The agent attends, qualifies and books directly on your WhatsApp Business " +
+          "number. Official integration, zero latency, no downtime.",
+        tag: "WhatsApp Business API",
+      },
+      {
+        num: "02",
+        name: "Conversational web widget",
+        desc:
+          "A lightweight chat on your site that replies in under two seconds, captures " +
+          "the lead with full context and hands it to your team ready to close.",
+        tag: "Next.js · 2s reply",
+      },
+      {
+        num: "03",
+        name: "Landing + full integration",
+        desc:
+          "We design and ship the new page with the widget wired, domain, analytics " +
+          "and technical SEO ready to convert from day one.",
+        tag: "72-hour delivery",
+      },
     ],
   },
   stats: {
@@ -271,6 +342,53 @@ export const en: Dictionary = {
     saved: "Hours saved / week",
     response: "Avg. response",
     uptime: "Uptime",
+  },
+  social: {
+    eyebrow: "Social proof",
+    title: "Real stories, on their way.",
+    logos_label: "Businesses trusting NorteNode",
+    coming_soon: "Coming soon",
+    testimonial_role_placeholder: "Testimonial pending",
+  },
+  faq: {
+    eyebrow: "Frequently asked",
+    title: "Everything clients ask before signing.",
+    items: [
+      {
+        q: "How long until my bot is live?",
+        a:
+          "We configure, train and go live in 72 business hours from kick-off. " +
+          "This includes flow review and script alignment with your team.",
+      },
+      {
+        q: "What do I need before signing?",
+        a:
+          "A verified WhatsApp Business number (or the intent to migrate to one), a " +
+          "list of services and prices, and one person for a 30-minute alignment " +
+          "call. We handle the rest.",
+      },
+      {
+        q: "How does it integrate with my WhatsApp?",
+        a:
+          "We use Meta's official WhatsApp Business API. Your conversations, " +
+          "templates and number stay under your control — no grey-area tools " +
+          "that can be suspended.",
+      },
+      {
+        q: "Is it multilingual?",
+        a:
+          "Yes. Agents respond natively in Portuguese, Spanish and English. When a " +
+          "customer writes in one language the AI replies in that language with no " +
+          "human intervention.",
+      },
+      {
+        q: "What support do you offer after launch?",
+        a:
+          "We monitor every conversation in real time, make monthly adjustments on " +
+          "what converts and what doesn't, and keep Meta platform updates included " +
+          "at no extra cost.",
+      },
+    ],
   },
   pricing: {
     eyebrow: "Pricing",
@@ -306,6 +424,12 @@ export const en: Dictionary = {
         cta: "Request proposal",
       },
     ],
+  },
+  cta: {
+    eyebrow: "Ready when you are",
+    headline: "Ready to automate your reception?",
+    primary: "Talk to us",
+    secondary: "See the demo first",
   },
   footer: {
     blurb: "AI receptionist 24/7 for small businesses.",
@@ -351,25 +475,34 @@ export const pt: Dictionary = {
     metric_conversion_value: "+34%",
     trust: "Sem fidelização · Teste grátis · GDPR",
   },
-  verticals: {
-    eyebrow: "Negócios que já usam",
-    title: "Uma IA por vertical, não um chatbot genérico.",
-    sub: "Cada agente aprende o léxico, os serviços e a agenda do teu negócio.",
-    barbershop: { name: "Barbearia", tag: "Corte, barba, agenda cheia." },
-    tattoo:     { name: "Studio de Tatuagem", tag: "Pré-qualifica ideias antes da consulta." },
-    locksmith:  { name: "Serralharia 24h", tag: "Emergências respondidas em 15 min." },
-    gym:        { name: "Ginásio", tag: "Converte visitas em aulas experimentais." },
-  },
-  how: {
-    eyebrow: "Como funciona",
-    title: "De visita a marcação em menos de 2 minutos.",
-    steps: [
-      { n: "01", title: "O cliente escreve",
-        body: "Via WhatsApp ou widget web, a qualquer hora. Em PT, ES ou EN." },
-      { n: "02", title: "A IA qualifica e agenda",
-        body: "Pergunta o serviço, verifica disponibilidade e confirma em segundos." },
-      { n: "03", title: "Tu recebes o lead",
-        body: "Alerta instantâneo por WhatsApp e email. Tudo no teu painel, ao vivo." },
+  services: {
+    eyebrow: "O que construímos",
+    title: "Três peças. Uma só receção.",
+    items: [
+      {
+        num: "01",
+        name: "Receção WhatsApp com IA",
+        desc:
+          "O agente atende, qualifica e agenda diretamente no WhatsApp Business " +
+          "da tua clínica. Integração oficial, latência zero, sem quedas.",
+        tag: "WhatsApp Business API",
+      },
+      {
+        num: "02",
+        name: "Widget web conversacional",
+        desc:
+          "Um chat leve no teu site que responde em menos de dois segundos, capta o " +
+          "lead com contexto completo e passa-o à equipa pronto a fechar.",
+        tag: "Next.js · 2s de resposta",
+      },
+      {
+        num: "03",
+        name: "Landing + integração completa",
+        desc:
+          "Desenhamos e entregamos a página nova com o widget ligado, domínio, " +
+          "analítica e SEO técnico prontos a converter desde o primeiro dia.",
+        tag: "Entrega em 72 h",
+      },
     ],
   },
   stats: {
@@ -377,6 +510,53 @@ export const pt: Dictionary = {
     saved: "Horas poupadas / semana",
     response: "Resposta média",
     uptime: "Disponibilidade",
+  },
+  social: {
+    eyebrow: "Prova social",
+    title: "Histórias reais a caminho.",
+    logos_label: "Negócios que confiam na NorteNode",
+    coming_soon: "Em breve",
+    testimonial_role_placeholder: "Testemunho em preparação",
+  },
+  faq: {
+    eyebrow: "Perguntas frequentes",
+    title: "O que nos perguntam antes de assinar.",
+    items: [
+      {
+        q: "Quanto tempo demora a ter o bot pronto?",
+        a:
+          "Configuramos, treinamos e deixamos operacional em 72 horas úteis a partir " +
+          "do kick-off. Inclui revisão do fluxo e alinhamento do guião com a equipa.",
+      },
+      {
+        q: "O que preciso de ter antes de contratar?",
+        a:
+          "Um número WhatsApp Business verificado (ou vontade de migrar para um), " +
+          "uma lista de serviços e preços, e uma pessoa para 30 min de alinhamento " +
+          "inicial. O resto é connosco.",
+      },
+      {
+        q: "Como se integra com o meu WhatsApp?",
+        a:
+          "Usamos a API oficial WhatsApp Business da Meta. As conversas, templates " +
+          "e número ficam sob o teu controlo — não usamos soluções cinzentas que " +
+          "possam ser suspensas.",
+      },
+      {
+        q: "É multilingue?",
+        a:
+          "Sim. Os agentes respondem nativamente em português, espanhol e inglês. " +
+          "Se o cliente escreve num idioma, a IA responde nesse idioma, sem " +
+          "intervenção humana.",
+      },
+      {
+        q: "Que suporte oferecem depois?",
+        a:
+          "Monitorizamos cada conversa em tempo real, fazemos ajustes mensais " +
+          "sobre o que converte e o que não, e mantemos as actualizações da " +
+          "plataforma Meta incluídas sem custo extra.",
+      },
+    ],
   },
   pricing: {
     eyebrow: "Planos",
@@ -412,6 +592,12 @@ export const pt: Dictionary = {
         cta: "Pedir proposta",
       },
     ],
+  },
+  cta: {
+    eyebrow: "Prontos quando tu estiveres",
+    headline: "Pronto para automatizar a tua receção?",
+    primary: "Falar connosco",
+    secondary: "Ver a demo primeiro",
   },
   footer: {
     blurb: "Rececionista IA 24/7 para pequenos negócios.",
