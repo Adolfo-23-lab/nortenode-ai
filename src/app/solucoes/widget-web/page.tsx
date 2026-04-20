@@ -1,5 +1,6 @@
 import WidgetHero from "@/components/solucoes/WidgetHero";
 import WidgetMock from "@/components/solucoes/WidgetMock";
+import WidgetBelowHero from "@/components/solucoes/WidgetBelowHero";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -11,12 +12,11 @@ export const metadata = {
 /**
  * /solucoes/widget-web — Cinematic Authority rework.
  *
- *   1. WidgetHero        — eyebrow, display headline, sub, dual CTA.
- *   2. WidgetMock        — unboxed panel floating over a blurred
- *                          "pretend-website" layer.
- *   3. SolucoesIntegration (3 steps) — pending wiring in B.3.4.
- *   4. SolucoesCapabilities        — pending wiring in B.3.4.
- *   5. SolucoesFinalCTA            — pending wiring in B.3.4.
+ *   1. WidgetHero          — eyebrow, display headline, sub, dual CTA.
+ *   2. WidgetMock          — unboxed panel over blurred pretend-website.
+ *   3. SolucoesIntegration (3 steps).
+ *   4. SolucoesCapabilities (6 bullets in 2 cols).
+ *   5. SolucoesFinalCTA    — closing full-bleed.
  *   6. Footer.
  */
 export default function WidgetWebPage() {
@@ -24,6 +24,7 @@ export default function WidgetWebPage() {
     <main className="relative min-h-screen overflow-hidden bg-[var(--color-ink-0)]">
       <WidgetHero />
       <WidgetMock />
+      <WidgetBelowHero />
       <Footer />
     </main>
   );
