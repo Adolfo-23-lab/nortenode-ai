@@ -1,6 +1,9 @@
 "use client";
 
 import * as React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 /**
  * Capabilities — 2-col editorial bullet list.
@@ -19,8 +22,55 @@ export default function SolucoesCapabilities({
   title: string;
   items: string[];
 }) {
+  const rootRef = React.useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean };
+          const root = rootRef.current;
+          if (!root) return;
+
+          if (!isMotion) {
+            gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
+            return;
+          }
+
+          gsap.from(root.querySelectorAll("[data-reveal='capabilities-eyebrow'],[data-reveal='capabilities-title']"), {
+            y: 32,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 1.0,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 72%" },
+          });
+
+          gsap.from(root.querySelectorAll("[data-reveal='capability-item']"), {
+            y: 20,
+            opacity: 0,
+            duration: 0.85,
+            stagger: 0.06,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 65%" },
+          });
+        },
+      );
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
+
   return (
     <section
+      ref={rootRef}
       aria-label={title}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-50)] py-32 md:py-52"
     >

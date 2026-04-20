@@ -1,6 +1,9 @@
 "use client";
 
 import * as React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 /**
  * Integration — 3 numbered steps.
@@ -18,8 +21,58 @@ export default function SolucoesIntegration({
   title: string;
   steps: Array<{ num: string; title: string; body: string }>;
 }) {
+  const rootRef = React.useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean };
+          const root = rootRef.current;
+          if (!root) return;
+
+          if (!isMotion) {
+            gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
+            return;
+          }
+
+          gsap.from(root.querySelectorAll("[data-reveal='integration-eyebrow'],[data-reveal='integration-title']"), {
+            y: 32,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 1.0,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 72%" },
+          });
+
+          root.querySelectorAll<HTMLElement>("[data-reveal='integration-step']").forEach((item, i) => {
+            gsap.from(item, {
+              y: 40,
+              opacity: 0,
+              filter: "blur(8px)",
+              duration: 1.05,
+              delay: i * 0.08,
+              ease: "power3.out",
+              scrollTrigger: { trigger: item, start: "top 82%" },
+            });
+          });
+        },
+      );
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
+
   return (
     <section
+      ref={rootRef}
       aria-label={title}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-32 md:py-52"
     >

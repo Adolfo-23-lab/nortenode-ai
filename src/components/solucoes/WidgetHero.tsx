@@ -3,6 +3,9 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { useT } from "@/i18n/provider";
 
 /**
@@ -14,9 +17,52 @@ import { useT } from "@/i18n/provider";
 export default function WidgetHero() {
   const t = useT();
   const h = t.solucoes.widget.hero;
+  const rootRef = React.useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+      mm.add(
+        {
+          isMotion:  "(prefers-reduced-motion: no-preference)",
+          isReduced: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { isMotion } = ctx.conditions as { isMotion: boolean };
+          const root = rootRef.current;
+          if (!root) return;
+
+          if (!isMotion) {
+            gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
+            gsap.set(root.querySelectorAll("[data-widget-hero-parallax]"), { clearProps: "all" });
+            return;
+          }
+
+          gsap.from(root.querySelectorAll("[data-reveal]"), {
+            y: 32,
+            opacity: 0,
+            filter: "blur(8px)",
+            duration: 1.1,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+
+          gsap.to(root.querySelector("[data-widget-hero-parallax]"), {
+            yPercent: -10,
+            ease: "none",
+            scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
+          });
+        },
+      );
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
 
   return (
     <section
+      ref={rootRef}
       aria-label={h.eyebrow}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] pt-40 pb-32 md:pt-52 md:pb-40"
     >
