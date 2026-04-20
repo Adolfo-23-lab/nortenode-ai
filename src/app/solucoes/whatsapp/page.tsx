@@ -1,5 +1,6 @@
 import WhatsAppHero from "@/components/solucoes/WhatsAppHero";
 import WhatsAppMock from "@/components/solucoes/WhatsAppMock";
+import WhatsAppBelowHero from "@/components/solucoes/WhatsAppBelowHero";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -11,18 +12,19 @@ export const metadata = {
 /**
  * /solucoes/whatsapp — Cinematic Authority rework.
  *
- *   1. Hero de página      — eyebrow, display headline, sub, dual CTA.
- *   2. Mock conversación   — unboxed, authentic WhatsApp colours inside.
- *   3. Integración 3 pasos — pending wiring in B.3.2.
- *   4. Capacidades         — pending wiring in B.3.2.
- *   5. CTA final           — pending wiring in B.3.2.
- *   6. Footer
+ *   1. WhatsAppHero       — eyebrow, display headline, sub, dual CTA.
+ *   2. WhatsAppMock       — unboxed conversation, authentic WhatsApp colours.
+ *   3. SolucoesIntegration (3 steps).
+ *   4. SolucoesCapabilities (6 bullets in 2 cols).
+ *   5. SolucoesFinalCTA   — closing full-bleed.
+ *   6. Footer.
  */
 export default function WhatsAppPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[var(--color-ink-0)]">
       <WhatsAppHero />
       <WhatsAppMock />
+      <WhatsAppBelowHero />
       <Footer />
     </main>
   );
