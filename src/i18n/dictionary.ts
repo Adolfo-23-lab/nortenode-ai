@@ -55,9 +55,6 @@ export interface Dictionary {
     title: string;
     items: ServiceItem[];
   };
-  stats: {
-    leads: string; saved: string; response: string; uptime: string;
-  };
   social: {
     eyebrow: string;
     title: string;
@@ -152,12 +149,6 @@ export const es: Dictionary = {
         tag: "Producción en 72 h",
       },
     ],
-  },
-  stats: {
-    leads: "Leads cualificados / mes",
-    saved: "Horas ahorradas / semana",
-    response: "Respuesta media",
-    uptime: "Disponibilidad",
   },
   social: {
     eyebrow: "Prueba social",
@@ -337,12 +328,6 @@ export const en: Dictionary = {
       },
     ],
   },
-  stats: {
-    leads: "Qualified leads / month",
-    saved: "Hours saved / week",
-    response: "Avg. response",
-    uptime: "Uptime",
-  },
   social: {
     eyebrow: "Social proof",
     title: "Real stories, on their way.",
@@ -504,12 +489,6 @@ export const pt: Dictionary = {
         tag: "Entrega em 72 h",
       },
     ],
-  },
-  stats: {
-    leads: "Leads qualificados / mês",
-    saved: "Horas poupadas / semana",
-    response: "Resposta média",
-    uptime: "Disponibilidade",
   },
   social: {
     eyebrow: "Prova social",
