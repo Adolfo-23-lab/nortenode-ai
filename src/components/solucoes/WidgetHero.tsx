@@ -82,7 +82,7 @@ export default function WidgetHero() {
           <div className="col-span-12 md:col-span-10 lg:col-span-9">
             <p
               data-reveal="wg-hero-eyebrow"
-              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {h.eyebrow}
             </p>
@@ -93,12 +93,12 @@ export default function WidgetHero() {
             >
               {h.headline_l1}
               <br />
-              <span className="text-white/55">{h.headline_l2}</span>
+              <span className="text-[var(--color-ink-text-muted)]">{h.headline_l2}</span>
             </h1>
 
             <p
               data-reveal="wg-hero-sub"
-              className="mb-12 max-w-xl text-base leading-relaxed text-white/65 md:text-lg"
+              className="mb-12 max-w-xl text-base leading-relaxed text-[var(--color-ink-text-secondary)] md:text-lg"
             >
               {h.sub}
             </p>
@@ -120,7 +120,7 @@ export default function WidgetHero() {
               </Link>
               <Link
                 href="/contactos"
-                className="group inline-flex items-center gap-2 rounded border border-white/15 px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-white/80 transition-colors hover:border-white/30 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded border border-[var(--color-ghost-border)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[var(--color-ink-text-primary)] transition-colors hover:border-[var(--color-ghost-border-hover)] hover:text-white"
               >
                 {t.common.cta_secondary}
                 <ArrowRight

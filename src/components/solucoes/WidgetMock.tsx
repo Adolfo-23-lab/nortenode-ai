@@ -99,15 +99,15 @@ export default function WidgetMock() {
             data-reveal="wg-mock-copy"
             className="col-span-12 md:col-span-5"
           >
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
+            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
               {mock.section_label}
             </p>
             <h2 className="font-sans text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1] tracking-[-0.02em] text-white text-balance">
               Un chat en el site,
               <br />
-              <span className="text-white/55">sin diseño de página.</span>
+              <span className="text-[var(--color-ink-text-muted)]">sin diseño de página.</span>
             </h2>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-white/55 md:text-lg">
+            <p className="mt-8 max-w-md text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
               Se monta sobre cualquier site sin tocar el layout existente —
               el panel flota a la derecha y recoge cada visita antes de
               que la pierdas.
@@ -141,23 +141,23 @@ function WidgetStage({
         <div className="p-6 space-y-6 opacity-40 blur-[1.5px]">
           {/* Pretend nav */}
           <div className="flex items-center gap-3">
-            <div className="h-2 w-12 rounded-full bg-white/20" />
+            <div className="h-2 w-12 rounded-full bg-[var(--color-skeleton-strong)]" />
             <div className="ml-auto flex gap-2">
-              <div className="h-1.5 w-8 rounded-full bg-white/10" />
-              <div className="h-1.5 w-8 rounded-full bg-white/10" />
-              <div className="h-1.5 w-8 rounded-full bg-white/10" />
+              <div className="h-1.5 w-8 rounded-full bg-[var(--color-skeleton-faint)]" />
+              <div className="h-1.5 w-8 rounded-full bg-[var(--color-skeleton-faint)]" />
+              <div className="h-1.5 w-8 rounded-full bg-[var(--color-skeleton-faint)]" />
             </div>
           </div>
           {/* Pretend hero */}
           <div className="space-y-2 pt-6">
-            <div className="h-3 w-2/3 rounded-full bg-white/15" />
-            <div className="h-3 w-1/2 rounded-full bg-white/12" />
+            <div className="h-3 w-2/3 rounded-full bg-[var(--color-skeleton-base)]" />
+            <div className="h-3 w-1/2 rounded-full bg-[var(--color-skeleton-base)]" />
           </div>
           {/* Pretend content block */}
           <div className="space-y-1.5 pt-6">
-            <div className="h-2 w-full rounded-full bg-white/8" />
-            <div className="h-2 w-5/6 rounded-full bg-white/8" />
-            <div className="h-2 w-4/6 rounded-full bg-white/8" />
+            <div className="h-2 w-full rounded-full bg-[var(--color-skeleton-faint)]" />
+            <div className="h-2 w-5/6 rounded-full bg-[var(--color-skeleton-faint)]" />
+            <div className="h-2 w-4/6 rounded-full bg-[var(--color-skeleton-faint)]" />
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@ function WidgetStage({
           </div>
           <div className="min-w-0">
             <p className="truncate text-sm font-medium text-white">{botName}</p>
-            <p className="flex items-center gap-1.5 text-[11px] text-white/45">
+            <p className="flex items-center gap-1.5 text-[11px] text-[var(--color-ink-text-soft)]">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-[color:var(--color-signal-400)]" />
               {botStatus}
             </p>
@@ -187,7 +187,7 @@ function WidgetStage({
         </div>
 
         {/* Hairline ghost separator per DESIGN.md fallback rule */}
-        <div aria-hidden="true" className="h-px w-full bg-white/[0.07]" />
+        <div aria-hidden="true" className="h-px w-full bg-[var(--color-glass-surface-hover)]" />
 
         {/* Messages */}
         <div className="min-h-[220px] space-y-3 p-4">
@@ -200,7 +200,7 @@ function WidgetStage({
                 className={`max-w-[82%] px-3.5 py-2.5 text-[12px] leading-relaxed ${
                   msg.role === "user"
                     ? "rounded-2xl rounded-br-sm bg-[color:var(--color-signal-500)] text-white"
-                    : "rounded-2xl rounded-bl-sm bg-white/[0.06] text-white/85"
+                    : "rounded-2xl rounded-bl-sm bg-[var(--color-glass-surface-hover)] text-white/85"
                 }`}
               >
                 {msg.text}
@@ -210,10 +210,10 @@ function WidgetStage({
         </div>
 
         {/* Hairline ghost + input */}
-        <div aria-hidden="true" className="h-px w-full bg-white/[0.07]" />
+        <div aria-hidden="true" className="h-px w-full bg-[var(--color-glass-surface-hover)]" />
         <div className="flex items-center gap-2 px-4 py-3">
-          <div className="flex-1 rounded-full bg-white/[0.04] px-4 py-2">
-            <p className="text-[11px] text-white/30">Escribe un mensaje…</p>
+          <div className="flex-1 rounded-full bg-[var(--color-glass-surface)] px-4 py-2">
+            <p className="text-[11px] text-[var(--color-ink-text-faint)]">Escribe un mensaje…</p>
           </div>
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--color-signal-500)]">
             <Send className="h-3 w-3 text-white" />

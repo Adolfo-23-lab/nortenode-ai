@@ -45,6 +45,34 @@
   --color-jade-400:   #34d399;
   --color-jade-500:   #10b981;
 
+  /* --- Ink text pyramid (opacity-split rule) ------------------
+   * Tone must live in a token, never in an ad-hoc `text-white/NN`.
+   * See `docs/design-refs/DESIGN.md` §7 for the full rule.
+   * --------------------------------------------------------------- */
+  --color-ink-text-strong:     rgba(246, 247, 251, 1.00);
+  --color-ink-text-primary:    rgba(246, 247, 251, 0.80);
+  --color-ink-text-secondary:  rgba(246, 247, 251, 0.65);
+  --color-ink-text-muted:      rgba(246, 247, 251, 0.55);
+  --color-ink-text-soft:       rgba(246, 247, 251, 0.45);
+  --color-ink-text-faint:      rgba(246, 247, 251, 0.35);
+
+  /* Hairlines — absorb border-white/[0.06..0.12] usages. */
+  --color-hairline:            rgba(255, 255, 255, 0.07);
+  --color-hairline-strong:     rgba(255, 255, 255, 0.12);
+
+  /* Ghost CTA — idle + hover for the snow/ghost button pair. */
+  --color-ghost-border:        rgba(255, 255, 255, 0.15);
+  --color-ghost-border-hover:  rgba(255, 255, 255, 0.30);
+
+  /* Glass surfaces — idle + hover for chips, inputs, icon buttons. */
+  --color-glass-surface:       rgba(255, 255, 255, 0.04);
+  --color-glass-surface-hover: rgba(255, 255, 255, 0.08);
+
+  /* Skeleton — documented exception for loader / coming-soon content. */
+  --color-skeleton-faint:      rgba(255, 255, 255, 0.08);
+  --color-skeleton-base:       rgba(255, 255, 255, 0.12);
+  --color-skeleton-strong:     rgba(255, 255, 255, 0.20);
+
   /* --- shadcn semantic tokens (CSS vars, dark by default) -------- */
   --background:       var(--color-ink-0);
   --foreground:       var(--color-snow);

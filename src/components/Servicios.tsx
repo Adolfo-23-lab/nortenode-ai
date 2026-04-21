@@ -106,7 +106,7 @@ export default function Servicios() {
           <div className="col-span-12 md:col-span-9">
             <p
               data-reveal="servicios-eyebrow"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {t.services.eyebrow}
             </p>
@@ -134,7 +134,7 @@ export default function Servicios() {
               ].join(" ")}
             >
               <div className="col-span-12 md:col-span-1">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-faint)]">
                   {item.num}
                 </span>
               </div>
@@ -143,7 +143,7 @@ export default function Servicios() {
                 <h3 className="mb-5 font-sans text-[clamp(1.75rem,3.6vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.018em] text-white">
                   {item.name}
                 </h3>
-                <p className="max-w-xl text-base leading-relaxed text-white/55 md:text-lg">
+                <p className="max-w-xl text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
                   {item.desc}
                 </p>
                 <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-signal-300)]/75">

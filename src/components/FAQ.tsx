@@ -81,7 +81,7 @@ export default function FAQ() {
           <div className="col-span-12 md:col-span-9">
             <p
               data-reveal="faq-eyebrow"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {t.faq.eyebrow}
             </p>
@@ -100,7 +100,7 @@ export default function FAQ() {
             <FAQItem key={i} index={i} entry={item} />
           ))}
           {/* closing ghost rule */}
-          <div aria-hidden="true" className="h-px w-full bg-white/[0.07]" />
+          <div aria-hidden="true" className="h-px w-full bg-[var(--color-glass-surface-hover)]" />
         </div>
       </div>
     </section>
@@ -152,7 +152,7 @@ function FAQItem({ index, entry }: { index: number; entry: FAQEntry }) {
   return (
     <div
       data-reveal="faq-item"
-      className="border-t border-white/[0.07]"
+      className="border-t border-[var(--color-hairline)]"
     >
       <button
         type="button"
@@ -168,7 +168,7 @@ function FAQItem({ index, entry }: { index: number; entry: FAQEntry }) {
         <span
           ref={iconRef}
           aria-hidden="true"
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-white/60"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-[var(--color-ink-text-muted)]"
         >
           <Plus size={18} strokeWidth={1.5} />
         </span>
@@ -183,7 +183,7 @@ function FAQItem({ index, entry }: { index: number; entry: FAQEntry }) {
         style={{ height: 0 }}
       >
         <div ref={innerRef} className="pb-8 pr-12 md:pb-10 md:pr-16">
-          <p className="max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
+          <p className="max-w-2xl text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
             {entry.a}
           </p>
         </div>

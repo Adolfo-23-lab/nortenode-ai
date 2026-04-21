@@ -92,7 +92,7 @@ export default function PruebaSocial() {
           <div className="col-span-12 md:col-span-9">
             <p
               data-reveal="social-eyebrow"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {t.social.eyebrow}
             </p>
@@ -110,7 +110,7 @@ export default function PruebaSocial() {
           data-reveal="social-logos"
           className="mb-32 md:mb-48"
         >
-          <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+          <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-faint)]">
             {t.social.logos_label}
           </p>
           <div className="grid grid-cols-2 gap-y-10 md:grid-cols-6 md:gap-6">
@@ -119,7 +119,7 @@ export default function PruebaSocial() {
                 key={i}
                 className="flex h-14 items-center justify-center"
               >
-                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/25">
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--color-skeleton-strong)]">
                   {t.social.coming_soon}
                 </span>
               </div>
@@ -163,11 +163,11 @@ function TestimonialSkeleton({
       <div className="rounded-sm bg-[color:var(--color-ink-100)] p-10 md:p-12">
         <p
           aria-hidden="true"
-          className="font-display text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.25] tracking-[-0.012em] text-white/20"
+          className="font-display text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.25] tracking-[-0.012em] text-[var(--color-skeleton-strong)]"
         >
           “”
         </p>
-        <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-white/30">
+        <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--color-skeleton-strong)]">
           {comingSoon}
         </p>
       </div>
@@ -176,10 +176,10 @@ function TestimonialSkeleton({
       <div className="flex items-center gap-4">
         <div className="h-10 w-10 shrink-0 rounded-full bg-[color:var(--color-ink-200)]" />
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
             {placeholder}
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/25">
+          <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--color-skeleton-strong)]">
             {comingSoon}
           </span>
         </div>

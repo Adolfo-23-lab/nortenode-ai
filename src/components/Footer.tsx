@@ -36,7 +36,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--color-ink-50)]">
+    <footer className="relative mt-24 overflow-hidden border-t border-[var(--color-hairline)] bg-[var(--color-ink-50)]">
       {/* Decorative aurora bleed at top */}
       <div
         aria-hidden="true"
@@ -53,14 +53,14 @@ export default function Footer() {
           {/* Brand block */}
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-glass-surface)] ring-1 ring-[var(--color-hairline-strong)]">
                 <Image src="/nortenode_star_icon.png" alt="" width={22} height={22} />
               </span>
               <span className="font-display text-2xl tracking-tight text-white">
                 NorteNode
               </span>
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[var(--color-ink-text-muted)]">
               {t.footer.blurb}
             </p>
 
@@ -81,7 +81,7 @@ export default function Footer() {
           <div className="grid grid-cols-3 gap-6 md:gap-10">
             {cols.map((col) => (
               <div key={col.title}>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+                <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink-text-soft)]">
                   {col.title}
                 </p>
                 <ul className="mt-5 space-y-3">
@@ -89,7 +89,7 @@ export default function Footer() {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-sm text-white/70 transition-colors hover:text-white"
+                        className="text-sm text-[var(--color-ink-text-primary)] transition-colors hover:text-white"
                       >
                         {l.label}
                       </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom rule */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-6 text-xs text-white/40 md:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-hairline)] pt-6 text-xs text-[var(--color-ink-text-soft)] md:flex-row">
           <p>© {year} NorteNode · {t.footer.rights}</p>
           <p className="font-mono tracking-wide">nortenode.com</p>
         </div>
@@ -124,7 +124,7 @@ function SocialIconLink({
     <Link
       href={href}
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-all hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-glass-surface)] text-[var(--color-ink-text-primary)] transition-all hover:border-[var(--color-ghost-border-hover)] hover:bg-[var(--color-glass-surface-hover)] hover:text-white"
     >
       {children}
     </Link>

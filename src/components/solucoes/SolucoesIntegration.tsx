@@ -81,7 +81,7 @@ export default function SolucoesIntegration({
           <div className="col-span-12 md:col-span-9">
             <p
               data-reveal="integration-eyebrow"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {eyebrow}
             </p>
@@ -101,14 +101,14 @@ export default function SolucoesIntegration({
               data-reveal="integration-step"
               className="grid grid-cols-12 items-start gap-6"
             >
-              <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35 md:col-span-1">
+              <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-faint)] md:col-span-1">
                 {step.num}
               </span>
               <div className="col-span-12 md:col-span-10 md:col-start-3">
                 <h3 className="mb-4 font-sans text-[clamp(1.5rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.015em] text-white">
                   {step.title}
                 </h3>
-                <p className="max-w-xl text-base leading-relaxed text-white/55 md:text-lg">
+                <p className="max-w-xl text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
                   {step.body}
                 </p>
               </div>

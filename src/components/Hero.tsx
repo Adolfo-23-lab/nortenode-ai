@@ -139,7 +139,7 @@ export default function Hero() {
         <div className="col-span-12 flex flex-col gap-8 md:col-span-8">
           <p
             data-hero-reveal="label"
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/55"
+            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-muted)]"
           >
             {t.hero.eyebrow}
           </p>
@@ -149,12 +149,12 @@ export default function Hero() {
           >
             {t.hero.headline_l1}
             <br />
-            <span className="text-white/55">{t.hero.headline_l2}</span>
+            <span className="text-[var(--color-ink-text-muted)]">{t.hero.headline_l2}</span>
           </h1>
           {t.hero.sub ? (
             <p
               data-hero-reveal="sub"
-              className="max-w-md text-base leading-relaxed text-white/65 md:text-lg"
+              className="max-w-md text-base leading-relaxed text-[var(--color-ink-text-secondary)] md:text-lg"
             >
               {t.hero.sub}
             </p>

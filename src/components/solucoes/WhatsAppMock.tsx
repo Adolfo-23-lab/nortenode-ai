@@ -89,15 +89,15 @@ export default function WhatsAppMock() {
             data-reveal="wa-mock-copy"
             className="col-span-12 md:col-span-5"
           >
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
+            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
               {mock.section_label}
             </p>
             <h2 className="font-sans text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1] tracking-[-0.02em] text-white text-balance">
               La conversación real,
               <br />
-              <span className="text-white/55">sin atajos.</span>
+              <span className="text-[var(--color-ink-text-muted)]">sin atajos.</span>
             </h2>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-white/55 md:text-lg">
+            <p className="mt-8 max-w-md text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
               El agente detecta la intención, ofrece horas disponibles reales y
               confirma en el mismo turno. Sin formularios, sin esperas.
             </p>

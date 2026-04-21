@@ -69,3 +69,28 @@ In this system, depth is felt, not seen. We reject the heavy "material" shadows 
 - **Don't crowd the canvas:** If a screen feels "busy," your first instinct should be to increase the margin-top/bottom, not to add a border.
 - **Don't use the accent color for everything:** If the `primary` slate-blue is everywhere, it loses its "surgical" authority. Use it for one thing per screen.
 - **Don't use standard drop shadows:** They make the interface feel like a legacy SaaS app. Stick to tonal layering.
+
+## §7 — Opacity-Split Rule
+
+**Stance:** tono nunca se expresa via opacity ad-hoc. Todo tono vive en un token declarado en `@theme`.
+
+**Prohibido:**
+- `text-white/45`, `text-white/55`, `text-white/60`, etc.
+- `border-white/10`, `border-white/15`, etc.
+- `bg-white/05`, `bg-black/40`, etc., cuando se usan como superficie.
+
+**Tailwind v4 gotcha:** `bg-white/8` y `bg-white/12` (sin brackets) parsean pero no pertenecen a la scale standard (que va 5/10/20/...). Estos valores siempre deben usar tokens o notación bracket `bg-white/[0.08]`. En la práctica: si el valor no existe como token, se añade al `@theme`. Nunca notación bracket libre en código nuevo.
+
+**Permitido:**
+- Tokens tonales declarados: `text-[var(--color-steel-400)]`, `border-[var(--color-hairline)]`, etc.
+- Si falta un tono: se añade al `@theme` en el mismo commit que lo usa.
+
+**Única excepción:** gradientes y overlays sobre media (video/imagen). Ahí `bg-gradient-to-b from-black/0 via-black/40 to-black` es legítimo porque está modulando contenido visual no-token.
+
+**Excepciones adicionales:**
+
+1. **Contenido dentro de UI-de-mock** (WhatsAppMock, WidgetMock). Los mocks representan productos externos (WhatsApp) o componentes con paleta autónoma (widget) y mantienen sus colores auténticos. `text-white/85` y `text-white/90` en bubbles de bot son exception por estar dentro del mock-as-content, igual que el `#005C4B` verde WhatsApp.
+
+2. **Skeletons/loaders** usan tokens `--color-skeleton-*` explícitos. Son estados temporales de contenido no-existente, no superficies del sistema.
+
+**Razón:** coexistir tokens tonales con opacities ad-hoc genera valores que se parecen pero no son iguales (`#f6f7fb @ 45%` ≠ `steel-400` declarado). En superficie grande, se nota como "tipografía inconsistente entre secciones".

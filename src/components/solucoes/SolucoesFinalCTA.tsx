@@ -95,7 +95,7 @@ export default function SolucoesFinalCTA({
           <div className="col-span-12 md:col-span-10 lg:col-span-9">
             <p
               data-reveal="final-cta-eyebrow"
-              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {eyebrow}
             </p>
@@ -124,7 +124,7 @@ export default function SolucoesFinalCTA({
               </Link>
               <Link
                 href={secondaryHref}
-                className="group inline-flex items-center gap-2 rounded border border-white/15 px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-white/80 transition-colors hover:border-white/30 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded border border-[var(--color-ghost-border)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[var(--color-ink-text-primary)] transition-colors hover:border-[var(--color-ghost-border-hover)] hover:text-white"
               >
                 {secondaryLabel}
                 <ArrowRight

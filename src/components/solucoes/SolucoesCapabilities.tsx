@@ -79,7 +79,7 @@ export default function SolucoesCapabilities({
           <div className="col-span-12 md:col-span-9">
             <p
               data-reveal="capabilities-eyebrow"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45"
+              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
             >
               {eyebrow}
             </p>
@@ -101,11 +101,11 @@ export default function SolucoesCapabilities({
             >
               <span
                 aria-hidden="true"
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-faint)]"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="text-base leading-relaxed text-white/75 md:text-lg">
+              <span className="text-base leading-relaxed text-[var(--color-ink-text-primary)] md:text-lg">
                 {item}
               </span>
             </li>
