@@ -79,6 +79,8 @@ In this system, depth is felt, not seen. We reject the heavy "material" shadows 
 - `border-white/10`, `border-white/15`, etc.
 - `bg-white/05`, `bg-black/40`, etc., cuando se usan como superficie.
 
+**Footnote — utilities con opacity de color:** la regla aplica a toda utility que use color + opacity slash, no solo a `text-`/`border-`/`bg-`. Incluye explícitamente: `ring-white/NN`, `divide-white/NN`, `outline-white/NN`, `shadow-*white/NN`, `placeholder-white/NN`, `decoration-white/NN`, `fill-white/NN`, `stroke-white/NN`, `from-white/NN` / `via-white/NN` / `to-white/NN` (excepto overlays sobre media — ver "Única excepción"). Misma solución: todo tono viene de tokens `@theme`.
+
 **Tailwind v4 gotcha:** `bg-white/8` y `bg-white/12` (sin brackets) parsean pero no pertenecen a la scale standard (que va 5/10/20/...). Estos valores siempre deben usar tokens o notación bracket `bg-white/[0.08]`. En la práctica: si el valor no existe como token, se añade al `@theme`. Nunca notación bracket libre en código nuevo.
 
 **Permitido:**
