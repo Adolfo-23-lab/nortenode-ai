@@ -191,6 +191,21 @@ Total Fase B estimate: **17–19h** focused work across ~3–4 working sessions.
 3. **Tailwind v4 migration notes**: if any new shadcn component is installed, it may expect v3 config — check each.
 4. **Green → Blue accent**: some Supabase-facing screenshots (WhatsApp brand) use green legitimately (WhatsApp branding). Only swap the **NorteNode** accents; WhatsApp green stays where it's actually WhatsApp UI.
 
+**RISK STATUS — Lenis + fixed Navbar en iOS Safari:** validación pendiente de ejecución en device real por el dueño del proyecto. Protocolo en `docs/design-refs/ios-safari-test-protocol.md`. No bloquea B.4 (demo+contactos no introduce nuevo motion). Debe cerrarse antes de production deploy.
+
+**ASSET DEBT — logo PNG a SVG inline:** `public/nortenode_star_icon.png` (60KB) es el logo de marca usado en Navbar y Footer. Candidato a convertir a SVG inline tokenizado con `currentColor` y `fill` via `--color-snow`. Prioridad baja: no bloquea ninguna fase. Adecuado para un bloque de asset-polish posterior a B.7.
+
+**META WHATSAPP SANDBOX — deuda DevOps:** La Meta App de NorteNode está en modo development. Solo números pre-registrados en Meta Developers → WhatsApp → API Setup → Test recipients pueden recibir mensajes. Los failed WhatsApp historicos (#131030 "Recipient phone number not in allowed list") son consecuencia de esto, no bugs del dispatcher. Dos caminos para cerrarlo:
+  (a) Añadir +351937809995 al allowlist de test recipients (fix inmediato, solo recibe el owner).
+  (b) Enviar la Meta App para production review (permite enviar a cualquier número E.164 verificado, requiere privacy policy URL pública + business verification).
+Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el primer tenant pagador que use WhatsApp channel.
+
+**RESEND KEY ROTATION — histórico resuelto:** 1 failed email (Resend 401) de 2026-04-17 23:40. Desde 2026-04-18 23:22 los emails se entregan limpios. La key ya fue rotada. Sin acción requerida — se documenta para trazabilidad.
+
+**MIGRATION DRIFT — escalado a pre-B.7:** 3 migrations en remote no existen como archivos locales: 20260418224411, 20260418230759, 20260419125011. Flag original en B.3.5. Bloquea `supabase db push` estándar. Workaround en B.4.3a-dx: migration 20260421000001 aplicada via `supabase db query --linked --file`, seguido de `migration repair --status applied 20260421000001 --linked` para sincronizar historial. Cerrar antes de B.7 via `supabase db pull`, revisar contenido de las 3 migrations remotas, y commitearlas localmente.
+
+**B.4.3a-dx E2E VERIFIED (2026-04-22):** Migration 20260421000001 aplicada en prod. RPC submit_agency_lead extendido de 5 a 6 params (añadido p_sector text default null). Versión antigua de 5 params dropeada explícitamente para evitar overload coexistente. Org nortenode-ai actualizada: owner_contact_phone=+351937809995, owner_contact_email=nortenode.ia@gmail.com. Test E2E: lead creado con qualification {"form":"marketing-contact","sector":"barbearia"}, email notification entregada en primer intento (sent@1attempt), WhatsApp notification encolada como esperado (queda en queue para eventual fail por Meta sandbox). Cleanup: lead + contact + notifications eliminados, counts verificados en 0. Zero corruption.
+
 ### 4.f · Pending inputs from Adolfo
 
 - Drop `DESIGN.md` into `docs/design-refs/DESIGN.md` (overwriting placeholder).

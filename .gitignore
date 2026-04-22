@@ -45,6 +45,7 @@ next-env.d.ts
 /tmp/
 supabase/.temp/
 supabase_schema.sql
+scripts/test-*.ts
 .vscode/
 .claude/*
 !.claude/skills/
