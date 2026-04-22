@@ -38,6 +38,32 @@ export interface WidgetMockMessage {
   text: string;
 }
 
+export interface ContactRow {
+  label: string;
+  value: string;
+  href: string | null;
+  external: boolean;
+  kind: "email" | "phone" | "whatsapp" | "location";
+}
+
+export interface ContactFormField {
+  label: string;
+  placeholder: string;
+}
+
+export interface ChatCopy {
+  greeting: string;
+  title: string;
+  status: string;
+  input_placeholder: string;
+  send_label: string;
+  you_label: string;
+  bot_label: string;
+  thinking: string;
+  error_generic: string;
+  error_network: string;
+}
+
 export interface Dictionary {
   common: {
     brand: string; tagline: string;
@@ -126,6 +152,55 @@ export interface Dictionary {
       cta_headline: string;
     };
   };
+  demo: {
+    meta_title: string;
+    meta_description: string;
+    hero: {
+      eyebrow: string;
+      headline_l1: string;
+      headline_l2: string;
+      sub: string;
+    };
+    stage: {
+      narrative_eyebrow: string;
+      narrative_title: string;
+      narrative_body: string;
+      live_label: string;
+    };
+  };
+  contactos: {
+    meta_title: string;
+    meta_description: string;
+    hero: {
+      eyebrow: string;
+      headline_l1: string;
+      headline_l2: string;
+      sub: string;
+    };
+    directory: {
+      eyebrow: string;
+      rows: ContactRow[];
+    };
+    form: {
+      eyebrow: string;
+      title: string;
+      sub: string;
+      fields: {
+        name: ContactFormField;
+        email: ContactFormField;
+        phone: ContactFormField;
+        vertical: ContactFormField;
+        message: ContactFormField;
+      };
+      submit_idle: string;
+      submit_loading: string;
+      success_title: string;
+      success_body: string;
+      error_title: string;
+      error_body: string;
+    };
+  };
+  chat: ChatCopy;
   footer: {
     blurb: string;
     sections: { product: string; company: string; legal: string };
@@ -349,6 +424,71 @@ export const es: Dictionary = {
       ],
       cta_headline: "¿Listo para que tu site venda cuando tú duermes?",
     },
+  },
+  demo: {
+    meta_title: "Demo · NorteNode",
+    meta_description: "Habla ahora con nuestro agente de IA. Respuestas en tiempo real, sin formularios.",
+    hero: {
+      eyebrow: "DEMO EN DIRECTO",
+      headline_l1: "Habla ahora.",
+      headline_l2: "Sin formularios.",
+      sub: "El mismo agente que atiende a sus clientes, respondiéndole aquí. Pregunte lo que quiera.",
+    },
+    stage: {
+      narrative_eyebrow: "CÓMO FUNCIONA",
+      narrative_title: "Responde como un humano. Trabaja como un sistema.",
+      narrative_body: "Entiende contexto, cualifica, agenda. Si el caso es complejo, se lo pasa con el histórico completo. Nunca dos veces la misma pregunta.",
+      live_label: "EN LÍNEA",
+    },
+  },
+  contactos: {
+    meta_title: "Contacto · NorteNode",
+    meta_description: "Hable con nosotros. Email, teléfono, WhatsApp. Vila Nova de Gaia, Portugal.",
+    hero: {
+      eyebrow: "CONTACTO",
+      headline_l1: "Hablemos.",
+      headline_l2: "",
+      sub: "Respondemos en menos de un día laborable. Elija el canal que prefiera.",
+    },
+    directory: {
+      eyebrow: "DIRECTORIO",
+      rows: [
+        { label: "EMAIL",     value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "TELÉFONO",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
+        { label: "WHATSAPP",  value: "Enviar mensaje",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
+        { label: "LUGAR",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+      ],
+    },
+    form: {
+      eyebrow: "O ESCRIBA",
+      title: "Cuéntenos el contexto.",
+      sub: "Cuanto más sepamos sobre su negocio, más concreta será la primera conversación.",
+      fields: {
+        name:     { label: "Nombre",   placeholder: "Cómo le llamamos" },
+        email:    { label: "Email",    placeholder: "su@email.es" },
+        phone:    { label: "Teléfono", placeholder: "+34" },
+        vertical: { label: "Sector",   placeholder: "Barbería, clínica, gimnasio…" },
+        message:  { label: "Contexto", placeholder: "Qué necesita resolver" },
+      },
+      submit_idle: "Enviar",
+      submit_loading: "Enviando…",
+      success_title: "Recibido.",
+      success_body: "Le respondemos por email en menos de un día laborable.",
+      error_title: "No pudimos enviar.",
+      error_body: "Inténtelo de nuevo o escriba directamente a nortenode.ia@gmail.com.",
+    },
+  },
+  chat: {
+    greeting: "Hola. Soy el agente de NorteNode. Pregunte lo que quiera — precios, horarios, reservas. Para eso estoy.",
+    title: "Agente NorteNode",
+    status: "EN LÍNEA",
+    input_placeholder: "Escriba su mensaje…",
+    send_label: "Enviar",
+    you_label: "Usted",
+    bot_label: "Agente",
+    thinking: "Pensando…",
+    error_generic: "Algo falló. Vuelva a intentarlo.",
+    error_network: "Sin conexión. Revise la red y vuelva a intentarlo.",
   },
   footer: {
     blurb: "Recepcionista IA 24/7 para pequeños negocios.",
@@ -580,6 +720,71 @@ export const en: Dictionary = {
       cta_headline: "Ready for your site to sell while you sleep?",
     },
   },
+  demo: {
+    meta_title: "Demo · NorteNode",
+    meta_description: "Talk to our AI agent now. Real-time answers, no forms.",
+    hero: {
+      eyebrow: "LIVE DEMO",
+      headline_l1: "Talk now.",
+      headline_l2: "No forms.",
+      sub: "The same agent that handles your customers, answering you here. Ask anything.",
+    },
+    stage: {
+      narrative_eyebrow: "HOW IT WORKS",
+      narrative_title: "Answers like a human. Works like a system.",
+      narrative_body: "Understands context, qualifies, books. If the case is complex, it hands off to you with the full history. Never the same question twice.",
+      live_label: "LIVE",
+    },
+  },
+  contactos: {
+    meta_title: "Contact · NorteNode",
+    meta_description: "Get in touch. Email, phone, WhatsApp. Vila Nova de Gaia, Portugal.",
+    hero: {
+      eyebrow: "CONTACT",
+      headline_l1: "Talk",
+      headline_l2: "to us.",
+      sub: "We answer within one business day. Pick whichever channel you prefer.",
+    },
+    directory: {
+      eyebrow: "DIRECTORY",
+      rows: [
+        { label: "EMAIL",    value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "PHONE",    value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
+        { label: "WHATSAPP", value: "Send a message",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
+        { label: "PLACE",    value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+      ],
+    },
+    form: {
+      eyebrow: "OR WRITE",
+      title: "Tell us the context.",
+      sub: "The more we know about your business, the more concrete our first conversation will be.",
+      fields: {
+        name:     { label: "Name",    placeholder: "What we should call you" },
+        email:    { label: "Email",   placeholder: "you@email.com" },
+        phone:    { label: "Phone",   placeholder: "+1" },
+        vertical: { label: "Sector",  placeholder: "Barbershop, clinic, gym…" },
+        message:  { label: "Context", placeholder: "What you need to solve" },
+      },
+      submit_idle: "Send",
+      submit_loading: "Sending…",
+      success_title: "Received.",
+      success_body: "We'll reply by email within one business day.",
+      error_title: "We couldn't send it.",
+      error_body: "Try again or email nortenode.ia@gmail.com directly.",
+    },
+  },
+  chat: {
+    greeting: "Hi. I'm NorteNode's agent. Ask anything — pricing, hours, booking. That's what I'm here for.",
+    title: "NorteNode Agent",
+    status: "LIVE",
+    input_placeholder: "Write your message…",
+    send_label: "Send",
+    you_label: "You",
+    bot_label: "Agent",
+    thinking: "Thinking…",
+    error_generic: "Something went wrong. Try again.",
+    error_network: "No connection. Check your network and try again.",
+  },
   footer: {
     blurb: "AI receptionist 24/7 for small businesses.",
     sections: { product: "Product", company: "Company", legal: "Legal" },
@@ -805,6 +1010,71 @@ export const pt: Dictionary = {
       ],
       cta_headline: "Pronto para o teu site vender enquanto dormes?",
     },
+  },
+  demo: {
+    meta_title: "Demo · NorteNode",
+    meta_description: "Converse agora com o nosso agente de IA. Respostas em tempo real, sem formulários.",
+    hero: {
+      eyebrow: "DEMO EM DIRETO",
+      headline_l1: "Converse agora.",
+      headline_l2: "Sem formulários.",
+      sub: "O mesmo agente que atende os seus clientes, a responder-lhe aqui. Pergunte o que quiser.",
+    },
+    stage: {
+      narrative_eyebrow: "COMO FUNCIONA",
+      narrative_title: "Responde como um humano. Trabalha como um sistema.",
+      narrative_body: "Entende contexto, qualifica, agenda. Se o caso for complexo, encaminha para si com o histórico completo. Nunca duas vezes a mesma pergunta.",
+      live_label: "EM LINHA",
+    },
+  },
+  contactos: {
+    meta_title: "Contactos · NorteNode",
+    meta_description: "Fale connosco. Email, telefone, WhatsApp. Vila Nova de Gaia, Portugal.",
+    hero: {
+      eyebrow: "CONTACTOS",
+      headline_l1: "Fale",
+      headline_l2: "connosco.",
+      sub: "Respondemos em menos de um dia útil. Escolha o canal que preferir.",
+    },
+    directory: {
+      eyebrow: "DIRETÓRIO",
+      rows: [
+        { label: "EMAIL",     value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "TELEFONE",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
+        { label: "WHATSAPP",  value: "Enviar mensagem",             href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
+        { label: "LOCAL",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+      ],
+    },
+    form: {
+      eyebrow: "OU ESCREVA",
+      title: "Conte-nos o contexto.",
+      sub: "Quanto mais souber sobre o seu negócio, mais concreta será a primeira conversa.",
+      fields: {
+        name:     { label: "Nome",     placeholder: "Como lhe chamamos" },
+        email:    { label: "Email",    placeholder: "o.seu@email.pt" },
+        phone:    { label: "Telefone", placeholder: "+351" },
+        vertical: { label: "Setor",    placeholder: "Barbearia, clínica, ginásio…" },
+        message:  { label: "Contexto", placeholder: "O que precisa de resolver" },
+      },
+      submit_idle: "Enviar",
+      submit_loading: "A enviar…",
+      success_title: "Recebido.",
+      success_body: "Respondemos por email em menos de um dia útil.",
+      error_title: "Não conseguimos enviar.",
+      error_body: "Tente novamente ou escreva diretamente para nortenode.ia@gmail.com.",
+    },
+  },
+  chat: {
+    greeting: "Olá. Sou o agente da NorteNode. Pergunte o que quiser — preços, horários, marcação. Estou aqui para isto.",
+    title: "Agente NorteNode",
+    status: "EM LINHA",
+    input_placeholder: "Escreva a sua mensagem…",
+    send_label: "Enviar",
+    you_label: "Você",
+    bot_label: "Agente",
+    thinking: "A pensar…",
+    error_generic: "Algo correu mal. Tente outra vez.",
+    error_network: "Sem ligação. Verifique a rede e tente outra vez.",
   },
   footer: {
     blurb: "Rececionista IA 24/7 para pequenos negócios.",
