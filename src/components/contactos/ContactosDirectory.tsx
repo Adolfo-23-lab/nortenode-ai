@@ -18,7 +18,6 @@ export default function ContactosDirectory({ eyebrow, rows }: Props) {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

@@ -17,7 +17,6 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub }
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

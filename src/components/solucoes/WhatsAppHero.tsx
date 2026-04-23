@@ -23,7 +23,6 @@ export default function WhatsAppHero() {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

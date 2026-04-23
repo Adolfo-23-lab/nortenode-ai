@@ -22,7 +22,6 @@ export default function FinalCTA() {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
 
       mm.add(

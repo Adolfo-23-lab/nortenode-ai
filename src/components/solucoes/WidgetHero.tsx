@@ -21,7 +21,6 @@ export default function WidgetHero() {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

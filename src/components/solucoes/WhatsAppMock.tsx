@@ -25,7 +25,6 @@ export default function WhatsAppMock() {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

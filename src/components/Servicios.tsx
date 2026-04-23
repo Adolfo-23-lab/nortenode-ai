@@ -24,7 +24,6 @@ export default function Servicios() {
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
 
       mm.add(

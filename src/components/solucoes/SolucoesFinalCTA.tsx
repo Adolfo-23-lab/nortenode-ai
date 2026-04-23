@@ -33,7 +33,6 @@ export default function SolucoesFinalCTA({
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
       mm.add(
         {

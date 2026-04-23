@@ -4,6 +4,9 @@ import * as React from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
  * Smooth-scroll root + GSAP bridge.
@@ -20,8 +23,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     if (typeof window === "undefined") return;
-
-    gsap.registerPlugin(ScrollTrigger);
 
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -53,6 +54,15 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
 
     if (!mql.matches) start();
+
+    // Instrument Serif uses display: "swap" → swap triggers a post-mount
+    // layout shift. Recalc ScrollTrigger positions once fonts have settled
+    // so triggers with e.g. start: "top 82%" stay aligned.
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+      });
+    }
 
     const onChange = (e: MediaQueryListEvent) => (e.matches ? stop() : start());
     mql.addEventListener?.("change", onChange);
