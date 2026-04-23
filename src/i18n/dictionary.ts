@@ -198,6 +198,16 @@ export interface Dictionary {
       success_body: string;
       error_title: string;
       error_body: string;
+      error_by_code: {
+        invalid_name:            string;
+        invalid_email:           string;
+        invalid_phone:           string;
+        invalid_sector:          string;
+        invalid_message:         string;
+        email_or_phone_required: string;
+        service_unavailable:     string;
+        rpc_failed:              string;
+      };
     };
   };
   chat: ChatCopy;
@@ -476,6 +486,16 @@ export const es: Dictionary = {
       success_body: "Le respondemos por email en menos de un día laborable.",
       error_title: "No pudimos enviar.",
       error_body: "Inténtelo de nuevo o escriba directamente a nortenode.ia@gmail.com.",
+      error_by_code: {
+        invalid_name:            "Nombre no válido.",
+        invalid_email:           "Email no válido.",
+        invalid_phone:           "Teléfono no válido.",
+        invalid_sector:          "Sector no válido.",
+        invalid_message:         "El mensaje es demasiado largo.",
+        email_or_phone_required: "Indique email o teléfono.",
+        service_unavailable:     "Servicio temporalmente no disponible.",
+        rpc_failed:              "No pudimos registrar su solicitud. Vuelva a intentarlo.",
+      },
     },
   },
   chat: {
@@ -771,6 +791,16 @@ export const en: Dictionary = {
       success_body: "We'll reply by email within one business day.",
       error_title: "We couldn't send it.",
       error_body: "Try again or email nortenode.ia@gmail.com directly.",
+      error_by_code: {
+        invalid_name:            "Invalid name.",
+        invalid_email:           "Invalid email.",
+        invalid_phone:           "Invalid phone number.",
+        invalid_sector:          "Invalid sector.",
+        invalid_message:         "Message is too long.",
+        email_or_phone_required: "Please provide an email or phone.",
+        service_unavailable:     "Service temporarily unavailable.",
+        rpc_failed:              "We couldn't register your request. Try again.",
+      },
     },
   },
   chat: {
@@ -1062,6 +1092,16 @@ export const pt: Dictionary = {
       success_body: "Respondemos por email em menos de um dia útil.",
       error_title: "Não conseguimos enviar.",
       error_body: "Tente novamente ou escreva diretamente para nortenode.ia@gmail.com.",
+      error_by_code: {
+        invalid_name:            "Nome inválido.",
+        invalid_email:           "Email inválido.",
+        invalid_phone:           "Contacto de telefone inválido.",
+        invalid_sector:          "Setor inválido.",
+        invalid_message:         "Mensagem demasiado longa.",
+        email_or_phone_required: "Indique email ou telefone.",
+        service_unavailable:     "Serviço temporariamente indisponível.",
+        rpc_failed:              "Não foi possível registar o pedido. Tente novamente.",
+      },
     },
   },
   chat: {

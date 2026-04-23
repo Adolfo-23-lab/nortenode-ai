@@ -4,22 +4,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { submitLeadAction } from "@/app/actions/submitLead";
-import type { SubmitLeadErrorCode } from "@/app/actions/submitLead";
 import { useMotionInitial } from "@/lib/motion-safe";
-
-const ERROR_MESSAGES_LEGACY: Record<SubmitLeadErrorCode, string> = {
-  invalid_name:            "Nome inválido.",
-  invalid_email:           "Email inválido.",
-  invalid_phone:           "Contacto WhatsApp inválido.",
-  invalid_sector:          "Setor inválido.",
-  invalid_message:         "Mensagem demasiado longa.",
-  email_or_phone_required: "Indique email ou WhatsApp.",
-  service_unavailable:     "Serviço temporariamente indisponível.",
-  rpc_failed:              "Não foi possível registar o pedido. Tente novamente.",
-};
+import { useT } from "@/i18n/provider";
 
 export default function ContactForm() {
   const mInit = useMotionInitial();
+  const t = useT();
+  const errorLookup = t.contactos.form.error_by_code;
   const [formData, setFormData] = useState({
     nomeClinica: "",
     email: "",
@@ -48,7 +39,7 @@ export default function ContactForm() {
       });
 
       if (!result.ok) {
-        setErrorMessage(ERROR_MESSAGES_LEGACY[result.code] ?? "Ocorreu um erro ao enviar o pedido.");
+        setErrorMessage(errorLookup[result.code]);
         setStatus("error");
         return;
       }
