@@ -22,6 +22,7 @@ export default function ContactosBody() {
         headline_l1={c.hero.headline_l1}
         headline_l2={c.hero.headline_l2}
         sub={c.hero.sub}
+        meta={c.hero.meta}
       />
       <ContactosDirectory eyebrow={c.directory.eyebrow} rows={c.directory.rows} />
       <ContactosForm />

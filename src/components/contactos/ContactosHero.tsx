@@ -10,9 +10,10 @@ interface Props {
   headline_l1: string;
   headline_l2: string;
   sub:         string;
+  meta:        Array<{ label: string; value: string }>;
 }
 
-export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub }: Props) {
+export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub, meta }: Props) {
   const rootRef = React.useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -52,7 +53,7 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub }
     <section
       ref={rootRef}
       aria-label={eyebrow}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] pt-40 pb-24 md:pt-56 md:pb-40"
+      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] pt-40 pb-32 md:pt-52 md:pb-40"
     >
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
         <p
@@ -63,7 +64,7 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub }
         </p>
         <h1
           data-reveal
-          className="font-[var(--font-display)] text-[clamp(3.5rem,12vw,11rem)] font-normal italic leading-[0.88] tracking-[-0.015em] text-white"
+          className="font-sans font-medium text-[clamp(3.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.02em] text-white text-balance"
         >
           <span className="block">{headline_l1}</span>
           {headline_l2 ? <span className="block text-[var(--color-ink-text-muted)]">{headline_l2}</span> : null}
@@ -74,6 +75,21 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub }
         >
           {sub}
         </p>
+        <ul
+          data-reveal
+          className="mt-20 grid grid-cols-2 gap-y-8 gap-x-8 md:mt-28 md:grid-cols-4 md:gap-x-12"
+        >
+          {meta.map((item) => (
+            <li key={item.label} className="flex flex-col gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
+                {item.label}
+              </span>
+              <span className="font-sans text-base leading-snug text-[var(--color-ink-text-primary)] md:text-lg">
+                {item.value}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

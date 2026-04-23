@@ -65,12 +65,12 @@ export default function ContactosDirectory({ eyebrow, rows }: Props) {
     <section
       ref={rootRef}
       aria-label={eyebrow}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-24 md:py-36"
+      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-20 md:py-28"
     >
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
         <p
           data-reveal="dir-eyebrow"
-          className="mb-16 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)] md:mb-24"
+          className="mb-14 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)] md:mb-20"
         >
           {eyebrow}
         </p>
@@ -80,12 +80,12 @@ export default function ContactosDirectory({ eyebrow, rows }: Props) {
             const content = (
               <div
                 data-reveal="dir-row"
-                className="group relative grid grid-cols-12 items-baseline gap-6 py-8 md:py-12"
+                className="group relative grid grid-cols-12 items-baseline gap-6 py-6 md:py-8"
               >
-                <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)] md:col-span-2">
+                <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)] md:col-span-3">
                   {row.label}
                 </span>
-                <span className="col-span-12 font-[var(--font-display)] text-[clamp(1.75rem,4.5vw,3.75rem)] font-normal italic leading-[1.05] tracking-[-0.01em] text-[var(--color-ink-text-primary)] transition-colors duration-500 group-hover:text-white md:col-span-9">
+                <span className="col-span-12 font-sans text-[clamp(1.25rem,2vw,1.75rem)] font-normal leading-snug tracking-[-0.005em] text-[var(--color-ink-text-primary)] transition-colors duration-500 group-hover:text-white md:col-span-8">
                   {row.value}
                 </span>
                 {row.href ? (

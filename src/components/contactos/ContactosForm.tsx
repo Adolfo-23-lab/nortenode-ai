@@ -115,13 +115,13 @@ export default function ContactosForm() {
       <section
         ref={rootRef}
         aria-label={f.success_title}
-        className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-32 md:py-48"
+        className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-24 md:py-36"
       >
         <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
           <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
             {f.eyebrow}
           </p>
-          <h2 className="font-[var(--font-display)] text-[clamp(2.5rem,7vw,6rem)] font-normal italic leading-[0.95] tracking-[-0.01em] text-white">
+          <h2 className="font-sans font-medium text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.02em] text-white text-balance">
             {f.success_title}
           </h2>
           <p className="mt-10 max-w-xl font-sans text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
@@ -136,7 +136,7 @@ export default function ContactosForm() {
     <section
       ref={rootRef}
       aria-label={f.title}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-32 md:py-48"
+      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-24 md:py-36"
     >
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
         <div className="mb-20 max-w-2xl md:mb-28">
@@ -148,7 +148,7 @@ export default function ContactosForm() {
           </p>
           <h2
             data-reveal="form-head"
-            className="font-[var(--font-display)] text-[clamp(2.5rem,6vw,5rem)] font-normal italic leading-[0.96] tracking-[-0.01em] text-white text-balance"
+            className="font-sans font-medium text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.02em] text-white text-balance"
           >
             {f.title}
           </h2>
@@ -215,17 +215,13 @@ export default function ContactosForm() {
             </div>
           ) : null}
 
-          <div className="mt-14">
+          <div className="mt-12">
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="group inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-primary)] transition-colors duration-300 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--color-signal-500)] px-8 py-4 font-sans text-sm font-medium text-white transition-colors duration-200 hover:bg-[var(--color-signal-400)] disabled:bg-[var(--color-signal-600)] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <span>{status === "submitting" ? f.submit_loading : f.submit_idle}</span>
-              <span
-                aria-hidden
-                className="inline-block h-px w-16 bg-[var(--color-ghost-border)] transition-all duration-300 group-hover:w-24 group-hover:bg-white"
-              />
+              {status === "submitting" ? f.submit_loading : f.submit_idle}
             </button>
           </div>
         </form>
@@ -257,7 +253,7 @@ function EditorialField({
     <label
       htmlFor={id}
       data-reveal="form-field"
-      className="group grid grid-cols-12 items-baseline gap-6 border-t border-[var(--color-hairline)] py-8 md:py-10"
+      className="group grid grid-cols-12 items-baseline gap-6 border-t border-[var(--color-hairline)] py-6 md:py-8"
     >
       <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)] md:col-span-2">
         {label}
@@ -271,7 +267,7 @@ function EditorialField({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className="col-span-12 resize-none bg-transparent font-sans text-[clamp(1.25rem,2.4vw,1.75rem)] font-normal leading-snug text-white placeholder:text-[var(--color-ink-text-faint)] focus:outline-none md:col-span-10"
+          className="col-span-12 resize-none bg-transparent font-sans text-[clamp(1rem,1.8vw,1.375rem)] font-normal leading-snug text-white placeholder:text-[var(--color-ink-text-faint)] focus:outline-none md:col-span-10"
         />
       ) : (
         <input
@@ -283,7 +279,7 @@ function EditorialField({
           placeholder={placeholder}
           required={required}
           autoComplete="off"
-          className="col-span-12 bg-transparent font-sans text-[clamp(1.25rem,2.4vw,1.75rem)] font-normal leading-snug text-white placeholder:text-[var(--color-ink-text-faint)] focus:outline-none md:col-span-10"
+          className="col-span-12 bg-transparent font-sans text-[clamp(1rem,1.8vw,1.375rem)] font-normal leading-snug text-white placeholder:text-[var(--color-ink-text-faint)] focus:outline-none md:col-span-10"
         />
       )}
     </label>

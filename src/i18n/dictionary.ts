@@ -176,6 +176,7 @@ export interface Dictionary {
       headline_l1: string;
       headline_l2: string;
       sub: string;
+      meta: Array<{ label: string; value: string }>;
     };
     directory: {
       eyebrow: string;
@@ -459,6 +460,12 @@ export const es: Dictionary = {
       headline_l1: "Hablemos.",
       headline_l2: "",
       sub: "Respondemos en menos de un día laborable. Elija el canal que prefiera.",
+      meta: [
+        { label: "LUGAR",     value: "Vila Nova de Gaia" },
+        { label: "RESPUESTA", value: "< 1 día laborable" },
+        { label: "IDIOMAS",   value: "PT · ES · EN" },
+        { label: "DESDE",     value: "2026" },
+      ],
     },
     directory: {
       eyebrow: "DIRECTORIO",
@@ -764,6 +771,12 @@ export const en: Dictionary = {
       headline_l1: "Talk",
       headline_l2: "to us.",
       sub: "We answer within one business day. Pick whichever channel you prefer.",
+      meta: [
+        { label: "PLACE",     value: "Vila Nova de Gaia" },
+        { label: "RESPONSE",  value: "< 1 business day" },
+        { label: "LANGUAGES", value: "PT · ES · EN" },
+        { label: "SINCE",     value: "2026" },
+      ],
     },
     directory: {
       eyebrow: "DIRECTORY",
@@ -1065,6 +1078,12 @@ export const pt: Dictionary = {
       headline_l1: "Fale",
       headline_l2: "connosco.",
       sub: "Respondemos em menos de um dia útil. Escolha o canal que preferir.",
+      meta: [
+        { label: "LOCAL",    value: "Vila Nova de Gaia" },
+        { label: "RESPOSTA", value: "< 1 dia útil" },
+        { label: "IDIOMAS",  value: "PT · ES · EN" },
+        { label: "DESDE",    value: "2026" },
+      ],
     },
     directory: {
       eyebrow: "DIRETÓRIO",
