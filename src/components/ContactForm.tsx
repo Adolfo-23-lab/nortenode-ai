@@ -4,7 +4,19 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { submitLeadAction } from "@/app/actions/submitLead";
+import type { SubmitLeadErrorCode } from "@/app/actions/submitLead";
 import { useMotionInitial } from "@/lib/motion-safe";
+
+const ERROR_MESSAGES_LEGACY: Record<SubmitLeadErrorCode, string> = {
+  invalid_name:            "Nome inválido.",
+  invalid_email:           "Email inválido.",
+  invalid_phone:           "Contacto WhatsApp inválido.",
+  invalid_sector:          "Setor inválido.",
+  invalid_message:         "Mensagem demasiado longa.",
+  email_or_phone_required: "Indique email ou WhatsApp.",
+  service_unavailable:     "Serviço temporariamente indisponível.",
+  rpc_failed:              "Não foi possível registar o pedido. Tente novamente.",
+};
 
 export default function ContactForm() {
   const mInit = useMotionInitial();
@@ -29,14 +41,14 @@ export default function ContactForm() {
 
     try {
       const result = await submitLeadAction({
-        name: formData.nomeClinica,
-        email: formData.email,
-        whatsapp: formData.whatsapp,
-        treatment: formData.tratamento,
+        name:    formData.nomeClinica,
+        email:   formData.email,
+        phone:   formData.whatsapp,
+        message: formData.tratamento,
       });
 
-      if (!result.success) {
-        setErrorMessage(result.error ?? "Ocorreu um erro ao enviar o pedido.");
+      if (!result.ok) {
+        setErrorMessage(ERROR_MESSAGES_LEGACY[result.code] ?? "Ocorreu um erro ao enviar o pedido.");
         setStatus("error");
         return;
       }
