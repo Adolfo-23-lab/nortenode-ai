@@ -127,22 +127,26 @@ function FAQItem({ index, entry }: { index: number; entry: FAQEntry }) {
       return;
     }
 
-    gsap.to(panel, {
-      height: target,
-      duration: 0.45,
-      ease: "power3.out",
-      onComplete: () => {
-        // When fully open, let the panel grow naturally if content reflows.
-        if (open) gsap.set(panel, { height: "auto" });
-      },
-    });
-    if (icon) {
-      gsap.to(icon, {
-        rotation: open ? 45 : 0,
-        duration: 0.35,
+    const ctx = gsap.context(() => {
+      gsap.to(panel, {
+        height: target,
+        duration: 0.45,
         ease: "power3.out",
+        onComplete: () => {
+          // When fully open, let the panel grow naturally if content reflows.
+          if (open) gsap.set(panel, { height: "auto" });
+        },
       });
-    }
+      if (icon) {
+        gsap.to(icon, {
+          rotation: open ? 45 : 0,
+          duration: 0.35,
+          ease: "power3.out",
+        });
+      }
+    }, panelRef);
+
+    return () => ctx.revert();
   }, [open]);
 
   const headingId = `faq-q-${index}`;
