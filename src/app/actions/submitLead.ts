@@ -73,9 +73,9 @@ export async function submitLeadAction(
   const { data: leadId, error } = await supabase.rpc("submit_agency_lead", {
     p_agency_slug: agencyOrgSlug(),
     p_name:        name,
-    p_email:       email || null,
-    p_phone:       phone || null,
-    p_message:     message || null,
+    p_email:       email || undefined,
+    p_phone:       phone || undefined,
+    p_message:     message || undefined,
   });
 
   if (error) {

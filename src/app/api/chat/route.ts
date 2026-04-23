@@ -166,7 +166,7 @@ export async function POST(req: Request): Promise<Response> {
               total:      totalUsage.totalTokens,
             }
           : null,
-          p_external_id:   null,
+          p_external_id:   undefined,
       });
       if (error) console.error("append_bot_message failed", error);
     },

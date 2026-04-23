@@ -1,6 +1,7 @@
 import { tool, jsonSchema, type Tool } from "ai";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database, LeadTemperature } from "@/lib/database.types";
+import type { Database } from "@/lib/database.types";
+import type { LeadTemperature } from "@/lib/database.types.custom";
 
 /**
  * Bot tool-calling definitions (Phase 3).
@@ -171,7 +172,7 @@ export function createBotTools(
         p_intent:          input.intent,
         p_temperature:     input.temperature,
         p_qualification:   (input.qualification ?? {}) as Database["public"]["Tables"]["leads"]["Row"]["qualification"],
-        p_notes:           input.notes ?? null,
+        p_notes:           input.notes ?? undefined,
       });
       if (error) return { ok: false, error: `rpc_error:${error.code ?? "unknown"}` };
       return data ?? { ok: false, error: "empty_response" };
@@ -197,8 +198,8 @@ export function createBotTools(
         p_conversation_id:            conversationId,
         p_service_query:              input.service_query,
         p_starts_at:                  input.starts_at,
-        p_duration_minutes_override:  input.duration_minutes_override ?? null,
-        p_notes:                      input.notes ?? null,
+        p_duration_minutes_override:  input.duration_minutes_override ?? undefined,
+        p_notes:                      input.notes ?? undefined,
       });
       if (error) return { ok: false, error: `rpc_error:${error.code ?? "unknown"}` };
       return data ?? { ok: false, error: "empty_response" };
