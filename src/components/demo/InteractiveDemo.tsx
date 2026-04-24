@@ -100,7 +100,7 @@ export default function InteractiveDemo() {
   const isLoading = status === "streaming" || status === "submitted";
 
   return (
-    <div className="w-full glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col h-[500px]">
+    <div className="w-full glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col min-h-[380px] max-h-[600px]">
       {/* Chat Header */}
       <div className="bg-white/5 border-b border-white/10 p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -118,7 +118,7 @@ export default function InteractiveDemo() {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col justify-end">
         <AnimatePresence>
           {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
             <motion.div
