@@ -233,6 +233,41 @@ export interface Dictionary {
       };
     };
   };
+  quem_somos: {
+    meta_title: string;
+    meta_description: string;
+    hero: {
+      eyebrow: string;
+      headline_l1: string;
+      headline_l2: string;
+      sub: string;
+      meta: Array<{ label: string; value: string }>;
+      photo_alt: string;
+      photo_caption: string;
+    };
+    manifesto: {
+      eyebrow: string;
+      title: string;
+      body: string[];
+    };
+    principles: {
+      eyebrow: string;
+      title: string;
+      items: Array<{ num: string; title: string; body: string }>;
+    };
+    trajectory: {
+      eyebrow: string;
+      title: string;
+      chapters: Array<{ date: string; title: string; body: string }>;
+    };
+    final_cta: {
+      eyebrow: string;
+      title: string;
+      body: string;
+      cta_label: string;
+      cta_href: string;
+    };
+  };
   chat: ChatCopy;
   footer: {
     blurb: string;
@@ -568,6 +603,58 @@ export const es: Dictionary = {
         service_unavailable:     "Servicio temporalmente no disponible.",
         rpc_failed:              "No pudimos registrar su solicitud. Vuelva a intentarlo.",
       },
+    },
+  },
+  quem_somos: {
+    meta_title: "Quiénes Somos · NorteNode",
+    meta_description: "Agencia independiente que opera agentes de IA para negocios locales. Fundada en Vila Nova de Gaia.",
+    hero: {
+      eyebrow: "QUIÉN OPERA",
+      headline_l1: "Una agencia independiente.",
+      headline_l2: "Operada por quien la fundó.",
+      sub: "No somos una plataforma a escala. Somos un operador local que construye agentes de IA para quien los necesita funcionando mañana.",
+      meta: [
+        { label: "FUNDADOR",     value: "Adolfo" },
+        { label: "SEDE",         value: "Vila Nova de Gaia" },
+        { label: "ESPECIALIDAD", value: "Agentes operativos" },
+        { label: "DESDE",        value: "2026" },
+      ],
+      photo_alt: "Adolfo, fundador de NorteNode, en Vila Nova de Gaia",
+      photo_caption: "Adolfo · Fundador y Operador",
+    },
+    manifesto: {
+      eyebrow: "POR QUÉ EXISTIMOS",
+      title: "La mayoría de los negocios locales pierde conversaciones que no sabe que pierde.",
+      body: [
+        "Barberías, clínicas, gimnasios — todos tienen el mismo patrón. Un cliente pregunta por WhatsApp, nadie responde en veinte minutos, y ese cliente agenda en otro sitio. No es falta de ganas. Es falta de tiempo de alguien detrás del mostrador.",
+        "NorteNode existe para operar esa respuesta. No vendemos una plataforma para que la configure usted solo. Construimos el agente con el contexto real de su negocio, lo integramos en su WhatsApp, y lo operamos el día a día. Usted recibe los leads ya cualificados.",
+        "Decidimos hacer esto de una manera específica: como agencia, no como producto SaaS; con precio fijo por proyecto, no con licencias recurrentes; operando localmente en Portugal y España, no a escala global. Es una elección deliberada. Es lo que sabemos hacer bien.",
+      ],
+    },
+    principles: {
+      eyebrow: "CÓMO OPERAMOS",
+      title: "Tres decisiones que definen nuestro trabajo.",
+      items: [
+        { num: "01", title: "Cobramos por resultado, no por licencia.",           body: "Precio fijo por proyecto, con mantenimiento mensual transparente. Nunca pagará una licencia recurrente por un software cuyo código no controla." },
+        { num: "02", title: "Operamos el agente, no se lo vendemos a usted.",     body: "No recibirá un panel para configurar respuestas y prompts. Nosotros gestionamos el agente con el contexto de su negocio. Usted recibe las citas y los leads." },
+        { num: "03", title: "Decimos cuándo no tenemos sentido.",                 body: "En la primera llamada decidimos juntos si el proyecto tiene sentido para su caso. Si el volumen no lo justifica, o si el problema es otro, se lo decimos aquí. No vendemos a todos." },
+      ],
+    },
+    trajectory: {
+      eyebrow: "TRAYECTORIA",
+      title: "Dónde estamos hoy.",
+      chapters: [
+        { date: "2026 · Q1",      title: "Fundación y primeros prototipos.", body: "Construcción del motor que opera los agentes — Groq, WhatsApp Cloud API, integraciones básicas. Pruebas con barberías ficticias." },
+        { date: "2026 · Q2",      title: "Primeros clientes reales.",        body: "Primera barbería en producción en Vila Nova de Gaia. Iteración sobre tono, contexto, escalado al operador humano." },
+        { date: "Capítulo actual", title: "Construyendo en público.",         body: "Abrimos calendario para más negocios locales en Portugal y España. Cada cliente nuevo informa cómo evoluciona el producto y la operación." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "SIGUIENTE PASO",
+      title: "Si tiene sentido, hablemos.",
+      body: "Una llamada de 30 minutos para entender su caso. Sin formulario intermedio, sin presión comercial.",
+      cta_label: "Hablar con Adolfo",
+      cta_href: "/contactos",
     },
   },
   chat: {
@@ -924,6 +1011,58 @@ export const en: Dictionary = {
       },
     },
   },
+  quem_somos: {
+    meta_title: "About · NorteNode",
+    meta_description: "Independent agency operating AI agents for local businesses. Founded in Vila Nova de Gaia.",
+    hero: {
+      eyebrow: "WHO OPERATES",
+      headline_l1: "An independent agency.",
+      headline_l2: "Run by the person who founded it.",
+      sub: "We're not a platform at scale. We're a local operator building AI agents for businesses that need them running tomorrow.",
+      meta: [
+        { label: "FOUNDER",   value: "Adolfo" },
+        { label: "BASED IN",  value: "Vila Nova de Gaia" },
+        { label: "SPECIALTY", value: "Operational agents" },
+        { label: "SINCE",     value: "2026" },
+      ],
+      photo_alt: "Adolfo, founder of NorteNode, in Vila Nova de Gaia",
+      photo_caption: "Adolfo · Founder & Operator",
+    },
+    manifesto: {
+      eyebrow: "WHY WE EXIST",
+      title: "Most local businesses lose conversations they don't know they're losing.",
+      body: [
+        "Barbershops, clinics, gyms — they all have the same pattern. A customer asks on WhatsApp, no one replies within twenty minutes, and that customer books somewhere else. It's not a lack of will. It's a lack of time from whoever's at the counter.",
+        "NorteNode exists to operate that reply. We don't sell you a platform so you configure it yourself. We build the agent with the real context of your business, integrate it into your WhatsApp, and run it day to day. You receive already-qualified leads.",
+        "We decided to do this a specific way: as an agency, not a SaaS product; with fixed per-project pricing, not recurring licenses; operating locally in Portugal and Spain, not at global scale. It's a deliberate choice. It's what we do well.",
+      ],
+    },
+    principles: {
+      eyebrow: "HOW WE OPERATE",
+      title: "Three decisions that define our work.",
+      items: [
+        { num: "01", title: "We charge for outcome, not for license.",             body: "Fixed per-project price, with transparent monthly maintenance. You'll never pay a recurring license for software whose code you don't control." },
+        { num: "02", title: "We operate the agent, we don't sell it to you.",      body: "You won't get a panel to configure prompts and responses. We manage the agent with your business context. You receive bookings and leads." },
+        { num: "03", title: "We say when we're not a fit.",                         body: "In the first call we decide together if the project makes sense for your case. If the volume doesn't justify it, or if the problem is different, we say so here. We don't sell to everyone." },
+      ],
+    },
+    trajectory: {
+      eyebrow: "TRAJECTORY",
+      title: "Where we are today.",
+      chapters: [
+        { date: "2026 · Q1",       title: "Founding and first prototypes.", body: "Building the engine that runs the agents — Groq, WhatsApp Cloud API, basic integrations. Testing with fictional barbershops." },
+        { date: "2026 · Q2",       title: "First real clients.",            body: "First barbershop in production in Vila Nova de Gaia. Iteration on tone, context, handoff to human operator." },
+        { date: "Current chapter", title: "Building in public.",            body: "We're opening calendar for more local businesses in Portugal and Spain. Each new client informs how product and operations evolve." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "NEXT STEP",
+      title: "If it's a fit, let's talk.",
+      body: "A 30-minute call to understand your case. No intermediate form, no sales pressure.",
+      cta_label: "Talk to Adolfo",
+      cta_href: "/contactos",
+    },
+  },
   chat: {
     greeting: "Hi. I'm NorteNode's agent. Ask anything — pricing, hours, booking. That's what I'm here for.",
     title: "NorteNode Agent",
@@ -1272,6 +1411,58 @@ export const pt: Dictionary = {
         service_unavailable:     "Serviço temporariamente indisponível.",
         rpc_failed:              "Não foi possível registar o pedido. Tente novamente.",
       },
+    },
+  },
+  quem_somos: {
+    meta_title: "Quem Somos · NorteNode",
+    meta_description: "Agência independente que opera agentes de IA para negócios locais. Fundada em Vila Nova de Gaia.",
+    hero: {
+      eyebrow: "QUEM OPERA",
+      headline_l1: "Uma agência independente.",
+      headline_l2: "Operada por quem a fundou.",
+      sub: "Não somos uma plataforma em escala. Somos um operador local que constrói agentes de IA para quem precisa deles a funcionar amanhã.",
+      meta: [
+        { label: "FUNDADOR",      value: "Adolfo" },
+        { label: "SEDE",          value: "Vila Nova de Gaia" },
+        { label: "ESPECIALIDADE", value: "Agentes operacionais" },
+        { label: "DESDE",         value: "2026" },
+      ],
+      photo_alt: "Adolfo, fundador da NorteNode, em Vila Nova de Gaia",
+      photo_caption: "Adolfo · Fundador & Operador",
+    },
+    manifesto: {
+      eyebrow: "POR QUE EXISTIMOS",
+      title: "A maior parte dos negócios locais perde conversas que não sabe que perde.",
+      body: [
+        "Barbearias, clínicas, ginásios — todos têm o mesmo padrão. Um cliente pergunta no WhatsApp, ninguém responde em vinte minutos, e esse cliente marca noutro lado. Não é falta de vontade. É falta de tempo de alguém atrás do balcão.",
+        "A NorteNode existe para operar essa resposta. Não vendemos uma plataforma para que você configure sozinho. Construímos o agente com o contexto real do seu negócio, integramo-lo no seu WhatsApp, e operamo-lo no dia-a-dia. Você recebe os leads já qualificados.",
+        "Decidimos fazer isto de uma maneira específica: como agência, não como produto SaaS; com preço fixo por projeto, não com licenças recorrentes; operando localmente em Portugal e Espanha, não em escala global. É uma escolha deliberada. É o que sabemos fazer bem.",
+      ],
+    },
+    principles: {
+      eyebrow: "COMO OPERAMOS",
+      title: "Três decisões que definem o nosso trabalho.",
+      items: [
+        { num: "01", title: "Cobramos por resultado, não por licença.",       body: "Preço fixo pelo projeto, com manutenção mensal transparente. Nunca pagará uma licença recorrente por um software cujo código não controla." },
+        { num: "02", title: "Operamos o agente, não o vendemos para si.",     body: "Não receberá um painel para configurar respostas e prompts. Nós gerimos o agente com o contexto do seu negócio. Você recebe os agendamentos e os leads." },
+        { num: "03", title: "Dizemos quando não fazemos sentido.",            body: "Na primeira chamada decidimos juntos se o projeto faz sentido para o seu caso. Se o volume não justifica, ou se o problema é outro, dizemo-lo aqui. Não vendemos a todos." },
+      ],
+    },
+    trajectory: {
+      eyebrow: "TRAJETÓRIA",
+      title: "Onde estamos hoje.",
+      chapters: [
+        { date: "2026 · Q1",     title: "Fundação e primeiros protótipos.", body: "Construção do motor que opera os agentes — Groq, WhatsApp Cloud API, integrações básicas. Testes com barbearias fictícias." },
+        { date: "2026 · Q2",     title: "Primeiros clientes reais.",        body: "Primeira barbearia em produção em Vila Nova de Gaia. Iteração sobre tom, contexto, escalonamento ao operador humano." },
+        { date: "Capítulo atual", title: "A construir em público.",          body: "Abrimos calendário para mais negócios locais em Portugal e Espanha. Cada cliente novo informa como o produto e a operação evoluem." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "PRÓXIMO PASSO",
+      title: "Se faz sentido, falemos.",
+      body: "Uma chamada de 30 minutos para perceber o seu caso. Sem formulário intermédio, sem pressão comercial.",
+      cta_label: "Falar com o Adolfo",
+      cta_href: "/contactos",
     },
   },
   chat: {

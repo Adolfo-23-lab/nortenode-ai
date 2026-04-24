@@ -212,6 +212,8 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **useMotionInitial orphan post-B.4.4:** El hook `src/lib/motion-safe.ts` → `useMotionInitial` quedó sin consumers tras el kill de ConversionZone en B.4.4. InteractiveDemo todavía lo consume (vía framer-motion residual). Al migrar InteractiveDemo a GSAP en B.6, verificar con grep total si el hook queda sin consumers. Si sí, eliminar hook + archivo `motion-safe.ts` + revisar otros módulos framer-motion residuales. Baja prioridad.
 
+**adolfo_nortenode.jpg peso elevado:** `public/adolfo_nortenode.jpg` pesa 780KB. Usado en `/quem-somos` hero con `next/image` (fill + priority + sizes responsive), que optimiza on-demand con AVIF para el cliente. El source sigue siendo pesado en disco y afecta el cold transform del edge en el primer request. Candidato a optimizar manualmente (reducir dimensions máximas, pre-generar AVIF) o mover a CDN en B.8. Baja prioridad — next/image cubre el hit inicial para la mayoría de usuarios.
+
 ### 4.f · Pending inputs from Adolfo
 
 - Drop `DESIGN.md` into `docs/design-refs/DESIGN.md` (overwriting placeholder).
