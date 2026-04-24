@@ -4,6 +4,8 @@ import * as React from "react";
 import { useT } from "@/i18n/provider";
 import ContactosHero from "./ContactosHero";
 import ContactosDirectory from "./ContactosDirectory";
+import ContactosProcess from "./ContactosProcess";
+import ContactosPosition from "./ContactosPosition";
 import ContactosForm from "./ContactosForm";
 
 /**
@@ -25,6 +27,8 @@ export default function ContactosBody() {
         meta={c.hero.meta}
       />
       <ContactosDirectory eyebrow={c.directory.eyebrow} rows={c.directory.rows} />
+      <ContactosProcess eyebrow={c.process.eyebrow} title={c.process.title} steps={c.process.steps} />
+      <ContactosPosition eyebrow={c.position.eyebrow} title={c.position.title} items={c.position.items} />
       <ContactosForm />
     </>
   );

@@ -34,13 +34,20 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub, 
             return;
           }
 
-          gsap.from(root.querySelectorAll("[data-reveal]"), {
+          gsap.from(root.querySelectorAll("[data-reveal]:not([data-reveal-plate])"), {
             y: 40,
             opacity: 0,
             filter: "blur(10px)",
             duration: 1.1,
             stagger: 0.14,
             ease: "power3.out",
+          });
+
+          gsap.from(root.querySelectorAll("[data-reveal-plate]"), {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.8,
+            ease: "power2.out",
           });
         },
       );
@@ -55,6 +62,15 @@ export default function ContactosHero({ eyebrow, headline_l1, headline_l2, sub, 
       aria-label={eyebrow}
       className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] pt-40 pb-32 md:pt-52 md:pb-40"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div
+          data-reveal-plate
+          className="absolute left-1/2 top-1/3 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,var(--color-signal-500)_0%,transparent_60%)] opacity-[0.12] blur-3xl"
+        />
+      </div>
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
         <p
           data-reveal

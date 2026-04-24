@@ -182,6 +182,16 @@ export interface Dictionary {
       eyebrow: string;
       rows: ContactRow[];
     };
+    process: {
+      eyebrow: string;
+      title: string;
+      steps: Array<{ num: string; title: string; body: string }>;
+    };
+    position: {
+      eyebrow: string;
+      title: string;
+      items: Array<{ label: string; body: string }>;
+    };
     form: {
       eyebrow: string;
       title: string;
@@ -474,6 +484,24 @@ export const es: Dictionary = {
         { label: "TELÉFONO",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensaje",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
         { label: "LUGAR",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+      ],
+    },
+    process: {
+      eyebrow: "CÓMO TRABAJAMOS",
+      title: "Del primer mensaje al agente en producción.",
+      steps: [
+        { num: "01", title: "Respuesta en menos de un día laborable.", body: "Leemos el contexto que nos escriba y respondemos con una primera lectura del problema. Sin formularios intermedios ni demos enlatadas." },
+        { num: "02", title: "Llamada de diagnóstico de 30 minutos.",   body: "Entendemos su negocio, el volumen de conversaciones que pierde, y qué necesita resolver. Si no tenemos sentido para su caso, se lo decimos aquí." },
+        { num: "03", title: "Propuesta concreta en menos de una semana.", body: "Alcance, precio fijo, plazo, y qué vamos a operar por usted. Sin licencias recurrentes opacas ni ingeniería de features que no usa." },
+      ],
+    },
+    position: {
+      eyebrow: "LO QUE NO SOMOS",
+      title: "Para evitar malentendidos.",
+      items: [
+        { label: "NO VENDEMOS SOFTWARE",        body: "No paga licencia de una plataforma de chatbots. Operamos el agente por usted, integrado en su WhatsApp y su sitio web." },
+        { label: "NO SOMOS AGENCIA DE MARKETING", body: "No hacemos anuncios, SEO, ni redes sociales. Foco único: que las conversaciones que ya le llegan se conviertan en citas agendadas." },
+        { label: "NO USAMOS BOTS GENÉRICOS",     body: "Cada agente se entrena con el contexto de su negocio — horarios, servicios, precios, objeciones reales. No es un árbol de decisión con 10 respuestas." },
       ],
     },
     form: {
@@ -787,6 +815,24 @@ export const en: Dictionary = {
         { label: "PLACE",    value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
       ],
     },
+    process: {
+      eyebrow: "HOW WE WORK",
+      title: "From first message to agent in production.",
+      steps: [
+        { num: "01", title: "Reply within one business day.",      body: "We read the context you send us and reply with a first read on the problem. No intermediate forms, no canned demos." },
+        { num: "02", title: "30-minute diagnostic call.",          body: "We understand your business, the volume of conversations you're losing, and what you need to solve. If we're not a fit, we tell you here." },
+        { num: "03", title: "Concrete proposal within a week.",    body: "Scope, fixed price, timeline, and what we'll operate for you. No opaque recurring licenses, no feature engineering you won't use." },
+      ],
+    },
+    position: {
+      eyebrow: "WHAT WE ARE NOT",
+      title: "To avoid misunderstandings.",
+      items: [
+        { label: "WE DON'T SELL SOFTWARE",      body: "You don't pay a chatbot platform license. We operate the agent for you, integrated into your WhatsApp and your website." },
+        { label: "WE'RE NOT A MARKETING AGENCY", body: "No ads, no SEO, no social media. Single focus: the conversations you already receive convert into bookings." },
+        { label: "WE DON'T USE GENERIC BOTS",   body: "Each agent is trained with the context of your business — hours, services, prices, real objections. Not a decision tree with 10 answers." },
+      ],
+    },
     form: {
       eyebrow: "OR WRITE",
       title: "Tell us the context.",
@@ -1092,6 +1138,24 @@ export const pt: Dictionary = {
         { label: "TELEFONE",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensagem",             href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
         { label: "LOCAL",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+      ],
+    },
+    process: {
+      eyebrow: "COMO TRABALHAMOS",
+      title: "Da primeira mensagem ao agente em produção.",
+      steps: [
+        { num: "01", title: "Resposta em menos de um dia útil.",         body: "Lemos o contexto que nos escrever e respondemos com uma primeira leitura do problema. Sem formulários intermédios nem demos pré-fabricadas." },
+        { num: "02", title: "Chamada de diagnóstico de 30 minutos.",     body: "Entendemos o seu negócio, o volume de conversas que perde, e o que precisa resolver. Se não fazemos sentido para o seu caso, dizemo-lo aqui." },
+        { num: "03", title: "Proposta concreta em menos de uma semana.", body: "Escopo, preço fixo, prazo, e o que vamos operar por si. Sem licenças recorrentes opacas nem engenharia de features que não usa." },
+      ],
+    },
+    position: {
+      eyebrow: "O QUE NÃO SOMOS",
+      title: "Para evitar mal-entendidos.",
+      items: [
+        { label: "NÃO VENDEMOS SOFTWARE",         body: "Não paga licença de uma plataforma de chatbots. Operamos o agente por si, integrado no seu WhatsApp e no seu site." },
+        { label: "NÃO SOMOS AGÊNCIA DE MARKETING", body: "Não fazemos anúncios, SEO, nem redes sociais. Foco único: que as conversas que já chegam se convertam em agendamentos." },
+        { label: "NÃO USAMOS BOTS GENÉRICOS",     body: "Cada agente é treinado com o contexto do seu negócio — horários, serviços, preços, objeções reais. Não é uma árvore de decisão com 10 respostas." },
       ],
     },
     form: {
