@@ -160,12 +160,24 @@ export interface Dictionary {
       headline_l1: string;
       headline_l2: string;
       sub: string;
+      meta: Array<{ label: string; value: string }>;
     };
-    stage: {
-      narrative_eyebrow: string;
-      narrative_title: string;
-      narrative_body: string;
-      live_label: string;
+    how: {
+      eyebrow: string;
+      title: string;
+      steps: Array<{ num: string; title: string; body: string }>;
+    };
+    limits: {
+      eyebrow: string;
+      title: string;
+      items: Array<{ label: string; body: string }>;
+    };
+    final_cta: {
+      eyebrow: string;
+      title: string;
+      body: string;
+      cta_label: string;
+      cta_href: string;
     };
   };
   contactos: {
@@ -448,18 +460,43 @@ export const es: Dictionary = {
   },
   demo: {
     meta_title: "Demo · NorteNode",
-    meta_description: "Habla ahora con nuestro agente de IA. Respuestas en tiempo real, sin formularios.",
+    meta_description: "Pruebe nuestro agente de IA en conversación real. El mismo motor que operamos para clientes.",
     hero: {
-      eyebrow: "DEMO EN DIRECTO",
-      headline_l1: "Habla ahora.",
-      headline_l2: "Sin formularios.",
-      sub: "El mismo agente que atiende a sus clientes, respondiéndole aquí. Pregunte lo que quiera.",
+      eyebrow: "DEMO EN VIVO",
+      headline_l1: "Pruébelo ahora.",
+      headline_l2: "Conversación real, no vídeo.",
+      sub: "Este es el mismo motor que operamos para clientes. Escriba como si fuera un cliente real — responde con contexto, no con respuestas pre-grabadas.",
+      meta: [
+        { label: "MODELO",   value: "Groq / Llama 3.3" },
+        { label: "LATENCIA", value: "< 500 ms" },
+        { label: "CONTEXTO", value: "Barbería ficticia" },
+        { label: "SESIÓN",   value: "Anónima" },
+      ],
     },
-    stage: {
-      narrative_eyebrow: "CÓMO FUNCIONA",
-      narrative_title: "Responde como un humano. Trabaja como un sistema.",
-      narrative_body: "Entiende contexto, cualifica, agenda. Si el caso es complejo, se lo pasa con el histórico completo. Nunca dos veces la misma pregunta.",
-      live_label: "EN LÍNEA",
+    how: {
+      eyebrow: "DEL DEMO A SU AGENTE",
+      title: "De lo que prueba aquí a lo que operamos por usted.",
+      steps: [
+        { num: "01", title: "Conversación de prueba, sin compromiso.",   body: "Use este chat lo que quiera. No guardamos el historial ni contactamos después. Es solo para que vea el tono y la calidad de la respuesta." },
+        { num: "02", title: "Si tiene sentido, agenda una llamada.",     body: "Hablamos de su caso concreto — sector, volumen, integraciones. Decidimos juntos si el proyecto avanza." },
+        { num: "03", title: "Agente entrenado y operado por nosotros.",  body: "Montamos el agente con el contexto real de su negocio, lo integramos en su WhatsApp y sitio, y operamos el día a día. Usted recibe los leads cualificados." },
+      ],
+    },
+    limits: {
+      eyebrow: "LO QUE ESTE DEMO NO HACE",
+      title: "Transparencia sobre lo que está probando.",
+      items: [
+        { label: "NO TIENE SU CONTEXTO", body: "Este demo responde como si fuera una barbería genérica. Su agente tendría sus horarios, servicios, precios y objeciones reales." },
+        { label: "NO AGENDA REALMENTE",  body: "Si el demo dice 'agendé a las 15h', es simulación. En su caso, el agente agendaría en su Google Calendar o sistema interno." },
+        { label: "NO ENVÍA POR WHATSAPP", body: "Aquí es chat web. El agente en producción responde directamente en el WhatsApp Business de su negocio, con su número." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "SIGUIENTE PASO",
+      title: "Si el demo tuvo sentido, hablemos.",
+      body: "Una llamada de 30 minutos. Sin formulario intermedio, sin presión comercial.",
+      cta_label: "Agendar llamada",
+      cta_href: "/contactos",
     },
   },
   contactos: {
@@ -777,18 +814,43 @@ export const en: Dictionary = {
   },
   demo: {
     meta_title: "Demo · NorteNode",
-    meta_description: "Talk to our AI agent now. Real-time answers, no forms.",
+    meta_description: "Test our AI agent in real conversation. The same engine we run for clients.",
     hero: {
       eyebrow: "LIVE DEMO",
-      headline_l1: "Talk now.",
-      headline_l2: "No forms.",
-      sub: "The same agent that handles your customers, answering you here. Ask anything.",
+      headline_l1: "Try it now.",
+      headline_l2: "Real conversation, not video.",
+      sub: "This is the same engine we run for clients. Write as if you were a real customer — it replies with context, not canned answers.",
+      meta: [
+        { label: "MODEL",   value: "Groq / Llama 3.3" },
+        { label: "LATENCY", value: "< 500 ms" },
+        { label: "CONTEXT", value: "Fictional barbershop" },
+        { label: "SESSION", value: "Anonymous" },
+      ],
     },
-    stage: {
-      narrative_eyebrow: "HOW IT WORKS",
-      narrative_title: "Answers like a human. Works like a system.",
-      narrative_body: "Understands context, qualifies, books. If the case is complex, it hands off to you with the full history. Never the same question twice.",
-      live_label: "LIVE",
+    how: {
+      eyebrow: "FROM DEMO TO YOUR AGENT",
+      title: "From what you test here to what we run for you.",
+      steps: [
+        { num: "01", title: "Test conversation, no commitment.", body: "Use this chat as much as you want. We don't store the history or follow up. It's just so you see the tone and quality of the response." },
+        { num: "02", title: "If it fits, book a call.",          body: "We discuss your specific case — sector, volume, integrations. We decide together if the project moves forward." },
+        { num: "03", title: "Agent trained and run by us.",      body: "We build the agent with the real context of your business, integrate it into your WhatsApp and website, and run the day-to-day. You receive qualified leads." },
+      ],
+    },
+    limits: {
+      eyebrow: "WHAT THIS DEMO DOESN'T DO",
+      title: "Transparency about what you're testing.",
+      items: [
+        { label: "NO ACCESS TO YOUR CONTEXT", body: "This demo replies as a generic barbershop. Your agent would have your hours, services, prices, and real objections." },
+        { label: "DOESN'T ACTUALLY BOOK",     body: "If the demo says 'booked for 3pm', it's simulation. In your case, the agent would book in your Google Calendar or internal system." },
+        { label: "NOT WHATSAPP HERE",         body: "This is web chat. The production agent replies directly in your business's WhatsApp Business, from your number." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "NEXT STEP",
+      title: "If the demo made sense, let's talk.",
+      body: "A 30-minute call. No intermediate form, no sales pressure.",
+      cta_label: "Book a call",
+      cta_href: "/contactos",
     },
   },
   contactos: {
@@ -1102,18 +1164,43 @@ export const pt: Dictionary = {
   },
   demo: {
     meta_title: "Demo · NorteNode",
-    meta_description: "Converse agora com o nosso agente de IA. Respostas em tempo real, sem formulários.",
+    meta_description: "Teste o nosso agente de IA em conversa real. Mesmo motor que operamos para clientes.",
     hero: {
-      eyebrow: "DEMO EM DIRETO",
-      headline_l1: "Converse agora.",
-      headline_l2: "Sem formulários.",
-      sub: "O mesmo agente que atende os seus clientes, a responder-lhe aqui. Pergunte o que quiser.",
+      eyebrow: "DEMO AO VIVO",
+      headline_l1: "Experimente agora.",
+      headline_l2: "Conversa real, não vídeo.",
+      sub: "Este é o mesmo motor que operamos para clientes. Escreva como se fosse um cliente real — ele responde com contexto, não com respostas pré-gravadas.",
+      meta: [
+        { label: "MODELO",   value: "Groq / Llama 3.3" },
+        { label: "LATÊNCIA", value: "< 500 ms" },
+        { label: "CONTEXTO", value: "Barbearia fictícia" },
+        { label: "SESSÃO",   value: "Anónima" },
+      ],
     },
-    stage: {
-      narrative_eyebrow: "COMO FUNCIONA",
-      narrative_title: "Responde como um humano. Trabalha como um sistema.",
-      narrative_body: "Entende contexto, qualifica, agenda. Se o caso for complexo, encaminha para si com o histórico completo. Nunca duas vezes a mesma pergunta.",
-      live_label: "EM LINHA",
+    how: {
+      eyebrow: "DEMO AO SEU AGENTE",
+      title: "Do que testa aqui ao que operamos por si.",
+      steps: [
+        { num: "01", title: "Conversa de teste, sem compromisso.", body: "Use este chat quanto quiser. Não guardamos o histórico nem contactamos depois. É só para que veja o tom e a qualidade da resposta." },
+        { num: "02", title: "Se faz sentido, agenda uma chamada.", body: "Falamos do seu caso concreto — setor, volume, integrações. Decidimos juntos se o projeto avança." },
+        { num: "03", title: "Agente treinado e operado por nós.",  body: "Montamos o agente com o contexto real do seu negócio, integramos no seu WhatsApp e site, e operamos o dia-a-dia. Você recebe os leads qualificados." },
+      ],
+    },
+    limits: {
+      eyebrow: "O QUE ESTE DEMO NÃO FAZ",
+      title: "Transparência sobre o que está a testar.",
+      items: [
+        { label: "NÃO TEM O SEU CONTEXTO", body: "Este demo responde como se fosse uma barbearia genérica. O seu agente teria os seus horários, serviços, preços e objeções reais." },
+        { label: "NÃO AGENDA REALMENTE",   body: "Se o demo disser que 'agendou às 15h', é simulação. No seu caso, o agente agendaria no seu Google Calendar ou sistema interno." },
+        { label: "NÃO ENVIA POR WHATSAPP", body: "Aqui é chat web. O agente em produção responde diretamente no WhatsApp Business do seu negócio, com o seu número." },
+      ],
+    },
+    final_cta: {
+      eyebrow: "PRÓXIMO PASSO",
+      title: "Se o demo fez sentido, falemos.",
+      body: "Uma chamada de 30 minutos. Sem formulário intermédio, sem pressão comercial.",
+      cta_label: "Agendar chamada",
+      cta_href: "/contactos",
     },
   },
   contactos: {

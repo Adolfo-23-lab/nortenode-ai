@@ -206,6 +206,12 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **B.4.3a-dx E2E VERIFIED (2026-04-22):** Migration 20260421000001 aplicada en prod. RPC submit_agency_lead extendido de 5 a 6 params (añadido p_sector text default null). Versión antigua de 5 params dropeada explícitamente para evitar overload coexistente. Org nortenode-ai actualizada: owner_contact_phone=+351937809995, owner_contact_email=nortenode.ia@gmail.com. Test E2E: lead creado con qualification {"form":"marketing-contact","sector":"barbearia"}, email notification entregada en primer intento (sent@1attempt), WhatsApp notification encolada como esperado (queda en queue para eventual fail por Meta sandbox). Cleanup: lead + contact + notifications eliminados, counts verificados en 0. Zero corruption.
 
+**METADATA SUFFIX DUPLICATION — deuda SEO:** Todas las pages tienen `title: "X | NorteNode"` o similar en su metadata, pero layout.tsx aplica template `"%s · NorteNode"`. Resultado: `<title>` renderizado duplica el suffix ("Contactos · NorteNode · NorteNode"). Afecta TODAS las rutas. Cerrar en B.7 junto con el i18n sweep.
+
+**LOCALE MISMATCH METADATA vs UI — deuda i18n:** Metadata se lee server-side desde `pt.contactos.meta_*` (primary locale hardcoded). UI se renderiza cliente via I18nProvider que defaultea a ES. Resultado: `<title>` y `<meta description>` en PT, contenido visible en ES. Bug de coherencia SEO vs UX. Cerrar en B.7 junto con decisión de `<html lang>` + geo-detection vs hardcoded.
+
+**useMotionInitial orphan post-B.4.4:** El hook `src/lib/motion-safe.ts` → `useMotionInitial` quedó sin consumers tras el kill de ConversionZone en B.4.4. InteractiveDemo todavía lo consume (vía framer-motion residual). Al migrar InteractiveDemo a GSAP en B.6, verificar con grep total si el hook queda sin consumers. Si sí, eliminar hook + archivo `motion-safe.ts` + revisar otros módulos framer-motion residuales. Baja prioridad.
+
 ### 4.f · Pending inputs from Adolfo
 
 - Drop `DESIGN.md` into `docs/design-refs/DESIGN.md` (overwriting placeholder).
