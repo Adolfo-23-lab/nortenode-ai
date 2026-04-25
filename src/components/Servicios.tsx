@@ -56,7 +56,7 @@ export default function Servicios() {
           // Each servicio item reveals individually as it enters.
           root.querySelectorAll<HTMLElement>("[data-reveal='servicios-item']").forEach((item, i) => {
             gsap.from(item, {
-              y: 44,
+              y: 40,
               opacity: 0,
               filter: "blur(8px)",
               duration: 1.1,

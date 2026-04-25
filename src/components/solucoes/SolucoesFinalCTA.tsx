@@ -51,13 +51,13 @@ export default function SolucoesFinalCTA({
           }
 
           gsap.from(root.querySelectorAll("[data-reveal]"), {
-            y: 36,
+            y: 32,
             opacity: 0,
             filter: "blur(8px)",
-            duration: 1.1,
-            stagger: 0.14,
+            duration: 1.0,
+            stagger: 0.1,
             ease: "power3.out",
-            scrollTrigger: { trigger: root, start: "top 72%" },
+            scrollTrigger: { trigger: root, start: "top 80%" },
           });
 
           gsap.to(root.querySelector("[data-cta-parallax]"), {
