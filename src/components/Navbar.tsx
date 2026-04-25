@@ -5,11 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocale, useT } from "@/i18n/provider";
-import { LOCALES, type Locale } from "@/i18n/dictionary";
+import { LOCALES } from "@/i18n/dictionary";
 import { useMotionInitial } from "@/lib/motion-safe";
 
 export default function Navbar() {
@@ -32,186 +31,184 @@ export default function Navbar() {
   const links: Array<{ href: string; label: string }> = [
     { href: "/solucoes/whatsapp",   label: t.nav.whatsapp },
     { href: "/solucoes/widget-web", label: t.nav.widget },
-    { href: "/#servicios",          label: t.services.eyebrow },
+    { href: "/demo",                label: t.nav.demo },
     { href: "/quem-somos",          label: t.nav.about },
     { href: "/contactos",           label: t.nav.contact },
   ];
 
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "py-3" : "py-5",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
+        scrolled
+          ? "border-b border-[var(--color-border-v2)] bg-[var(--color-bg-v2)]"
+          : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 md:px-8">
-        <div
-          className={cn(
-            "flex w-full items-center justify-between rounded-full border transition-all duration-300",
-            scrolled
-              ? "glass-strong border-white/10 px-3 py-2"
-              : "border-transparent bg-transparent px-3 py-2",
-          )}
+      <div className="mx-auto flex h-[60px] w-full max-w-7xl items-center justify-between px-4 md:h-[72px] md:px-12">
+        {/* Brand */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2.5"
+          aria-label="NorteNode"
         >
-          {/* Brand */}
-          <Link href="/" className="group flex items-center gap-2.5 pl-2" aria-label="NorteNode">
-            <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-transform group-hover:scale-105">
-              <Image
-                src="/nortenode_star_icon.png"
-                alt=""
-                width={20}
-                height={20}
-                className="h-5 w-5"
-                priority
-              />
-            </span>
-            <span className="text-sm font-semibold tracking-tight text-white">
-              NorteNode
-            </span>
+          <Image
+            src="/nortenode_star_icon.png"
+            alt=""
+            width={18}
+            height={18}
+            className="h-[18px] w-[18px]"
+            priority
+          />
+          <span className="text-[16px] font-medium tracking-[-0.01em] text-[var(--color-text-primary-v2)]">
+            NorteNode
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 md:flex">
+          {links.map((l) => {
+            const active = isActive(l.href.split("#")[0] || "/");
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "relative py-1 text-[14px] font-normal transition-colors",
+                  active
+                    ? "text-[var(--color-text-primary-v2)]"
+                    : "text-[var(--color-text-secondary-v2)] hover:text-[var(--color-text-primary-v2)]",
+                )}
+              >
+                {l.label}
+                {active && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-2 left-0 h-px w-full bg-[var(--color-accent-soft-v2)]"
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right cluster */}
+        <div className="flex items-center gap-4 md:gap-6">
+          {/* Locale inline pills */}
+          <div className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] md:flex">
+            {LOCALES.map((l, i) => (
+              <React.Fragment key={l}>
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-[var(--color-text-disabled-v2)]">
+                    ·
+                  </span>
+                )}
+                <button
+                  onClick={() => setLocale(l)}
+                  className={cn(
+                    "transition-colors",
+                    l === locale
+                      ? "text-[var(--color-text-primary-v2)]"
+                      : "text-[var(--color-text-muted-v2)] hover:text-[var(--color-text-primary-v2)]",
+                  )}
+                  aria-pressed={l === locale}
+                  aria-label={`Switch language to ${l.toUpperCase()}`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Ghost CTA */}
+          <Link
+            href="/demo"
+            className="hidden items-center rounded-[var(--radius-v2)] border border-[var(--color-border-strong-v2)] px-5 py-2.5 text-[14px] font-medium text-[var(--color-text-primary-v2)] transition-[border-color,box-shadow] duration-200 hover:border-[var(--color-accent-v2)] hover:shadow-[var(--shadow-glow-soft-v2)] md:inline-flex"
+          >
+            Request demo →
           </Link>
 
-          {/* Desktop links */}
-          <nav className="hidden items-center gap-1 md:flex">
-            {links.map((l) => {
-              const href0 = l.href.split("#")[0] || "/";
-              const active = href0 === "/"
-                ? pathname === "/"
-                : pathname.startsWith(href0);
-              return (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className={cn(
-                    "rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
-                    active ? "text-white" : "text-white/60 hover:text-white",
-                  )}
-                >
-                  {l.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <LocaleMenu current={locale} onChange={setLocale} />
-
-            <Button asChild size="sm" className="hidden md:inline-flex">
-              <Link href="/demo">{t.common.cta_primary}</Link>
-            </Button>
-
-            <button
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white md:hidden"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-            >
-              {open ? <X size={16} /> : <Menu size={16} />}
-            </button>
-          </div>
+          {/* Hamburger (mobile) */}
+          <button
+            className="inline-flex h-9 w-9 items-center justify-center text-[var(--color-text-primary-v2)] md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
+      {/* Mobile drawer (fullscreen) */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={mInit({ opacity: 0, y: -6 })}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            initial={mInit({ opacity: 0 })}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
-            className="mx-auto mt-3 w-full max-w-7xl px-5 md:hidden"
+            className="fixed inset-0 top-[60px] z-40 bg-[var(--color-bg-v2)] md:hidden"
           >
-            <div className="glass-strong rounded-2xl p-2">
-              <nav className="flex flex-col">
-                {links.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className="rounded-xl px-4 py-3 text-sm font-medium text-white/80 hover:bg-white/[0.06] hover:text-white"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-                <div className="mt-1 p-2">
-                  <Button asChild size="lg" className="w-full">
-                    <Link href="/demo">{t.common.cta_primary}</Link>
-                  </Button>
-                </div>
+            <div className="flex h-[calc(100dvh-60px)] flex-col px-6 py-10">
+              <nav className="flex flex-col gap-6">
+                {links.map((l) => {
+                  const active = isActive(l.href.split("#")[0] || "/");
+                  return (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className={cn(
+                        "text-[24px] font-normal transition-colors",
+                        active
+                          ? "text-[var(--color-text-primary-v2)]"
+                          : "text-[var(--color-text-secondary-v2)]",
+                      )}
+                    >
+                      {l.label}
+                    </Link>
+                  );
+                })}
               </nav>
+
+              <div className="mt-10 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.15em]">
+                {LOCALES.map((l, i) => (
+                  <React.Fragment key={l}>
+                    {i > 0 && (
+                      <span aria-hidden="true" className="text-[var(--color-text-disabled-v2)]">
+                        ·
+                      </span>
+                    )}
+                    <button
+                      onClick={() => setLocale(l)}
+                      className={cn(
+                        l === locale
+                          ? "text-[var(--color-text-primary-v2)]"
+                          : "text-[var(--color-text-muted-v2)]",
+                      )}
+                      aria-pressed={l === locale}
+                    >
+                      {l.toUpperCase()}
+                    </button>
+                  </React.Fragment>
+                ))}
+              </div>
+
+              <div className="mt-auto">
+                <Link
+                  href="/demo"
+                  className="flex w-full items-center justify-center rounded-[var(--radius-v2)] border border-[var(--color-border-strong-v2)] px-5 py-3.5 text-[14px] font-medium text-[var(--color-text-primary-v2)]"
+                >
+                  Request demo →
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
-  );
-}
-
-// ---------------------------------------------------------------------
-// Locale picker
-// ---------------------------------------------------------------------
-function LocaleMenu({
-  current,
-  onChange,
-}: {
-  current: Locale;
-  onChange: (l: Locale) => void;
-}) {
-  const [open, setOpen] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const mInit = useMotionInitial();
-
-  React.useEffect(() => {
-    function onDoc(e: MouseEvent) {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false);
-    }
-    window.addEventListener("mousedown", onDoc);
-    return () => window.removeEventListener("mousedown", onDoc);
-  }, []);
-
-  const labels: Record<Locale, string> = { es: "ES", en: "EN", pt: "PT" };
-  const names:  Record<Locale, string> = { es: "Español", en: "English", pt: "Português" };
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        className="inline-flex h-9 items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 text-[11px] font-medium tracking-wide text-white/80 hover:text-white"
-        onClick={() => setOpen((v) => !v)}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-      >
-        <Globe size={12} strokeWidth={1.75} />
-        {labels[current]}
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            role="listbox"
-            initial={mInit({ opacity: 0, y: 4 })}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full z-50 mt-2 w-36 overflow-hidden rounded-xl border border-white/10 bg-[var(--color-ink-100)]/95 p-1 shadow-[var(--shadow-panel)] backdrop-blur-xl"
-          >
-            {LOCALES.map((l) => (
-              <button
-                key={l}
-                role="option"
-                aria-selected={l === current}
-                onClick={() => { onChange(l); setOpen(false); }}
-                className={cn(
-                  "flex w-full items-center justify-between rounded-lg px-3 py-2 text-xs transition-colors",
-                  l === current
-                    ? "bg-white/[0.08] text-white"
-                    : "text-white/60 hover:bg-white/[0.04] hover:text-white",
-                )}
-              >
-                <span>{labels[l]}</span>
-                <span className="text-[10px] text-white/40">{names[l]}</span>
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
   );
 }

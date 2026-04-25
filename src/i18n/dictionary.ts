@@ -288,7 +288,7 @@ export const es: Dictionary = {
     contact: "Contacto",
     login: "Entrar",
     whatsapp: "WhatsApp",
-    widget: "Widget Web",
+    widget: "Web",
   },
   hero: {
     eyebrow: "NORTENODE · RECEPCIÓN IA",
@@ -660,7 +660,7 @@ export const es: Dictionary = {
     error_network: "Sin conexión. Revise la red y vuelva a intentarlo.",
   },
   footer: {
-    blurb: "Recepcionista IA 24/7 para pequeños negocios.",
+    blurb: "Recepción IA para negocios de servicios. Construido en Porto, desplegado en cualquier lugar.",
     sections: {
       product: "Producto",
       company: "Empresa",
@@ -688,7 +688,7 @@ export const en: Dictionary = {
     contact: "Contact",
     login: "Sign in",
     whatsapp: "WhatsApp",
-    widget: "Web Widget",
+    widget: "Web",
   },
   hero: {
     eyebrow: "NORTENODE · AI RECEPTION",
@@ -1060,7 +1060,7 @@ export const en: Dictionary = {
     error_network: "No connection. Check your network and try again.",
   },
   footer: {
-    blurb: "AI receptionist 24/7 for small businesses.",
+    blurb: "AI receptionists for service businesses. Built in Porto, deployed everywhere.",
     sections: { product: "Product", company: "Company", legal: "Legal" },
     rights: "All rights reserved.",
     privacy: "Privacy",
@@ -1084,7 +1084,7 @@ export const pt: Dictionary = {
     contact: "Contactos",
     login: "Entrar",
     whatsapp: "WhatsApp",
-    widget: "Widget Web",
+    widget: "Web",
   },
   hero: {
     eyebrow: "NORTENODE · RECEÇÃO IA",
@@ -1456,7 +1456,7 @@ export const pt: Dictionary = {
     error_network: "Sem ligação. Verifique a rede e tente outra vez.",
   },
   footer: {
-    blurb: "Rececionista IA 24/7 para pequenos negócios.",
+    blurb: "Receção IA para negócios de serviços. Construído no Porto, implantado em qualquer lado.",
     sections: { product: "Produto", company: "Empresa", legal: "Legal" },
     rights: "Todos os direitos reservados.",
     privacy: "Privacidade",

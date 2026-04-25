@@ -2,131 +2,127 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin, Mail } from "lucide-react";
 import { useT } from "@/i18n/provider";
 
 export default function Footer() {
   const t = useT();
-  const year = new Date().getFullYear();
 
-  const cols: Array<{ title: string; links: Array<{ href: string; label: string }> }> = [
-    {
-      title: t.footer.sections.product,
-      links: [
-        { href: "/demo",                   label: t.nav.demo },
-        { href: "/solucoes/whatsapp",      label: t.nav.whatsapp },
-        { href: "/solucoes/widget-web",    label: t.nav.widget },
-        { href: "/#faq",                   label: t.faq.eyebrow },
-      ],
-    },
-    {
-      title: t.footer.sections.company,
-      links: [
-        { href: "/quem-somos", label: t.nav.about },
-        { href: "/contactos",  label: t.nav.contact },
-      ],
-    },
-    {
-      title: t.footer.sections.legal,
-      links: [
-        { href: "/privacy", label: t.footer.privacy },
-        { href: "/terms",   label: t.footer.terms },
-      ],
-    },
+  const productLinks: Array<{ href: string; label: string }> = [
+    { href: "/solucoes/whatsapp",   label: t.nav.whatsapp },
+    { href: "/solucoes/widget-web", label: t.nav.widget },
+    { href: "/demo",                label: t.nav.demo },
+  ];
+
+  const agencyLinks: Array<{ href: string; label: string }> = [
+    { href: "/quem-somos", label: t.nav.about },
+    { href: "/contactos",  label: t.nav.contact },
+    { href: "/privacy",    label: t.footer.privacy },
+    { href: "/terms",      label: t.footer.terms },
   ];
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-[var(--color-hairline)] bg-[var(--color-ink-50)]">
-      {/* Decorative aurora bleed at top */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[color:var(--color-signal-500)]/50 to-transparent"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60%] -translate-x-1/2 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(47,130,247,0.22) 0%, transparent 70%)" }}
-      />
+    <footer className="relative bg-[var(--color-bg-v2)]">
+      <div className="hairline-v2" aria-hidden="true" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 py-20 md:px-8">
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-[1.5fr_2fr] md:gap-20">
-          {/* Brand block */}
+      <div className="mx-auto w-full max-w-7xl px-6 py-20 md:px-12">
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-[35%_35%_30%] md:gap-16">
+          {/* LEFT — Brand */}
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-glass-surface)] ring-1 ring-[var(--color-hairline-strong)]">
-                <Image src="/nortenode_star_icon.png" alt="" width={22} height={22} />
-              </span>
-              <span className="font-display text-2xl tracking-tight text-white">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5"
+              aria-label="NorteNode"
+            >
+              <Image
+                src="/nortenode_star_icon.png"
+                alt=""
+                width={18}
+                height={18}
+                className="h-[18px] w-[18px]"
+              />
+              <span className="text-[16px] font-medium tracking-[-0.01em] text-[var(--color-text-primary-v2)]">
                 NorteNode
               </span>
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[var(--color-ink-text-muted)]">
+            <p className="mt-6 max-w-[35ch] text-[14px] leading-relaxed text-[var(--color-text-secondary-v2)]">
               {t.footer.blurb}
             </p>
+            <p className="mono-label-v2 mt-8">© 2026 NORTENODE LDA</p>
+          </div>
 
-            <div className="mt-7 flex items-center gap-3">
-              <SocialIconLink href="mailto:adolfo@nortenode.com" label="Email">
-                <Mail size={14} />
-              </SocialIconLink>
-              <SocialIconLink href="https://www.instagram.com/nortenode" label="Instagram">
-                <Instagram size={14} />
-              </SocialIconLink>
-              <SocialIconLink href="https://linkedin.com/company/nortenode" label="LinkedIn">
-                <Linkedin size={14} />
-              </SocialIconLink>
+          {/* CENTER — Product + Agency */}
+          <div className="flex flex-col gap-10">
+            <div>
+              <p className="mono-label-v2">PRODUCT</p>
+              <ul className="mt-5 flex flex-col gap-3">
+                {productLinks.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="text-[14px] text-[var(--color-text-secondary-v2)] transition-colors hover:text-[var(--color-text-primary-v2)] hover:underline"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="mono-label-v2">AGENCY</p>
+              <ul className="mt-5 flex flex-col gap-3">
+                {agencyLinks.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="text-[14px] text-[var(--color-text-secondary-v2)] transition-colors hover:text-[var(--color-text-primary-v2)] hover:underline"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Columns */}
-          <div className="grid grid-cols-3 gap-6 md:gap-10">
-            {cols.map((col) => (
-              <div key={col.title}>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink-text-soft)]">
-                  {col.title}
-                </p>
-                <ul className="mt-5 space-y-3">
-                  {col.links.map((l) => (
-                    <li key={l.href}>
-                      <Link
-                        href={l.href}
-                        className="text-sm text-[var(--color-ink-text-primary)] transition-colors hover:text-white"
-                      >
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+          {/* RIGHT — Direct */}
+          <div>
+            <p className="mono-label-v2">DIRECT</p>
+            <dl className="mt-5 flex flex-col gap-4 text-[14px]">
+              <div className="flex items-baseline gap-3">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--color-text-muted-v2)]">
+                  EMAIL
+                </dt>
+                <dd>
+                  <a
+                    href="mailto:contacto@nortenode.com"
+                    className="text-[var(--color-accent-v2)] transition-opacity hover:opacity-80"
+                  >
+                    contacto@nortenode.com
+                  </a>
+                </dd>
               </div>
-            ))}
+              <div className="flex items-baseline gap-3">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--color-text-muted-v2)]">
+                  PHONE
+                </dt>
+                <dd className="text-[var(--color-text-primary-v2)]">+351 937 809 995</dd>
+              </div>
+              <div className="flex items-baseline gap-3">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--color-text-muted-v2)]">
+                  OFFICE
+                </dt>
+                <dd className="text-[var(--color-text-primary-v2)]">Porto, Portugal</dd>
+              </div>
+            </dl>
           </div>
         </div>
 
-        {/* Bottom rule */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-hairline)] pt-6 text-xs text-[var(--color-ink-text-soft)] md:flex-row">
-          <p>© {year} NorteNode · {t.footer.rights}</p>
-          <p className="font-mono tracking-wide">nortenode.com</p>
-        </div>
+        {/* Bottom strip */}
+        <div className="hairline-v2 mt-16" aria-hidden="true" />
+        <p className="mono-label-v2 mt-6 text-center md:text-left">
+          ENGINEERED IN PORTO &nbsp;·&nbsp; STATUS: LIVE &nbsp;·&nbsp; v.1.0.0
+        </p>
       </div>
     </footer>
-  );
-}
-
-function SocialIconLink({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-glass-surface)] text-[var(--color-ink-text-primary)] transition-all hover:border-[var(--color-ghost-border-hover)] hover:bg-[var(--color-glass-surface-hover)] hover:text-white"
-    >
-      {children}
-    </Link>
   );
 }
