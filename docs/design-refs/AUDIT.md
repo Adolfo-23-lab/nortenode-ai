@@ -214,6 +214,8 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **adolfo_nortenode.jpg peso elevado:** `public/adolfo_nortenode.jpg` pesa 780KB. Usado en `/quem-somos` hero con `next/image` (fill + priority + sizes responsive), que optimiza on-demand con AVIF para el cliente. El source sigue siendo pesado en disco y afecta el cold transform del edge en el primer request. Candidato a optimizar manualmente (reducir dimensions máximas, pre-generar AVIF) o mover a CDN en B.8. Baja prioridad — next/image cubre el hit inicial para la mayoría de usuarios.
 
+**Email migration to Zoho complete (B.6 epilogue):** `organizations.owner_contact_email` del agency org `nortenode-ai` migrado de `nortenode.ia@gmail.com` a `contacto@nortenode.com` vía migration `20260425000001_org_email_to_contacto_nortenode.sql` (aplicada en remote 2026-04-25 via `supabase db query --linked --file` + `migration repair --status applied`). Coincide con migración de display addresses en `dictionary.ts` (commit `fc3dc49`) y Resend `reply_to` header en notify.ts (commit `3351002`). Notificaciones de leads del dispatcher ahora llegan a bandeja Zoho profesional, no a Gmail personal. La línea histórica de B.4.3a-dx en este documento (`owner_contact_email=nortenode.ia@gmail.com`) queda como referencia de trazabilidad del estado anterior.
+
 ### 4.f · Pending inputs from Adolfo
 
 - Drop `DESIGN.md` into `docs/design-refs/DESIGN.md` (overwriting placeholder).
