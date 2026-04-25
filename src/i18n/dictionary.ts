@@ -114,8 +114,6 @@ export interface Dictionary {
       cta_secondary: string;
     };
     whatsapp: {
-      meta_title: string;
-      meta_description: string;
       hero: {
         eyebrow: string;
         headline_l1: string;
@@ -133,8 +131,6 @@ export interface Dictionary {
       cta_headline: string;
     };
     widget: {
-      meta_title: string;
-      meta_description: string;
       hero: {
         eyebrow: string;
         headline_l1: string;
@@ -395,9 +391,6 @@ export const es: Dictionary = {
       cta_secondary: "Ver la demo primero",
     },
     whatsapp: {
-      meta_title: "Recepción WhatsApp con IA | NorteNode",
-      meta_description:
-        "Agente IA en tu WhatsApp Business. Atiende, cualifica y agenda 24/7 con integración oficial de Meta.",
       hero: {
         eyebrow: "Recepción WhatsApp · Producto 01",
         headline_l1: "Atiende cuando",
@@ -444,9 +437,6 @@ export const es: Dictionary = {
       cta_headline: "¿Listo para que WhatsApp responda por ti?",
     },
     widget: {
-      meta_title: "Widget Web IA | NorteNode",
-      meta_description:
-        "Chat en tu site que responde en menos de 2 s y captura el lead con contexto. Instalación en un único script.",
       hero: {
         eyebrow: "Widget Web · Producto 02",
         headline_l1: "El primer mensaje",
@@ -801,9 +791,6 @@ export const en: Dictionary = {
       cta_secondary: "See the demo first",
     },
     whatsapp: {
-      meta_title: "WhatsApp AI Reception | NorteNode",
-      meta_description:
-        "An AI agent on your WhatsApp Business number. Replies, qualifies and books 24/7 on Meta's official integration.",
       hero: {
         eyebrow: "WhatsApp Reception · Product 01",
         headline_l1: "Answers when",
@@ -850,9 +837,6 @@ export const en: Dictionary = {
       cta_headline: "Ready for WhatsApp to answer for you?",
     },
     widget: {
-      meta_title: "Web Widget AI | NorteNode",
-      meta_description:
-        "Chat on your site that replies in under 2 s and captures leads with full context. One-script install.",
       hero: {
         eyebrow: "Web Widget · Product 02",
         headline_l1: "The first message",
@@ -1203,9 +1187,6 @@ export const pt: Dictionary = {
       cta_secondary: "Ver a demo primeiro",
     },
     whatsapp: {
-      meta_title: "Receção WhatsApp com IA | NorteNode",
-      meta_description:
-        "Agente IA no teu WhatsApp Business. Atende, qualifica e agenda 24/7 com integração oficial da Meta.",
       hero: {
         eyebrow: "Receção WhatsApp · Produto 01",
         headline_l1: "Atende quando",
@@ -1252,9 +1233,6 @@ export const pt: Dictionary = {
       cta_headline: "Pronto para que o WhatsApp responda por ti?",
     },
     widget: {
-      meta_title: "Widget Web com IA | NorteNode",
-      meta_description:
-        "Chat no teu site que responde em menos de 2 s e capta o lead com contexto. Instalação com um único script.",
       hero: {
         eyebrow: "Widget Web · Produto 02",
         headline_l1: "A primeira mensagem",
