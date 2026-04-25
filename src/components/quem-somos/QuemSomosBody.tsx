@@ -2,11 +2,10 @@
 
 import * as React from "react";
 import { useT } from "@/i18n/provider";
-import QuemSomosHero from "./QuemSomosHero";
-import QuemSomosManifesto from "./QuemSomosManifesto";
+import QuemSomosHeroQuote from "./QuemSomosHeroQuote";
+import QuemSomosPortrait from "./QuemSomosPortrait";
 import QuemSomosPrinciples from "./QuemSomosPrinciples";
-import QuemSomosTrajectory from "./QuemSomosTrajectory";
-import QuemSomosFinalCTA from "./QuemSomosFinalCTA";
+import QuemSomosClosing from "./QuemSomosClosing";
 
 export default function QuemSomosBody() {
   const t = useT();
@@ -14,36 +13,19 @@ export default function QuemSomosBody() {
 
   return (
     <>
-      <QuemSomosHero
-        eyebrow={q.hero.eyebrow}
-        headline_l1={q.hero.headline_l1}
-        headline_l2={q.hero.headline_l2}
-        sub={q.hero.sub}
-        meta={q.hero.meta}
-        photo_alt={q.hero.photo_alt}
-        photo_caption={q.hero.photo_caption}
+      <QuemSomosHeroQuote
+        quote={q.hero_quote_v2.quote}
+        attribution={q.hero_quote_v2.attribution}
       />
-      <QuemSomosManifesto
-        eyebrow={q.manifesto.eyebrow}
-        title={q.manifesto.title}
-        body={q.manifesto.body}
+      <QuemSomosPortrait
+        paragraphs={q.portrait_v2.paragraphs}
       />
       <QuemSomosPrinciples
-        eyebrow={q.principles.eyebrow}
-        title={q.principles.title}
-        items={q.principles.items}
+        title={q.principles_v2.title}
+        items={q.principles_v2.items}
       />
-      <QuemSomosTrajectory
-        eyebrow={q.trajectory.eyebrow}
-        title={q.trajectory.title}
-        chapters={q.trajectory.chapters}
-      />
-      <QuemSomosFinalCTA
-        eyebrow={q.final_cta.eyebrow}
-        title={q.final_cta.title}
-        body={q.final_cta.body}
-        cta_label={q.final_cta.cta_label}
-        cta_href={q.final_cta.cta_href}
+      <QuemSomosClosing
+        line={q.closing_v2.line}
       />
     </>
   );

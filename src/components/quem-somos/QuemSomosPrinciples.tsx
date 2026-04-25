@@ -2,16 +2,14 @@
 
 import * as React from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 interface Props {
-  eyebrow: string;
   title: string;
-  items: Array<{ num: string; title: string; body: string }>;
+  items: ReadonlyArray<{ title: string; desc: string }>;
 }
 
-export default function QuemSomosPrinciples({ eyebrow, title, items }: Props) {
+export default function QuemSomosPrinciples({ title, items }: Props) {
   const rootRef = React.useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -32,25 +30,24 @@ export default function QuemSomosPrinciples({ eyebrow, title, items }: Props) {
             return;
           }
 
-          gsap.from(root.querySelectorAll("[data-reveal='principles-head']"), {
+          gsap.from(root.querySelectorAll("[data-reveal='principle-head']"), {
             y: 28,
             opacity: 0,
-            filter: "blur(6px)",
+            filter: "blur(8px)",
             duration: 1.0,
-            stagger: 0.1,
             ease: "power3.out",
-            scrollTrigger: { trigger: root, start: "top 78%" },
+            scrollTrigger: { trigger: root, start: "top 80%" },
           });
 
-          root.querySelectorAll<HTMLElement>("[data-reveal='principles-step']").forEach((step, i) => {
-            gsap.from(step, {
-              y: 40,
+          root.querySelectorAll<HTMLElement>("[data-reveal='principle']").forEach((p, i) => {
+            gsap.from(p, {
+              y: 32,
               opacity: 0,
-              filter: "blur(8px)",
-              duration: 1.05,
+              filter: "blur(6px)",
+              duration: 1.0,
               delay: i * 0.1,
               ease: "power3.out",
-              scrollTrigger: { trigger: step, start: "top 85%" },
+              scrollTrigger: { trigger: p, start: "top 88%" },
             });
           });
         },
@@ -61,45 +58,42 @@ export default function QuemSomosPrinciples({ eyebrow, title, items }: Props) {
   );
 
   return (
-    <section
-      ref={rootRef}
-      aria-label={eyebrow}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-24 md:py-36"
-    >
-      <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
-        <div className="mb-16 grid grid-cols-12 gap-6 md:mb-24">
-          <div className="col-span-12 md:col-span-9">
-            <p
-              data-reveal="principles-head"
-              className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
-            >
-              {eyebrow}
-            </p>
-            <h2
-              data-reveal="principles-head"
-              className="font-sans font-medium text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.02em] text-white text-balance"
-            >
-              {title}
-            </h2>
-          </div>
-        </div>
+    <section ref={rootRef} className="bg-[var(--color-bg-v2)] py-[120px]">
+      <div className="mx-auto w-full max-w-[900px] px-6 md:px-12">
+        <h2
+          data-reveal="principle-head"
+          className="font-medium leading-[1.05] tracking-[-0.02em] text-[var(--color-text-primary-v2)]"
+          style={{ fontSize: "var(--text-headline-lg-v2)" }}
+        >
+          {title}
+        </h2>
 
-        <ol className="flex flex-col">
-          {items.map((item) => (
+        <ol className="mt-[80px] flex flex-col gap-12">
+          {items.map((it, i) => (
             <li
-              key={item.num}
-              data-reveal="principles-step"
-              className="group relative grid grid-cols-12 items-baseline gap-6 border-t border-[var(--color-hairline)] py-8 md:py-10"
+              key={i}
+              data-reveal="principle"
+              className="flex flex-col items-start gap-x-8 gap-y-3 md:flex-row"
             >
-              <span className="col-span-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-faint)] md:col-span-1">
-                {item.num}
+              <span
+                aria-hidden="true"
+                className="shrink-0 font-mono font-normal text-[var(--color-text-muted-v2)]"
+                style={{ fontSize: "96px", lineHeight: 0.9, width: "120px" }}
+              >
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <div className="col-span-10 md:col-span-11">
-                <h3 className="mb-3 font-sans text-[clamp(1.25rem,2.2vw,1.75rem)] font-medium leading-snug tracking-[-0.01em] text-white md:mb-4">
-                  {item.title}
+              <div className="flex-1">
+                <h3
+                  className="font-medium text-[var(--color-text-primary-v2)]"
+                  style={{ fontSize: "var(--text-headline-sm-v2)", lineHeight: 1.15 }}
+                >
+                  {it.title}
                 </h3>
-                <p className="max-w-2xl font-sans text-base leading-relaxed text-[var(--color-ink-text-muted)] md:text-lg">
-                  {item.body}
+                <p
+                  className="mt-3 max-w-[55ch] text-[var(--color-text-secondary-v2)]"
+                  style={{ fontSize: "var(--text-body-lg-v2)", lineHeight: 1.55 }}
+                >
+                  {it.desc}
                 </p>
               </div>
             </li>

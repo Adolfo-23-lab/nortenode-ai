@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function QuemSomosPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[var(--color-ink-0)]">
+    <main className="relative min-h-screen overflow-hidden bg-[var(--color-bg-v2)]">
       <QuemSomosBody />
       <Footer />
     </main>

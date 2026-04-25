@@ -285,6 +285,20 @@ export interface Dictionary {
       cta_label: string;
       cta_href: string;
     };
+    hero_quote_v2: {
+      quote:       string;
+      attribution: string;
+    };
+    portrait_v2: {
+      paragraphs: readonly string[];
+    };
+    principles_v2: {
+      title: string;
+      items: ReadonlyArray<{ title: string; desc: string }>;
+    };
+    closing_v2: {
+      line: string;
+    };
   };
   home: {
     hero: {
@@ -729,6 +743,29 @@ export const es: Dictionary = {
       body: "Una llamada de 30 minutos para entender su caso. Sin formulario intermedio, sin presión comercial.",
       cta_label: "Hablar con Adolfo",
       cta_href: "/contactos",
+    },
+    hero_quote_v2: {
+      quote:       "Prefiero construir una\nrecepción IA que\nfunciona de verdad,\nque diez que\nparecen impresionantes.",
+      attribution: "Adolfo Byrne · Fundador",
+    },
+    portrait_v2: {
+      paragraphs: [
+        "Soy Adolfo. Empecé NorteNode en 2026 para resolver un problema concreto: negocios de servicios perdiendo clientes por respuestas lentas.",
+        "Background en software. Trabajo de producto end-to-end. Del tipo en que, si se rompe, lo arreglo yo.",
+        "Basado en Porto. Operando en Portugal y España. Cada email que recibo, lo leo.",
+      ],
+    },
+    principles_v2: {
+      title: "En lo que creemos.",
+      items: [
+        { title: "Entregar en semanas, no en trimestres", desc: "La mayoría de agencias habla en meses, nosotros en semanas. Primer operador en vivo en 14 días. El punto es empezar a recoger conversaciones reales rápido." },
+        { title: "Custom sobre template",                 desc: "Sin UI de configuración estilo plataforma. Cada operador se construye con tu contexto — servicios, horarios, precios, objeciones reales. Los templates pierden lo que hace tu negocio tuyo." },
+        { title: "Los ingenieros tocan el código",        desc: "No pagas por un dashboard que nunca vas a abrir. Nosotros desplegamos, monitorizamos y arreglamos. Tu tiempo va a tu negocio, no a prompts." },
+        { title: "Discretos por diseño",                  desc: "Sin upsells, sin emails agresivos, sin métricas vacías. Te decimos qué funciona, arreglamos lo que no, y facturamos de forma predecible." },
+      ],
+    },
+    closing_v2: {
+      line: "Si llevas un negocio de servicios y estás cansado de llamadas perdidas y respuestas lentas, escríbeme. Leo cada email.",
     },
   },
   home: {
@@ -1201,6 +1238,29 @@ export const en: Dictionary = {
       cta_label: "Talk to Adolfo",
       cta_href: "/contactos",
     },
+    hero_quote_v2: {
+      quote:       "I'd rather build one\nAI receptionist that\nactually works,\nthan ten that\nlook impressive.",
+      attribution: "Adolfo Byrne · Founder",
+    },
+    portrait_v2: {
+      paragraphs: [
+        "I'm Adolfo. I started NorteNode in 2026 to fix one specific problem: service businesses losing customers to slow replies.",
+        "Software background. End-to-end product work. The kind where if it breaks, I fix it.",
+        "Based in Porto. Operating across Portugal and Spain. Every email I get, I read.",
+      ],
+    },
+    principles_v2: {
+      title: "What we believe.",
+      items: [
+        { title: "Ship in weeks not quarters", desc: "Most agencies talk months, we talk weeks. First operator live in 14 days. The whole point is to start collecting real conversations fast." },
+        { title: "Custom over template",       desc: "No platform-style configuration UI. Each operator is built with your context — services, hours, prices, real objections. Templates miss what makes your business yours." },
+        { title: "Engineers handle code",      desc: "You don't pay for a dashboard you'll never open. We deploy, monitor, and fix. Your time goes into running your business, not into prompts." },
+        { title: "Quiet by design",            desc: "No upsells, no aggressive emails, no meaningless metrics. We tell you what's working, fix what isn't, and bill predictably." },
+      ],
+    },
+    closing_v2: {
+      line: "If you run a service business and you're tired of missed calls and slow replies, write to me. I read every email.",
+    },
   },
   home: {
     hero: {
@@ -1667,6 +1727,29 @@ export const pt: Dictionary = {
       body: "Uma chamada de 30 minutos para perceber o seu caso. Sem formulário intermédio, sem pressão comercial.",
       cta_label: "Falar com o Adolfo",
       cta_href: "/contactos",
+    },
+    hero_quote_v2: {
+      quote:       "Prefiro construir uma\nreceção IA que\nfunciona mesmo,\ndo que dez que\nparecem impressionantes.",
+      attribution: "Adolfo Byrne · Fundador",
+    },
+    portrait_v2: {
+      paragraphs: [
+        "Sou o Adolfo. Comecei a NorteNode em 2026 para resolver um problema concreto: negócios de serviços a perder clientes por respostas lentas.",
+        "Background em software. Trabalho de produto end-to-end. Daquele em que, se partir, sou eu que arranjo.",
+        "Sediado no Porto. A operar em Portugal e Espanha. Cada email que recebo, leio-o.",
+      ],
+    },
+    principles_v2: {
+      title: "Aquilo em que acreditamos.",
+      items: [
+        { title: "Entregar em semanas, não em trimestres", desc: "A maioria das agências fala em meses, nós falamos em semanas. Primeiro operador ao vivo em 14 dias. O ponto é começar a recolher conversas reais depressa." },
+        { title: "Custom acima de template",               desc: "Sem UI de configuração estilo plataforma. Cada operador é construído com o seu contexto — serviços, horários, preços, objeções reais. Templates perdem o que torna o seu negócio seu." },
+        { title: "Engenheiros tratam do código",           desc: "Não paga por um dashboard que nunca vai abrir. Nós implementamos, monitorizamos e arranjamos. O seu tempo vai para gerir o negócio, não para prompts." },
+        { title: "Discretos por design",                   desc: "Sem upsells, sem emails agressivos, sem métricas vazias. Dizemos o que está a funcionar, arranjamos o que não está, e faturamos de forma previsível." },
+      ],
+    },
+    closing_v2: {
+      line: "Se gere um negócio de serviços e está cansado de chamadas perdidas e respostas lentas, escreva-me. Leio cada email.",
     },
   },
   home: {
