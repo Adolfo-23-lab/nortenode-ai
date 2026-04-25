@@ -552,7 +552,7 @@ export const es: Dictionary = {
     directory: {
       eyebrow: "DIRECTORIO",
       rows: [
-        { label: "EMAIL",     value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "EMAIL",     value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "TELÉFONO",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensaje",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
         { label: "LUGAR",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
@@ -592,7 +592,7 @@ export const es: Dictionary = {
       success_title: "Recibido.",
       success_body: "Le respondemos por email en menos de un día laborable.",
       error_title: "No pudimos enviar.",
-      error_body: "Inténtelo de nuevo o escriba directamente a nortenode.ia@gmail.com.",
+      error_body: "Inténtelo de nuevo o escriba directamente a contacto@nortenode.com.",
       error_by_code: {
         invalid_name:            "Nombre no válido.",
         invalid_email:           "Email no válido.",
@@ -958,7 +958,7 @@ export const en: Dictionary = {
     directory: {
       eyebrow: "DIRECTORY",
       rows: [
-        { label: "EMAIL",    value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "EMAIL",    value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "PHONE",    value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP", value: "Send a message",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
         { label: "PLACE",    value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
@@ -998,7 +998,7 @@ export const en: Dictionary = {
       success_title: "Received.",
       success_body: "We'll reply by email within one business day.",
       error_title: "We couldn't send it.",
-      error_body: "Try again or email nortenode.ia@gmail.com directly.",
+      error_body: "Try again or email contacto@nortenode.com directly.",
       error_by_code: {
         invalid_name:            "Invalid name.",
         invalid_email:           "Invalid email.",
@@ -1360,7 +1360,7 @@ export const pt: Dictionary = {
     directory: {
       eyebrow: "DIRETÓRIO",
       rows: [
-        { label: "EMAIL",     value: "nortenode.ia@gmail.com",      href: "mailto:nortenode.ia@gmail.com", external: false, kind: "email" },
+        { label: "EMAIL",     value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "TELEFONE",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensagem",             href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
         { label: "LOCAL",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
@@ -1400,7 +1400,7 @@ export const pt: Dictionary = {
       success_title: "Recebido.",
       success_body: "Respondemos por email em menos de um dia útil.",
       error_title: "Não conseguimos enviar.",
-      error_body: "Tente novamente ou escreva diretamente para nortenode.ia@gmail.com.",
+      error_body: "Tente novamente ou escreva diretamente para contacto@nortenode.com.",
       error_by_code: {
         invalid_name:            "Nome inválido.",
         invalid_email:           "Email inválido.",
