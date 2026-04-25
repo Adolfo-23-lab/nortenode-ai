@@ -179,6 +179,43 @@ export interface Dictionary {
       integration_steps: SolucoesStep[];
       capabilities: string[];
       cta_headline: string;
+      meta_title_v2:       string;
+      meta_description_v2: string;
+      hero_v2: {
+        headline_v2: string;
+        sub_v2:      string;
+        cta_demo_v2: string;
+        cta_talk_v2: string;
+      };
+      specs_v2: {
+        items_v2: ReadonlyArray<{ desc_v2: string }>;
+      };
+      installation_v2: {
+        title_v2: string;
+        body_v2:  string;
+      };
+      capabilities_v2: {
+        title_v2: string;
+        items_v2: ReadonlyArray<{ title_v2: string; desc_v2: string }>;
+      };
+      appearance_v2: {
+        title_v2:   string;
+        themes_v2:  ReadonlyArray<{ desc_v2: string }>;
+      };
+      pricing_v2: {
+        title_v2:       string;
+        paragraph_1_v2: string;
+        paragraph_2_v2: string;
+        cta_label_v2:   string;
+      };
+      faq_v2: {
+        title_v2: string;
+        items_v2: ReadonlyArray<{ q: string; a: string }>;
+      };
+      final_v2: {
+        title_v2:     string;
+        cta_label_v2: string;
+      };
     };
   };
   demo: {
@@ -628,6 +665,65 @@ export const es: Dictionary = {
         "Tema personalizado por cliente",
       ],
       cta_headline: "¿Listo para que tu site venda cuando tú duermes?",
+      meta_title_v2:       "Web Widget",
+      meta_description_v2: "Widget de chat ligero para tu sitio. <14kb, despliegue en 1 día, misma inteligencia que el WhatsApp Operator.",
+      hero_v2: {
+        headline_v2: "Web Widget.",
+        sub_v2:      "Una superficie de chat ligera para tu sitio. La misma inteligencia operadora que en WhatsApp, embebida directamente en tu dominio.",
+        cta_demo_v2: "Ver demo →",
+        cta_talk_v2: "Hablar con nosotros →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Comprimido, lazy-loaded." },
+          { desc_v2: "Hasta interactivo en 4G mobile." },
+          { desc_v2: "PT, ES, EN con auto-detección." },
+          { desc_v2: "Instalación con un script tag." },
+        ],
+      },
+      installation_v2: {
+        title_v2: "Un script tag. Eso es todo.",
+        body_v2:  "Coloca esto antes de la etiqueta </body>. El widget se carga asincrónicamente y no bloquea el render de tu página.",
+      },
+      capabilities_v2: {
+        title_v2: "Lo que el widget maneja.",
+        items_v2: [
+          { title_v2: "Chat en tiempo real",         desc_v2: "Respuestas en sub-segundo, generación de texto streaming, indicadores de escritura." },
+          { title_v2: "Contexto del visitante",      desc_v2: "Lee URL de página, historial de sesión, reconoce visitantes recurrentes." },
+          { title_v2: "Captura de leads",            desc_v2: "Recoge nombre y email cuando la conversación alcanza umbral de calificación." },
+          { title_v2: "Tema personalizado",          desc_v2: "Combina con los colores y tipografía de tu marca. Modo claro u oscuro." },
+          { title_v2: "Optimizado para mobile",      desc_v2: "Pantalla completa en móvil, tarjeta expandible en escritorio. Accesible por defecto." },
+          { title_v2: "Transferencia cross-channel", desc_v2: "Puede retomar conversaciones de WhatsApp en el sitio y viceversa." },
+        ],
+      },
+      appearance_v2: {
+        title_v2:  "Tres temas predefinidos. O totalmente personalizado.",
+        themes_v2: [
+          { desc_v2: "Predefinido — combina con el sitio de NorteNode." },
+          { desc_v2: "Fondo blanco, acentos azules." },
+          { desc_v2: "Color y logo del cliente." },
+        ],
+      },
+      pricing_v2: {
+        title_v2:       "Alcance fijo. Precio fijo.",
+        paragraph_1_v2: "Despliegue estándar: 7 días. Incluye setup del widget, entrenamiento personalizado, personalización de tema, y 30 días de ajuste post-lanzamiento.",
+        paragraph_2_v2: "Precio depende del volumen. Cotización fija tras llamada de descubrimiento.",
+        cta_label_v2:   "Solicitar cotización →",
+      },
+      faq_v2: {
+        title_v2: "Preguntas frecuentes.",
+        items_v2: [
+          { q: "¿El widget va a ralentizar mi sitio?",          a: "No. El widget es <14kb comprimido y lazy-loaded — no bloquea el render. Carga asincrónicamente después de que la página esté interactiva." },
+          { q: "¿Puedo personalizar los colores y la tipografía?", a: "Sí. Tres temas predefinidos (dark/light/branded) o personalización total vía design tokens. Combina con tu marca sin salir del sitio." },
+          { q: "¿Funciona en móvil?",                            a: "Sí. En móvil se abre en pantalla completa optimizada, en escritorio es una tarjeta expandible en la esquina. Accesible por defecto (WCAG AA)." },
+          { q: "¿Puedo integrar con mi CRM?",                    a: "Sí. Soporte nativo para Google Calendar, Cal.com, Calendly, HubSpot y Notion. Integraciones personalizadas para otros CRMs bajo petición." },
+          { q: "¿Y el GDPR?",                                    a: "Conformes por diseño. Hospedaje en la UE (Supabase Fráncfort), encriptación en tránsito y reposo, retención configurable, derecho al borrado. DPA disponible bajo NDA." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Despliega tu widget en 7 días.",
+        cta_label_v2: "Hablar con nosotros →",
+      },
     },
   },
   demo: {
@@ -1173,6 +1269,65 @@ export const en: Dictionary = {
         "Per-client custom theme",
       ],
       cta_headline: "Ready for your site to sell while you sleep?",
+      meta_title_v2:       "Web Widget",
+      meta_description_v2: "Lightweight chat widget for your site. <14kb, 1-day deploy, same intelligence as the WhatsApp Operator.",
+      hero_v2: {
+        headline_v2: "Web Widget.",
+        sub_v2:      "A lightweight chat surface for your website. Same operator intelligence as WhatsApp, embedded directly on your domain.",
+        cta_demo_v2: "Try the demo →",
+        cta_talk_v2: "Talk to us →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Compressed, lazy-loaded." },
+          { desc_v2: "To interactive on 4G mobile." },
+          { desc_v2: "PT, ES, EN with auto-detect." },
+          { desc_v2: "Single script tag install." },
+        ],
+      },
+      installation_v2: {
+        title_v2: "One script tag. That's it.",
+        body_v2:  "Place this before the closing </body> tag. The widget loads asynchronously and doesn't block your page render.",
+      },
+      capabilities_v2: {
+        title_v2: "What the widget handles.",
+        items_v2: [
+          { title_v2: "Real-time chat",         desc_v2: "Sub-second responses, streaming text generation, typing indicators." },
+          { title_v2: "Visitor context",        desc_v2: "Reads page URL, session history, returning visitor recognition." },
+          { title_v2: "Lead capture",           desc_v2: "Collects name and email when conversation reaches qualification threshold." },
+          { title_v2: "Custom theming",         desc_v2: "Match your brand colors and fonts. Light or dark mode." },
+          { title_v2: "Mobile-optimized",       desc_v2: "Full-screen on mobile, expandable card on desktop. Accessible by default." },
+          { title_v2: "Cross-channel handoff",  desc_v2: "Can resume conversations from WhatsApp on the website and vice versa." },
+        ],
+      },
+      appearance_v2: {
+        title_v2:  "Three default themes. Or fully custom.",
+        themes_v2: [
+          { desc_v2: "Default — matches the NorteNode site." },
+          { desc_v2: "White background, blue accents." },
+          { desc_v2: "Customer color and logo." },
+        ],
+      },
+      pricing_v2: {
+        title_v2:       "Fixed scope. Fixed price.",
+        paragraph_1_v2: "Standard deployment: 7 days. Includes widget setup, custom training, theme customization, and 30 days of post-launch tuning.",
+        paragraph_2_v2: "Pricing depends on volume. Fixed quote after discovery call.",
+        cta_label_v2:   "Request quote →",
+      },
+      faq_v2: {
+        title_v2: "Frequently asked.",
+        items_v2: [
+          { q: "Will the widget slow down my site?",      a: "No. The widget is <14kb compressed and lazy-loaded — it does not block render. Loads asynchronously after the page is interactive." },
+          { q: "Can I customize the colors and fonts?",   a: "Yes. Three default themes (dark/light/branded) or full customization via design tokens. Match your brand without leaving the site." },
+          { q: "Does it work on mobile?",                 a: "Yes. On mobile it opens full-screen optimized, on desktop it is an expandable card in the corner. Accessible by default (WCAG AA)." },
+          { q: "Can I integrate with my CRM?",            a: "Yes. Native support for Google Calendar, Cal.com, Calendly, HubSpot and Notion. Custom integrations for other CRMs on request." },
+          { q: "What about GDPR compliance?",             a: "Compliant by design. EU hosting (Supabase Frankfurt), encryption in transit and at rest, configurable retention, right to erasure. DPA available under NDA." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Deploy your widget in 7 days.",
+        cta_label_v2: "Talk to us →",
+      },
     },
   },
   demo: {
@@ -1714,6 +1869,65 @@ export const pt: Dictionary = {
         "Tema personalizado por cliente",
       ],
       cta_headline: "Pronto para o teu site vender enquanto dormes?",
+      meta_title_v2:       "Web Widget",
+      meta_description_v2: "Widget de chat leve para o teu site. <14kb, deploy em 1 dia, mesma inteligência que o WhatsApp Operator.",
+      hero_v2: {
+        headline_v2: "Web Widget.",
+        sub_v2:      "Uma superfície de chat leve para o teu site. A mesma inteligência operadora que no WhatsApp, embebida diretamente no teu domínio.",
+        cta_demo_v2: "Ver demo →",
+        cta_talk_v2: "Falar connosco →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Comprimido, lazy-loaded." },
+          { desc_v2: "Até interativo em 4G mobile." },
+          { desc_v2: "PT, ES, EN com auto-deteção." },
+          { desc_v2: "Instalação com uma tag de script." },
+        ],
+      },
+      installation_v2: {
+        title_v2: "Uma tag de script. É tudo.",
+        body_v2:  "Coloca isto antes da tag </body>. O widget carrega assincronamente e não bloqueia o render da tua página.",
+      },
+      capabilities_v2: {
+        title_v2: "O que o widget trata.",
+        items_v2: [
+          { title_v2: "Chat em tempo real",         desc_v2: "Respostas em sub-segundo, geração de texto streaming, indicadores de digitação." },
+          { title_v2: "Contexto do visitante",      desc_v2: "Lê URL da página, histórico de sessão, reconhece visitantes recorrentes." },
+          { title_v2: "Captura de leads",           desc_v2: "Recolhe nome e email quando a conversação atinge limiar de qualificação." },
+          { title_v2: "Tema personalizado",         desc_v2: "Combina com as cores e tipografia da tua marca. Modo claro ou escuro." },
+          { title_v2: "Otimizado para mobile",      desc_v2: "Ecrã completo em mobile, card expansível em desktop. Acessível por defeito." },
+          { title_v2: "Transferência cross-channel", desc_v2: "Pode retomar conversações do WhatsApp no site e vice-versa." },
+        ],
+      },
+      appearance_v2: {
+        title_v2:  "Três temas predefinidos. Ou totalmente personalizado.",
+        themes_v2: [
+          { desc_v2: "Predefinido — combina com o site da NorteNode." },
+          { desc_v2: "Fundo branco, acentos azuis." },
+          { desc_v2: "Cor e logo do cliente." },
+        ],
+      },
+      pricing_v2: {
+        title_v2:       "Escopo fixo. Preço fixo.",
+        paragraph_1_v2: "Implementação padrão: 7 dias. Inclui setup do widget, formação personalizada, customização de tema, e 30 dias de afinação pós-lançamento.",
+        paragraph_2_v2: "Preço depende de volume. Cotação fixa após chamada de descoberta.",
+        cta_label_v2:   "Pedir cotação →",
+      },
+      faq_v2: {
+        title_v2: "Perguntas frequentes.",
+        items_v2: [
+          { q: "O widget vai abrandar o meu site?",            a: "Não. O widget é <14kb comprimido e lazy-loaded — não bloqueia o render. Carrega assincronamente após a página estar interativa." },
+          { q: "Posso personalizar as cores e a tipografia?",  a: "Sim. Três temas predefinidos (dark/light/branded) ou personalização total via design tokens. Combina com a tua marca sem sair do site." },
+          { q: "Funciona em mobile?",                          a: "Sim. Em mobile abre em ecrã completo otimizado, em desktop é um card expansível na esquina. Acessível por defeito (WCAG AA)." },
+          { q: "Posso integrar com o meu CRM?",                a: "Sim. Suporte nativo para Google Calendar, Cal.com, Calendly, HubSpot e Notion. Integrações personalizadas para outros CRMs sob pedido." },
+          { q: "E em relação ao GDPR?",                        a: "Conformes por design. Hospedagem na UE (Supabase Frankfurt), encriptação em trânsito e em repouso, retenção configurável, direito ao apagamento. DPA disponível sob NDA." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Implementa o teu widget em 7 dias.",
+        cta_label_v2: "Falar connosco →",
+      },
     },
   },
   demo: {

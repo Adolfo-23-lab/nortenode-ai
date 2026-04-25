@@ -2,33 +2,18 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-/**
- * Closing full-bleed CTA shared by /solucoes/* pages.
- *
- * Structural twin of the home FinalCTA: ink-0 canvas, radial
- * signal-blue glow bottom-left for depth, asymmetric 12-col grid with
- * copy anchored left and dual CTAs (snow fill + ghost 15% border).
- */
+interface Props {
+  title:    string;
+  ctaLabel: string;
+  ctaHref?: string;
+}
+
 export default function SolucoesFinalCTA({
-  eyebrow,
-  headline,
-  primaryLabel,
-  primaryHref,
-  secondaryLabel,
-  secondaryHref,
-}: {
-  eyebrow: string;
-  headline: string;
-  primaryLabel: string;
-  primaryHref: string;
-  secondaryLabel: string;
-  secondaryHref: string;
-}) {
+  title, ctaLabel, ctaHref = "/contactos",
+}: Props) {
   const rootRef = React.useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -46,24 +31,17 @@ export default function SolucoesFinalCTA({
 
           if (!isMotion) {
             gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
-            gsap.set(root.querySelectorAll("[data-cta-parallax]"), { clearProps: "all" });
             return;
           }
 
           gsap.from(root.querySelectorAll("[data-reveal]"), {
-            y: 32,
+            y: 28,
             opacity: 0,
             filter: "blur(8px)",
             duration: 1.0,
-            stagger: 0.1,
+            stagger: 0.12,
             ease: "power3.out",
             scrollTrigger: { trigger: root, start: "top 80%" },
-          });
-
-          gsap.to(root.querySelector("[data-cta-parallax]"), {
-            yPercent: -12,
-            ease: "none",
-            scrollTrigger: { trigger: root, start: "top bottom", end: "bottom top", scrub: true },
           });
         },
       );
@@ -72,68 +50,27 @@ export default function SolucoesFinalCTA({
     { scope: rootRef },
   );
 
+  const lines = title.split("\n");
+
   return (
-    <section
-      ref={rootRef}
-      aria-label={headline}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] py-36 md:py-52"
-    >
-      <div
-        aria-hidden="true"
-        data-cta-parallax
-        className="pointer-events-none absolute inset-0 -z-10 will-change-transform"
-        style={{
-          background:
-            "radial-gradient(60% 80% at 15% 100%, rgba(47,130,247,0.10),  transparent 55%)," +
-            "radial-gradient(40% 60% at 92% 0%,   rgba(255,255,255,0.025), transparent 60%)",
-        }}
-      />
-
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-10 lg:col-span-9">
-            <p
-              data-reveal="final-cta-eyebrow"
-              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
-            >
-              {eyebrow}
-            </p>
-
-            <h2
-              data-reveal="final-cta-headline"
-              className="mb-12 font-sans text-[clamp(2.5rem,6.5vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.025em] text-white text-balance"
-            >
-              {headline}
-            </h2>
-
-            <div
-              data-reveal="final-cta-actions"
-              className="flex flex-wrap items-center gap-5"
-            >
-              <Link
-                href={primaryHref}
-                className="group inline-flex items-center gap-2 rounded bg-[color:var(--color-snow)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[color:var(--color-ink-100)] transition-colors hover:bg-white"
-              >
-                {primaryLabel}
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-              </Link>
-              <Link
-                href={secondaryHref}
-                className="group inline-flex items-center gap-2 rounded border border-[var(--color-ghost-border)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[var(--color-ink-text-primary)] transition-colors hover:border-[var(--color-ghost-border-hover)] hover:text-white"
-              >
-                {secondaryLabel}
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-              </Link>
-            </div>
-          </div>
+    <section ref={rootRef} className="bg-[var(--color-bg-v2)] py-[140px]">
+      <div className="mx-auto w-full max-w-[1100px] px-6 md:px-12">
+        <h2
+          data-reveal
+          className="max-w-[24ch] font-medium leading-[1.1] tracking-[-0.02em] text-[var(--color-text-primary-v2)]"
+          style={{ fontSize: "48px" }}
+        >
+          {lines.map((line, i) => (
+            <span key={i} className="block">{line}</span>
+          ))}
+        </h2>
+        <div data-reveal className="mt-10">
+          <Link
+            href={ctaHref}
+            className="inline-flex items-center justify-center rounded-[var(--radius-v2)] bg-white px-8 py-4 font-mono text-[14px] font-medium uppercase tracking-[0.1em] text-[var(--color-bg-v2)] transition-shadow duration-200 hover:shadow-[var(--shadow-glow-soft-v2)]"
+          >
+            {ctaLabel}
+          </Link>
         </div>
       </div>
     </section>

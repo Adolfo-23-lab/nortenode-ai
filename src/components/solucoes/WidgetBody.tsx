@@ -2,35 +2,27 @@
 
 import * as React from "react";
 import { useT } from "@/i18n/provider";
-import WhatsAppHero from "./WhatsAppHero";
+import WidgetHero from "./WidgetHero";
 import SolucoesSpecs from "./SolucoesSpecs";
+import WidgetInstallation from "./WidgetInstallation";
 import SolucoesCapabilities from "./SolucoesCapabilities";
-import WhatsAppIntegrations from "./WhatsAppIntegrations";
+import WidgetAppearance from "./WidgetAppearance";
 import SolucoesPricing from "./SolucoesPricing";
 import SolucoesFAQ from "./SolucoesFAQ";
 import SolucoesFinalCTA from "./SolucoesFinalCTA";
 
-const WHATSAPP_SPEC_META: ReadonlyArray<{ label: string; value: string }> = [
-  { label: "RESPONSE LATENCY", value: "<200ms" },
-  { label: "LANGUAGES",        value: "3" },
-  { label: "AVAILABILITY",     value: "24/7" },
-  { label: "DEPLOYMENT TIME",  value: "14 days" },
+const WIDGET_SPEC_META: ReadonlyArray<{ label: string; value: string }> = [
+  { label: "WIDGET SIZE", value: "<14kb" },
+  { label: "LOAD TIME",   value: "<80ms" },
+  { label: "LANGUAGES",   value: "3" },
+  { label: "DEPLOYMENT",  value: "1 day" },
 ];
 
-const WHATSAPP_INTEGRATIONS: ReadonlyArray<string> = [
-  "Google Calendar",
-  "Cal.com",
-  "Calendly",
-  "Custom CRM",
-  "HubSpot",
-  "Notion",
-];
-
-export default function WhatsAppBody() {
+export default function WidgetBody() {
   const t = useT();
-  const w = t.solucoes.whatsapp;
+  const w = t.solucoes.widget;
 
-  const specsItems = WHATSAPP_SPEC_META.map((meta, i) => ({
+  const specsItems = WIDGET_SPEC_META.map((meta, i) => ({
     label: meta.label,
     value: meta.value,
     desc:  w.specs_v2.items_v2[i]?.desc_v2 ?? "",
@@ -38,21 +30,24 @@ export default function WhatsAppBody() {
 
   return (
     <>
-      <WhatsAppHero
+      <WidgetHero
         headline={w.hero_v2.headline_v2}
         sub={w.hero_v2.sub_v2}
         ctaDemo={w.hero_v2.cta_demo_v2}
         ctaTalk={w.hero_v2.cta_talk_v2}
       />
       <SolucoesSpecs items={specsItems} />
+      <WidgetInstallation
+        title={w.installation_v2.title_v2}
+        body={w.installation_v2.body_v2}
+      />
       <SolucoesCapabilities
         title={w.capabilities_v2.title_v2}
         items={w.capabilities_v2.items_v2}
       />
-      <WhatsAppIntegrations
-        subhead={w.integrations_v2.subhead_v2}
-        items={WHATSAPP_INTEGRATIONS}
-        note={w.integrations_v2.note_v2}
+      <WidgetAppearance
+        title={w.appearance_v2.title_v2}
+        themes={w.appearance_v2.themes_v2}
       />
       <SolucoesPricing
         title={w.pricing_v2.title_v2}
