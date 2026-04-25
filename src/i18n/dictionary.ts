@@ -274,6 +274,33 @@ export interface Dictionary {
       cta_href: string;
     };
   };
+  home: {
+    hero: {
+      headline_v2: string;
+      sub_v2:      string;
+      cta_demo:    string;
+      cta_talk:    string;
+    };
+    proof: {
+      cohort_v2: string;
+    };
+    product: {
+      title_v2: string;
+      items: Array<{ desc_v2: string }>;
+    };
+    process: {
+      title_v2: string;
+      steps: Array<{ title_v2: string; desc_v2: string }>;
+    };
+    example: {
+      title_v2: string;
+    };
+    final: {
+      title_v2: string;
+      sub_v2:   string;
+      cta_v2:   string;
+    };
+  };
   chat: ChatCopy;
   footer: {
     blurb: string;
@@ -669,6 +696,42 @@ export const es: Dictionary = {
       body: "Una llamada de 30 minutos para entender su caso. Sin formulario intermedio, sin presión comercial.",
       cta_label: "Hablar con Adolfo",
       cta_href: "/contactos",
+    },
+  },
+  home: {
+    hero: {
+      headline_v2: "Construimos la\nrecepción IA que\ntu negocio\ntodavía no\nsabe que necesita.",
+      sub_v2:      "Operadores IA personalizados para negocios de servicios. Una capa de conversación en WhatsApp y la web. Desplegamos en 14 días.",
+      cta_demo:    "Ver demo →",
+      cta_talk:    "Hablar con nosotros →",
+    },
+    proof: {
+      cohort_v2: "Actualmente en producción con la cohorte fundadora. Incorporando nuevas cuentas cada semana.",
+    },
+    product: {
+      title_v2: "Tres operadores.\nUna capa de inteligencia.",
+      items: [
+        { desc_v2: "Recepción 24/7 a través de la API oficial Business. Reserva, califica, escala." },
+        { desc_v2: "Superficie de chat ligera para tu sitio. Mismo operador, misma inteligencia." },
+        { desc_v2: "Agente de voz para llamadas entrantes. Lanzamiento limitado Q2 2026." },
+      ],
+    },
+    process: {
+      title_v2: "Del primer mensaje a la cita confirmada.",
+      steps: [
+        { title_v2: "Inbound",    desc_v2: "El cliente envía un mensaje. El operador analiza en menos de 200ms." },
+        { title_v2: "Comprender", desc_v2: "Intención e historial cruzados con el perfil del cliente." },
+        { title_v2: "Responder",  desc_v2: "Responder, calificar el lead, o escalar." },
+        { title_v2: "Ejecutar",   desc_v2: "Reservar la cita, registrar el lead, notificar al owner." },
+      ],
+    },
+    example: {
+      title_v2: "Cómo se ve en producción.",
+    },
+    final: {
+      title_v2: "Tu recepción\nfunciona mientras\ntú no.",
+      sub_v2:   "Primer operador desplegado en 14 días. Alcance fijo. Precio fijo.",
+      cta_v2:   "Solicitar demo →",
     },
   },
   chat: {
@@ -1085,6 +1148,42 @@ export const en: Dictionary = {
       cta_href: "/contactos",
     },
   },
+  home: {
+    hero: {
+      headline_v2: "We build the AI\nreception your\nbusiness doesn't\nknow it needs.",
+      sub_v2:      "Custom AI operators for service businesses. One conversation layer across WhatsApp and web. We deploy in 14 days.",
+      cta_demo:    "See live demo →",
+      cta_talk:    "Talk to us →",
+    },
+    proof: {
+      cohort_v2: "Currently in production with the founding cohort. Onboarding new accounts each week.",
+    },
+    product: {
+      title_v2: "Three operators.\nOne intelligence layer.",
+      items: [
+        { desc_v2: "24/7 reception across the official Business API. Books, qualifies, escalates." },
+        { desc_v2: "Lightweight chat surface for your site. Same operator, same intelligence." },
+        { desc_v2: "Inbound voice agent. Limited release in Q2 2026." },
+      ],
+    },
+    process: {
+      title_v2: "From first message to booked appointment.",
+      steps: [
+        { title_v2: "Inbound",    desc_v2: "Customer sends a message. Operator parses it in under 200ms." },
+        { title_v2: "Understand", desc_v2: "Intent and history matched against customer profile." },
+        { title_v2: "Respond",    desc_v2: "Reply, qualify the lead, or escalate." },
+        { title_v2: "Execute",    desc_v2: "Book appointment, log lead, notify owner." },
+      ],
+    },
+    example: {
+      title_v2: "What it looks like in production.",
+    },
+    final: {
+      title_v2: "Your reception\nruns while\nyou don't.",
+      sub_v2:   "First operator deployed in 14 days. Fixed scope. Fixed price.",
+      cta_v2:   "Request demo →",
+    },
+  },
   chat: {
     greeting: "Hi. I'm NorteNode's agent. Ask anything — pricing, hours, booking. That's what I'm here for.",
     title: "NorteNode Agent",
@@ -1493,6 +1592,42 @@ export const pt: Dictionary = {
       body: "Uma chamada de 30 minutos para perceber o seu caso. Sem formulário intermédio, sem pressão comercial.",
       cta_label: "Falar com o Adolfo",
       cta_href: "/contactos",
+    },
+  },
+  home: {
+    hero: {
+      headline_v2: "Construímos a\nreceção IA que\no seu negócio\nainda não\nsabe que precisa.",
+      sub_v2:      "Operadores IA personalizados para negócios de serviços. Uma camada de conversação no WhatsApp e na web. Implementamos em 14 dias.",
+      cta_demo:    "Ver demo →",
+      cta_talk:    "Falar connosco →",
+    },
+    proof: {
+      cohort_v2: "Atualmente em produção com a coorte fundadora. A integrar novas contas todas as semanas.",
+    },
+    product: {
+      title_v2: "Três operadores.\nUma camada de inteligência.",
+      items: [
+        { desc_v2: "Receção 24/7 através da API oficial Business. Marca, qualifica, escala." },
+        { desc_v2: "Superfície de chat leve para o seu site. Mesmo operador, mesma inteligência." },
+        { desc_v2: "Agente de voz para chamadas recebidas. Lançamento limitado Q2 2026." },
+      ],
+    },
+    process: {
+      title_v2: "Da primeira mensagem à marcação confirmada.",
+      steps: [
+        { title_v2: "Inbound",     desc_v2: "O cliente envia uma mensagem. O operador analisa em menos de 200ms." },
+        { title_v2: "Compreender", desc_v2: "Intenção e histórico cruzados com o perfil do cliente." },
+        { title_v2: "Responder",   desc_v2: "Responder, qualificar o lead, ou escalar." },
+        { title_v2: "Executar",    desc_v2: "Marcar a consulta, registar o lead, notificar o owner." },
+      ],
+    },
+    example: {
+      title_v2: "O que parece em produção.",
+    },
+    final: {
+      title_v2: "A sua receção\nfunciona enquanto\nvocê não.",
+      sub_v2:   "Primeiro operador implementado em 14 dias. Escopo fixo. Preço fixo.",
+      cta_v2:   "Pedir demo →",
     },
   },
   chat: {
