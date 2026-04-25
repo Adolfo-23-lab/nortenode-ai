@@ -2,23 +2,18 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useT } from "@/i18n/provider";
+import WhatsAppMockup from "./WhatsAppMockup";
 
-/**
- * Page-level hero for /solucoes/whatsapp.
- *
- * Sibling pattern to the home Hero but without the concrete video:
- * on interior pages the video weight would compete with the mock
- * that follows. Instead we use a pure tonal stage — ink-0 canvas,
- * signal-blue radial glow bottom-right, grain-free. Copy dominates.
- */
-export default function WhatsAppHero() {
-  const t = useT();
-  const h = t.solucoes.whatsapp.hero;
+interface Props {
+  headline: string;
+  sub:      string;
+  ctaDemo:  string;
+  ctaTalk:  string;
+}
+
+export default function WhatsAppHero({ headline, sub, ctaDemo, ctaTalk }: Props) {
   const rootRef = React.useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -36,7 +31,6 @@ export default function WhatsAppHero() {
 
           if (!isMotion) {
             gsap.set(root.querySelectorAll("[data-reveal]"), { clearProps: "all" });
-            gsap.set(root.querySelectorAll("[data-whatsapp-hero-parallax]"), { clearProps: "all" });
             return;
           }
 
@@ -44,15 +38,9 @@ export default function WhatsAppHero() {
             y: 32,
             opacity: 0,
             filter: "blur(8px)",
-            duration: 1.1,
+            duration: 1.0,
             stagger: 0.12,
             ease: "power3.out",
-          });
-
-          gsap.to(root.querySelector("[data-whatsapp-hero-parallax]"), {
-            yPercent: -10,
-            ease: "none",
-            scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
           });
         },
       );
@@ -61,77 +49,59 @@ export default function WhatsAppHero() {
     { scope: rootRef },
   );
 
+  const endsWithDot = headline.endsWith(".");
+  const main        = endsWithDot ? headline.slice(0, -1) : headline;
+  const period      = endsWithDot ? "." : "";
+
+  const talkText = ctaTalk.replace(/\s*→\s*$/, "");
+
   return (
     <section
       ref={rootRef}
-      aria-label={h.eyebrow}
-      className="relative isolate overflow-hidden bg-[color:var(--color-ink-0)] pt-40 pb-32 md:pt-52 md:pb-40"
+      aria-label="WHATSAPP OPERATOR"
+      className="relative bg-[var(--color-bg-v2)] pt-[140px] pb-[80px] md:pt-[180px]"
     >
-      {/* Ambient tonal lighting */}
-      <div
-        aria-hidden="true"
-        data-whatsapp-hero-parallax
-        className="pointer-events-none absolute inset-0 -z-10 will-change-transform"
-        style={{
-          background:
-            "radial-gradient(55% 55% at 85% 30%, rgba(47,130,247,0.08), transparent 60%)," +
-            "radial-gradient(45% 45% at 10% 90%, rgba(94,170,255,0.05), transparent 65%)",
-        }}
-      />
-
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-10 lg:col-span-9">
-            <p
-              data-reveal="wa-hero-eyebrow"
-              className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]"
-            >
-              {h.eyebrow}
-            </p>
-
+      <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
+        <p data-reveal className="mono-label-v2">
+          PRODUCT 01 / 03 — WHATSAPP OPERATOR
+        </p>
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[60%_40%]">
+          {/* LEFT — copy */}
+          <div>
             <h1
-              data-reveal="wa-hero-headline"
-              className="mb-10 font-sans text-[clamp(2.75rem,7vw,6rem)] font-semibold leading-[0.95] tracking-[-0.025em] text-white text-balance"
+              data-reveal
+              className="font-medium leading-[1.0] tracking-[-0.02em] text-[var(--color-text-primary-v2)]"
+              style={{ fontSize: "var(--text-headline-xl-v2)" }}
             >
-              {h.headline_l1}
-              <br />
-              <span className="text-[var(--color-ink-text-muted)]">{h.headline_l2}</span>
+              {main}
+              {period && <span className="cyan-period-v2">{period}</span>}
             </h1>
-
             <p
-              data-reveal="wa-hero-sub"
-              className="mb-12 max-w-xl text-base leading-relaxed text-[var(--color-ink-text-secondary)] md:text-lg"
+              data-reveal
+              className="mt-8 max-w-[60ch] text-[var(--color-text-secondary-v2)]"
+              style={{ fontSize: "var(--text-body-lg-v2)", lineHeight: 1.55 }}
             >
-              {h.sub}
+              {sub}
             </p>
-
-            <div
-              data-reveal="wa-hero-cta"
-              className="flex flex-wrap items-center gap-4"
-            >
+            <div data-reveal className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
               <Link
                 href="/demo"
-                className="group inline-flex items-center gap-2 rounded bg-[color:var(--color-snow)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[color:var(--color-ink-100)] transition-colors hover:bg-white"
+                className="inline-flex items-center justify-center rounded-[var(--radius-v2)] bg-white px-6 py-3.5 font-mono text-[14px] font-medium uppercase tracking-[0.1em] text-[var(--color-bg-v2)] transition-shadow duration-200 hover:shadow-[var(--shadow-glow-soft-v2)]"
               >
-                {t.common.cta_primary}
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
+                {ctaDemo}
               </Link>
               <Link
                 href="/contactos"
-                className="group inline-flex items-center gap-2 rounded border border-[var(--color-ghost-border)] px-7 py-4 text-[13px] font-medium uppercase tracking-[0.05em] text-[var(--color-ink-text-primary)] transition-colors hover:border-[var(--color-ghost-border-hover)] hover:text-white"
+                className="inline-flex items-center text-[14px] font-medium text-[var(--color-text-secondary-v2)] transition-colors hover:text-[var(--color-text-primary-v2)]"
               >
-                {t.common.cta_secondary}
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
+                {talkText}
+                <span aria-hidden="true" className="ml-2 text-[var(--color-accent-v2)]">→</span>
               </Link>
             </div>
+          </div>
+          {/* RIGHT — mockup */}
+          <div data-reveal className="flex justify-center lg:justify-end">
+            <WhatsAppMockup />
           </div>
         </div>
       </div>

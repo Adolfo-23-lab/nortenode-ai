@@ -129,6 +129,39 @@ export interface Dictionary {
       integration_steps: SolucoesStep[];
       capabilities: string[];
       cta_headline: string;
+      meta_title_v2:       string;
+      meta_description_v2: string;
+      hero_v2: {
+        headline_v2: string;
+        sub_v2:      string;
+        cta_demo_v2: string;
+        cta_talk_v2: string;
+      };
+      specs_v2: {
+        items_v2: ReadonlyArray<{ desc_v2: string }>;
+      };
+      capabilities_v2: {
+        title_v2: string;
+        items_v2: ReadonlyArray<{ title_v2: string; desc_v2: string }>;
+      };
+      integrations_v2: {
+        subhead_v2: string;
+        note_v2:    string;
+      };
+      pricing_v2: {
+        title_v2:       string;
+        paragraph_1_v2: string;
+        paragraph_2_v2: string;
+        cta_label_v2:   string;
+      };
+      faq_v2: {
+        title_v2: string;
+        items_v2: ReadonlyArray<{ q: string; a: string }>;
+      };
+      final_v2: {
+        title_v2:     string;
+        cta_label_v2: string;
+      };
     };
     widget: {
       hero: {
@@ -498,6 +531,57 @@ export const es: Dictionary = {
         "Integración con Google Calendar y Cal.com",
       ],
       cta_headline: "¿Listo para que WhatsApp responda por ti?",
+      meta_title_v2:       "WhatsApp Operator",
+      meta_description_v2: "Agente IA autónomo para WhatsApp Business. Atiende, califica y reserva en 14 días.",
+      hero_v2: {
+        headline_v2: "WhatsApp Operator.",
+        sub_v2:      "Un agente IA autónomo para la API oficial WhatsApp Business. Atiende mensajes 24/7. Reserva, califica y escala.",
+        cta_demo_v2: "Ver demo →",
+        cta_talk_v2: "Hablar con nosotros →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Tiempo medio de entrada a salida." },
+          { desc_v2: "PT, ES, EN con auto-detección." },
+          { desc_v2: "Incluye festivos y fuera de horario." },
+          { desc_v2: "Del contrato al operador en vivo." },
+        ],
+      },
+      capabilities_v2: {
+        title_v2: "Lo que el operador maneja.",
+        items_v2: [
+          { title_v2: "Reserva y reprogramación", desc_v2: "Lee disponibilidad, confirma slots, envía recordatorios." },
+          { title_v2: "Consultas de precios",     desc_v2: "Cotiza precios de servicios, explica paquetes, gestiona descuentos." },
+          { title_v2: "Calificación de leads",    desc_v2: "Detecta urgencia, clasifica intención, dirige leads calientes al owner." },
+          { title_v2: "Historial del cliente",    desc_v2: "Reconoce clientes recurrentes, recuerda preferencias." },
+          { title_v2: "Cambio de idioma",         desc_v2: "Auto-detecta PT, ES, EN. Cambia a mitad de conversación si necesario." },
+          { title_v2: "Transferencia humana",     desc_v2: "Cuando el operador no puede ayudar, dirige a un miembro humano con contexto completo." },
+        ],
+      },
+      integrations_v2: {
+        subhead_v2: "Se conecta a tus herramientas existentes sin reconstruir nada.",
+        note_v2:    "Integraciones personalizadas bajo petición.",
+      },
+      pricing_v2: {
+        title_v2:       "Alcance fijo. Precio fijo.",
+        paragraph_1_v2: "Despliegue estándar: 14 días. Incluye setup de la API WhatsApp Business, entrenamiento personalizado, integración de calendario, y 30 días de ajuste post-lanzamiento.",
+        paragraph_2_v2: "Precio depende del volumen de conversaciones y complejidad de integración. Cotización fija tras llamada de descubrimiento de 30 minutos.",
+        cta_label_v2:   "Solicitar cotización →",
+      },
+      faq_v2: {
+        title_v2: "Preguntas frecuentes.",
+        items_v2: [
+          { q: "¿Gestionan la verificación Meta Business?",  a: "Sí. Gestionamos el proceso completo de verificación Meta Business, desde el setup del número hasta la aprobación de templates de mensajes. Suele tomar 7-10 días hábiles, paralelo al desarrollo del operador." },
+          { q: "¿El operador puede transferir a un humano?", a: "Sí. Cuando detecta intención compleja o el cliente lo pide explícitamente, transfiere la conversación a un miembro de tu equipo con el contexto completo ya documentado." },
+          { q: "¿Qué pasa durante downtime?",                a: "Los mensajes se ponen en cola y se procesan en cuanto el servicio reanuda. Operadores tienen uptime de 99.9%+. En incidentes raros, recordatorio automático al owner para atender manualmente." },
+          { q: "¿Puedo ver un log real de conversación?",    a: "Sí. Durante el discovery call, compartimos ejemplos anonimizados de conversaciones reales de clientes en producción. Bajo NDA si prefieres." },
+          { q: "¿Qué idiomas soportan?",                     a: "Portugués, Español e Inglés con auto-detección. Otros idiomas viables con entrenamiento personalizado — habla con nosotros para detalles." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Despliega tu operador WhatsApp en 14 días.",
+        cta_label_v2: "Hablar con nosotros →",
+      },
     },
     widget: {
       hero: {
@@ -992,6 +1076,57 @@ export const en: Dictionary = {
         "Google Calendar and Cal.com integrations",
       ],
       cta_headline: "Ready for WhatsApp to answer for you?",
+      meta_title_v2:       "WhatsApp Operator",
+      meta_description_v2: "Autonomous AI agent for WhatsApp Business. Answers, qualifies, and books in 14 days.",
+      hero_v2: {
+        headline_v2: "WhatsApp Operator.",
+        sub_v2:      "An autonomous AI agent for the official WhatsApp Business API. Answers messages 24/7. Books, qualifies, escalates.",
+        cta_demo_v2: "Try the demo →",
+        cta_talk_v2: "Talk to us →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Median inbound to outbound." },
+          { desc_v2: "PT, ES, EN with auto-detect." },
+          { desc_v2: "Including holidays and off-hours." },
+          { desc_v2: "From contract signed to live." },
+        ],
+      },
+      capabilities_v2: {
+        title_v2: "What the operator handles.",
+        items_v2: [
+          { title_v2: "Booking and rescheduling", desc_v2: "Reads availability, confirms slots, sends reminders." },
+          { title_v2: "Pricing inquiries",        desc_v2: "Quotes service prices, explains packages, handles discounts." },
+          { title_v2: "Lead qualification",       desc_v2: "Detects urgency, scores intent, routes hot leads to the owner." },
+          { title_v2: "Customer history",         desc_v2: "Recognizes returning customers, remembers preferences." },
+          { title_v2: "Multi-language switching", desc_v2: "Auto-detects PT, ES, EN. Switches mid-conversation if needed." },
+          { title_v2: "Human handoff",            desc_v2: "When the operator can't help, it routes to a human team member with full context." },
+        ],
+      },
+      integrations_v2: {
+        subhead_v2: "Connects to your existing tools without rebuilding anything.",
+        note_v2:    "Custom integrations on request.",
+      },
+      pricing_v2: {
+        title_v2:       "Fixed scope. Fixed price.",
+        paragraph_1_v2: "Standard deployment: 14 days. Includes WhatsApp Business API setup, custom training, calendar integration, and 30 days of post-launch tuning.",
+        paragraph_2_v2: "Pricing depends on conversation volume and integration complexity. Fixed quote after a 30-minute discovery call.",
+        cta_label_v2:   "Request quote →",
+      },
+      faq_v2: {
+        title_v2: "Frequently asked.",
+        items_v2: [
+          { q: "Do you handle the Meta Business verification?", a: "Yes. We handle the full Meta Business verification process, from number setup to message template approval. Typically takes 7-10 business days, parallel to operator development." },
+          { q: "Can the operator transfer to a human?",         a: "Yes. When it detects complex intent or the customer asks explicitly, it transfers the conversation to a team member with full context already documented." },
+          { q: "What happens during downtime?",                 a: "Messages are queued and processed as soon as the service resumes. Operators have 99.9%+ uptime. In rare incidents, automatic reminder to the owner to handle manually." },
+          { q: "Can I see a real conversation log?",            a: "Yes. During the discovery call, we share anonymized examples of real customer conversations in production. Under NDA if preferred." },
+          { q: "What languages do you support?",                a: "Portuguese, Spanish and English with auto-detection. Other languages viable with custom training — talk to us for details." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Deploy your WhatsApp operator in 14 days.",
+        cta_label_v2: "Talk to us →",
+      },
     },
     widget: {
       hero: {
@@ -1482,6 +1617,57 @@ export const pt: Dictionary = {
         "Integração com Google Calendar e Cal.com",
       ],
       cta_headline: "Pronto para que o WhatsApp responda por ti?",
+      meta_title_v2:       "WhatsApp Operator",
+      meta_description_v2: "Agente IA autónomo para WhatsApp Business. Atende, qualifica e marca em 14 dias.",
+      hero_v2: {
+        headline_v2: "WhatsApp Operator.",
+        sub_v2:      "Um agente IA autónomo para a API oficial WhatsApp Business. Atende mensagens 24/7. Marca, qualifica e escala.",
+        cta_demo_v2: "Ver demo →",
+        cta_talk_v2: "Falar connosco →",
+      },
+      specs_v2: {
+        items_v2: [
+          { desc_v2: "Tempo médio de entrada a saída." },
+          { desc_v2: "PT, ES, EN com auto-deteção." },
+          { desc_v2: "Inclui feriados e horário não-laboral." },
+          { desc_v2: "Da assinatura ao operador ao vivo." },
+        ],
+      },
+      capabilities_v2: {
+        title_v2: "O que o operador trata.",
+        items_v2: [
+          { title_v2: "Marcação e remarcação", desc_v2: "Lê disponibilidade, confirma slots, envia lembretes." },
+          { title_v2: "Consultas de preços",   desc_v2: "Quota preços de serviços, explica pacotes, gere descontos." },
+          { title_v2: "Qualificação de leads", desc_v2: "Deteta urgência, classifica intenção, encaminha leads quentes ao owner." },
+          { title_v2: "Histórico do cliente",  desc_v2: "Reconhece clientes recorrentes, lembra preferências." },
+          { title_v2: "Mudança de idioma",     desc_v2: "Auto-deteta PT, ES, EN. Muda a meio de conversação se necessário." },
+          { title_v2: "Transferência humana",  desc_v2: "Quando o operador não pode ajudar, encaminha a um membro humano com contexto completo." },
+        ],
+      },
+      integrations_v2: {
+        subhead_v2: "Liga-se às tuas ferramentas existentes sem reconstruir nada.",
+        note_v2:    "Integrações personalizadas a pedido.",
+      },
+      pricing_v2: {
+        title_v2:       "Escopo fixo. Preço fixo.",
+        paragraph_1_v2: "Implementação padrão: 14 dias. Inclui setup da API WhatsApp Business, formação personalizada, integração de calendário, e 30 dias de afinação pós-lançamento.",
+        paragraph_2_v2: "Preço depende de volume de conversações e complexidade de integração. Cotação fixa após chamada de descoberta de 30 minutos.",
+        cta_label_v2:   "Pedir cotação →",
+      },
+      faq_v2: {
+        title_v2: "Perguntas frequentes.",
+        items_v2: [
+          { q: "Tratam da verificação Meta Business?",     a: "Sim. Tratamos do processo completo de verificação Meta Business, do setup do número à aprovação dos templates de mensagem. Demoram normalmente 7-10 dias úteis, paralelo ao desenvolvimento do operador." },
+          { q: "O operador pode transferir para um humano?", a: "Sim. Quando deteta intenção complexa ou cliente pede explicitamente, transfere a conversação a um membro da tua equipa com o contexto completo já documentado." },
+          { q: "O que acontece durante downtime?",          a: "Mensagens são enfileiradas e processadas assim que o serviço retoma. Operadores têm uptime de 99.9%+. Em incidentes raros, lembrete automático ao owner para atender manualmente." },
+          { q: "Posso ver um log real de conversação?",     a: "Sim. Durante o discovery call, partilhamos exemplos anonimizados de conversações reais de clientes em produção. Sob NDA se preferires." },
+          { q: "Que idiomas suportam?",                     a: "Português, Espanhol e Inglês com auto-deteção. Outros idiomas viáveis com formação personalizada — fala connosco para detalhes." },
+        ],
+      },
+      final_v2: {
+        title_v2:     "Implementa o teu operador WhatsApp em 14 dias.",
+        cta_label_v2: "Falar connosco →",
+      },
     },
     widget: {
       hero: {

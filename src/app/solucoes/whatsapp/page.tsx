@@ -1,30 +1,18 @@
-import WhatsAppHero from "@/components/solucoes/WhatsAppHero";
-import WhatsAppMock from "@/components/solucoes/WhatsAppMock";
-import WhatsAppBelowHero from "@/components/solucoes/WhatsAppBelowHero";
+import WhatsAppBody from "@/components/solucoes/WhatsAppBody";
 import Footer from "@/components/Footer";
+import { pt } from "@/i18n/dictionary";
+
+const w = pt.solucoes.whatsapp;
 
 export const metadata = {
-  title: "Recepción WhatsApp con IA",
-  description:
-    "Agente IA en tu WhatsApp Business. Atiende, cualifica y agenda 24/7 con integración oficial de Meta.",
+  title:       w.meta_title_v2,
+  description: w.meta_description_v2,
 };
 
-/**
- * /solucoes/whatsapp — Cinematic Authority rework.
- *
- *   1. WhatsAppHero       — eyebrow, display headline, sub, dual CTA.
- *   2. WhatsAppMock       — unboxed conversation, authentic WhatsApp colours.
- *   3. SolucoesIntegration (3 steps).
- *   4. SolucoesCapabilities (6 bullets in 2 cols).
- *   5. SolucoesFinalCTA   — closing full-bleed.
- *   6. Footer.
- */
 export default function WhatsAppPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[var(--color-ink-0)]">
-      <WhatsAppHero />
-      <WhatsAppMock />
-      <WhatsAppBelowHero />
+    <main className="relative min-h-screen overflow-hidden bg-[var(--color-bg-v2)]">
+      <WhatsAppBody />
       <Footer />
     </main>
   );
