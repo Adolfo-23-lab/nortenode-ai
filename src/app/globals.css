@@ -109,6 +109,65 @@
   --shadow-glow:    0 0 0 1px rgba(255,255,255,0.04), 0 24px 60px -20px rgba(47, 130, 247, 0.35);
   --shadow-glass:   0 1px 0 rgba(255,255,255,0.06) inset, 0 20px 60px -28px rgba(0,0,0,0.8);
   --shadow-panel:   0 1px 0 rgba(255,255,255,0.04) inset, 0 10px 40px -20px rgba(0,0,0,0.6);
+
+  /* ───────────────────────────────────────────────────────────
+   * v2 — minimal blueprint (B.9.1)
+   * Coexists with v1 tokens above. Components migrate progressively
+   * in B.9.2+. v1 will be removed when all consumers migrated.
+   * ─────────────────────────────────────────────────────────── */
+
+  /* === v2 COLOR === */
+  --color-bg-v2:               #0a0d12;
+  --color-bg-elevated-v2:      #10141b;
+  --color-bg-subtle-v2:        #0d1117;
+
+  --color-text-primary-v2:     #ffffff;
+  --color-text-secondary-v2:   #9ba3af;
+  --color-text-muted-v2:       #6b7280;
+  --color-text-disabled-v2:    #4b5563;
+
+  --color-border-v2:           rgba(255, 255, 255, 0.08);
+  --color-border-strong-v2:    rgba(255, 255, 255, 0.15);
+  --color-grid-v2:             rgba(255, 255, 255, 0.04);
+
+  --color-accent-v2:           #00d4ff;
+  --color-accent-soft-v2:      rgba(0, 212, 255, 0.30);
+  --color-accent-glow-v2:      rgba(0, 212, 255, 0.15);
+
+  --color-status-live-v2:      #4dffaa;
+  --color-status-warn-v2:      #ffb84d;
+
+  /* === v2 TYPOGRAPHY (font stack — NO Söhne, NO GT America) === */
+  --font-sans-v2:  var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono-v2:  var(--font-geist-mono), ui-monospace, "JetBrains Mono", monospace;
+  --font-serif-v2: var(--font-instrument-serif), Georgia, serif;
+
+  /* === v2 TYPE SCALE (clamp responsive) === */
+  --text-mono-label-v2:   11px;
+  --text-body-sm-v2:      14px;
+  --text-body-v2:         16px;
+  --text-body-lg-v2:      18px;
+  --text-headline-sm-v2:  clamp(28px, 3vw,    36px);
+  --text-headline-v2:     clamp(36px, 4.5vw,  48px);
+  --text-headline-lg-v2:  clamp(48px, 5.5vw,  64px);
+  --text-headline-xl-v2:  clamp(56px, 6.5vw,  80px);
+  --text-display-v2:      clamp(64px, 8vw,    96px);
+  --text-display-lg-v2:   clamp(80px, 10vw,  120px);
+  --text-display-xl-v2:   clamp(96px, 12vw,  140px);
+
+  /* === v2 SPACING === */
+  --space-section-sm-v2:  80px;
+  --space-section-v2:    120px;
+  --space-section-lg-v2: 160px;
+
+  /* === v2 RADIUS === */
+  --radius-sm-v2: 2px;
+  --radius-v2:    4px;
+  --radius-lg-v2: 8px;
+
+  /* === v2 SHADOWS === */
+  --shadow-glow-cyan-v2: 0 0 20px rgba(0, 212, 255, 0.25);
+  --shadow-glow-soft-v2: 0 0 12px rgba(0, 212, 255, 0.15);
 }
 
 /* --- Base reset + typography ------------------------------------- */
@@ -315,3 +374,38 @@ body {
     -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+ * v2 helpers — minimal blueprint (B.9.1)
+ * Additive. v1 helpers above remain active.
+ * ───────────────────────────────────────────────────────────── */
+
+.mono-label-v2 {
+  font-family: var(--font-mono-v2);
+  font-size: var(--text-mono-label-v2);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted-v2);
+}
+
+.hairline-v2 {
+  height: 1px;
+  background-color: var(--color-border-v2);
+  border: none;
+  margin: 0;
+}
+
+.cyan-period-v2 {
+  color: var(--color-accent-v2);
+}
+
+.glow-cyan-on-hover-v2:hover {
+  box-shadow: var(--shadow-glow-cyan-v2);
+  transition: box-shadow 200ms ease-out;
+}
+
+.bg-blueprint-v2 { background-color: var(--color-bg-v2); }
+
+.text-primary-v2   { color: var(--color-text-primary-v2); }
+.text-secondary-v2 { color: var(--color-text-secondary-v2); }
+.text-muted-v2     { color: var(--color-text-muted-v2); }
