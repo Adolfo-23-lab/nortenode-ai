@@ -71,8 +71,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)",  color: "#05060a" },
-    { media: "(prefers-color-scheme: light)", color: "#05060a" },
+    { media: "(prefers-color-scheme: dark)",  color: "#0a0d12" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0d12" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -91,7 +91,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} dark antialiased h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] flex flex-col">
+      <body className="min-h-full bg-[var(--color-bg-v2)] text-[var(--color-text-primary-v2)] flex flex-col">
         <I18nProvider>
           <LenisProvider>
             <Navbar />

@@ -195,8 +195,8 @@ html.lenis body {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg-v2);
+  color: var(--color-text-primary-v2);
   font-family: var(--font-sans);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   letter-spacing: -0.011em;

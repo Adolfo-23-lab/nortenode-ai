@@ -206,9 +206,9 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **B.4.3a-dx E2E VERIFIED (2026-04-22):** Migration 20260421000001 aplicada en prod. RPC submit_agency_lead extendido de 5 a 6 params (añadido p_sector text default null). Versión antigua de 5 params dropeada explícitamente para evitar overload coexistente. Org nortenode-ai actualizada: owner_contact_phone=+351937809995, owner_contact_email=nortenode.ia@gmail.com. Test E2E: lead creado con qualification {"form":"marketing-contact","sector":"barbearia"}, email notification entregada en primer intento (sent@1attempt), WhatsApp notification encolada como esperado (queda en queue para eventual fail por Meta sandbox). Cleanup: lead + contact + notifications eliminados, counts verificados en 0. Zero corruption.
 
-**METADATA SUFFIX DUPLICATION — deuda SEO:** Todas las pages tienen `title: "X | NorteNode"` o similar en su metadata, pero layout.tsx aplica template `"%s · NorteNode"`. Resultado: `<title>` renderizado duplica el suffix ("Contactos · NorteNode · NorteNode"). Afecta TODAS las rutas. Cerrar en B.7 junto con el i18n sweep.
+**~~METADATA SUFFIX DUPLICATION — deuda SEO~~** — RESOLVED B.7-2 (commit `154267b`): " · NorteNode" suffix removido de 9 dictionary entries + 2 hardcoded titles. layout.tsx template `"%s · NorteNode"` ahora aplica suffix una sola vez. Verified post-B.9 cross-page MCP check: cada `<title>` muestra "PageName · NorteNode" sin duplicación.
 
-**LOCALE MISMATCH METADATA vs UI — deuda i18n:** Metadata se lee server-side desde `pt.contactos.meta_*` (primary locale hardcoded). UI se renderiza cliente via I18nProvider que defaultea a ES. Resultado: `<title>` y `<meta description>` en PT, contenido visible en ES. Bug de coherencia SEO vs UX. Cerrar en B.7 junto con decisión de `<html lang>` + geo-detection vs hardcoded.
+**~~LOCALE MISMATCH METADATA vs UI — deuda i18n~~** — RESOLVED B.7-2 (commit `154267b`): DEFAULT_LOCALE flipped de "es" a "pt" en I18nProvider, alineando UI client-side con metadata server-side autoritativo. `<html lang>` ahora se sincroniza dinámicamente desde el provider. Validation pendiente cuando se introduzca geo-detection en post-launch (no requerido para deploy v1).
 
 **~~useMotionInitial orphan post-B.4.4~~** — RESOLVED B.7-3 audit: falso positivo. El hook tiene 3 consumers activos (`src/app/template.tsx`, `src/components/Navbar.tsx`, `src/components/demo/InteractiveDemo.tsx`). ConversionZone era solo 1 de 4 consumers; tras su kill el hook sigue en uso. La entrada original asumió incorrectamente que ConversionZone era el único consumer.
 
@@ -226,7 +226,66 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **Email migration to Zoho complete (B.6 epilogue):** `organizations.owner_contact_email` del agency org `nortenode-ai` migrado de `nortenode.ia@gmail.com` a `contacto@nortenode.com` vía migration `20260425000001_org_email_to_contacto_nortenode.sql` (aplicada en remote 2026-04-25 via `supabase db query --linked --file` + `migration repair --status applied`). Coincide con migración de display addresses en `dictionary.ts` (commit `fc3dc49`) y Resend `reply_to` header en notify.ts (commit `3351002`). Notificaciones de leads del dispatcher ahora llegan a bandeja Zoho profesional, no a Gmail personal. La línea histórica de B.4.3a-dx en este documento (`owner_contact_email=nortenode.ia@gmail.com`) queda como referencia de trazabilidad del estado anterior.
 
-**Solucoes meta keys cleanup B.7-3:** eliminadas keys huérfanas `t.solucoes.{whatsapp,widget}.meta_title` y `meta_description` en 3 locales (cero consumers). Total 16 entries removed (4 from `Dictionary` interface + 12 values). Pages legacy `/solucoes/whatsapp` y `/solucoes/widget-web` siguen con title hardcoded ES — full i18n migration de solucoes diferida a post-B.8 (requiere editorial rework). Si en el futuro se hace rework, las keys se recrean siguiendo el patrón de `/contactos`, `/demo`, `/quem-somos`.
+**~~Solucoes meta keys cleanup B.7-3~~** — SUPERSEDED B.9.7: keys recreadas como `meta_title_v2` y `meta_description_v2` en 3 locales × 2 pages, consumidas por `src/app/solucoes/{whatsapp,widget-web}/page.tsx`. Pattern alineado con `/contactos`, `/demo`, `/quem-somos`. Title hardcoded ES original eliminado.
+
+---
+
+## B.9 — VISUAL REWORK MINIMAL BLUEPRINT V2 ✅ CLOSED 2026-04-26
+
+Site-wide visual rework executed across 8 sequential commits. Direction validated via Google Stitch moodboard with owner. Each page has distinct visual personality within a shared minimal-blueprint token system v2.
+
+**Commits:**
+- B.9.1 `bc97635` — Establish v2 design tokens (additive, no consumers).
+- B.9.2 `512e57e` — Rework Navbar + Footer to v2 tokens.
+- B.9.3 `bc4d978` — Rework /contactos (Connect. card + sidebar).
+- B.9.4 `59328a5` — Rework / home (6 numbered editorial sections).
+- B.9.5 `dffb367` — Rework /demo (live laboratory chat 65/35).
+- B.9.6 `ea68dd9` — Rework /quem-somos (editorial human + serif italic).
+- B.9.7a `c4f665e` — Rework /solucoes/whatsapp + 5 shared v2 components.
+- B.9.7b `130bbb7` — Rework /solucoes/widget-web + V2 naming cleanup.
+- B.9.8 (this commit) — Body bg layout migration, AUDIT closure.
+
+**Surface change:**
+- 6 pages migrated 100% to v2 tokens (bg-v2, text-primary-v2, accent-v2, border-v2, status-live-v2, mono-label-v2, hairline-v2, cyan-period-v2, dot-pulse-v2, shadow-glow-soft-v2).
+- Cero referencias v1 (`--color-ink-*`, `--color-signal-*`, `.glass`, `.spotlight`, `.grid-faint`) en código consumidor (verified via grep: only globals.css definitions remain).
+- 30+ files created/rewritten, 10+ legacy files killed.
+- ~600 dictionary string entries added (3 locales × ~200 v2 keys).
+- Body bg en layout.tsx migrado de `var(--background)` (v1 #05060a) a `var(--color-bg-v2)` (#0a0d12) en B.9.8.
+
+**MCP cross-page visual check (desktop 1440x900) post-B.9.8:**
+
+| Route | title | main_bg | body_bg | sections | nav | footer | console errors |
+|---|---|---|---|---|---|---|---|
+| `/` | "NorteNode — Recepcionista IA 24/7…" | `#0a0d12` v2 | `#0a0d12` v2 | 6 | ✓ | ✓ | 0 |
+| `/contactos` | "Contactos · NorteNode" | `#0a0d12` v2 | `#0a0d12` v2 | 3 | ✓ | ✓ | 0 |
+| `/demo` | "Demo · NorteNode" | `#0a0d12` v2 | `#0a0d12` v2 | 3 | ✓ | ✓ | 0 |
+| `/quem-somos` | "Quem Somos · NorteNode" | `#0a0d12` v2 | `#0a0d12` v2 | 4 | ✓ | ✓ | 0 |
+| `/solucoes/whatsapp` | "WhatsApp Operator · NorteNode" | `#0a0d12` v2 | `#0a0d12` v2 | 7 | ✓ | ✓ | 0 |
+| `/solucoes/widget-web` | "Web Widget · NorteNode" | `#0a0d12` v2 | `#0a0d12` v2 | 8 | ✓ | ✓ | 0 |
+
+### Post-B.9 debt reorganized
+
+**Diferida a post-launch (no bloqueante para deploy):**
+
+1. **Hero video re-encode** (B.8-1 flag): `public/assets/hero/hero-concrete.mp4` pesa 3.4 MB > 1.5 MB target. Reduce con `ffmpeg` CRF 28-30 o resolución 1280×720 a ~1.2-1.4 MB. Impacto LCP minimal por `preload="metadata"` + poster JPG 31 KB.
+
+2. **Logo PNG → SVG inline** (B.8-1 flag): `nortenode_star_icon.png` 60 KB. Optimización SVG diferida — requiere vector source o Lucide Star approximation. Next/Image entrega <5 KB downstream.
+
+3. **First-Load JS 308 KB > 180 KB target** (B.8-1 flag): aspirational, sin remover `framer-motion` del path shared (Navbar, template, FadeIn, TextReveal, MagneticButton). Decisión: aceptar baseline 308 KB; abrir migration framer-motion → GSAP solo si Vercel Analytics post-deploy field data muestra Core Web Vitals fallidos.
+
+4. **iOS Safari Lenis test pendiente**: `docs/design-refs/ios-safari-test-protocol.md` (untracked) lista pasos validation. No iPhone access del Adolfo durante B.9. Post-deploy real-device test antes de onboarding paying clients.
+
+5. **Mobile resize_page Chrome DevTools MCP bug**: tooling issue conocido. `resize_page` no honra dimensiones 390×844 (viewport queda en 1370 desktop). Mobile rendering verified via responsive Tailwind classes (`md:`, `lg:` breakpoints) durante development local del owner. No code issue.
+
+6. **Cookie sync metadata locale-aware**: actualmente metadata server-side reads autoritativo PT, UI client-side hidrata locale del navegador via I18nProvider. Geo-detection o cookie-pinning (Set-Cookie con locale) candidatos a B.10+ si se introduce.
+
+7. **Meta WhatsApp production review** (legacy flag): activar Meta App de development → production cuando primer cliente paying use WhatsApp channel. Privacy policy URL + business verification requeridos.
+
+8. **Legacy v1 token cleanup en globals.css**: definiciones `--color-ink-*`, `--color-signal-*`, `--color-hairline`, `.glass`, `.spotlight`, `.grid-faint`, `.font-display`, etc. siguen vivas en globals.css pero **cero consumers** (verified via grep B.9.8). Cleanup commit dedicado evaluable post-launch — bajo prioridad porque dead code en un solo CSS file no afecta runtime.
+
+9. **Legacy dictionary subtrees** (`t.solucoes.{whatsapp,widget}.{hero,mock,integration_steps,capabilities,cta_headline}`, `t.contactos.{directory,process,position}`, `t.quem_somos.{hero,manifesto,principles,trajectory,final_cta}`, `t.home.*` v1, `t.demo.{hero.headline_l1,headline_l2,sub,meta,how,limits,final_cta}`, `t.hero/services/social/faq/final_cta`): preservados durante B.9 por safety. Cleanup commit post-launch posible una vez confirmado que todas las pages funcionan en producción y nada secret consume estos keys.
+
+10. **Body bg migration** ✓ — RESOLVED B.9.8 (this commit). `<body>` y `body { ... }` rule en globals.css consumen tokens v2 directos. themeColor viewport actualizado a `#0a0d12`. Verified via DevTools computed styles post-restart dev server (Turbopack cache requirió `rm -rf .next/` + clean restart para picked up — minor tooling note).
 
 ### 4.f · Pending inputs from Adolfo
 
