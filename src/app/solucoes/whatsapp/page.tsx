@@ -4,7 +4,7 @@ import WhatsAppBelowHero from "@/components/solucoes/WhatsAppBelowHero";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Recepción WhatsApp con IA | NorteNode",
+  title: "Recepción WhatsApp con IA",
   description:
     "Agente IA en tu WhatsApp Business. Atiende, cualifica y agenda 24/7 con integración oficial de Meta.",
 };

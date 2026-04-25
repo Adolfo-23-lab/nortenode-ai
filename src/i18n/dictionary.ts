@@ -494,7 +494,7 @@ export const es: Dictionary = {
     },
   },
   demo: {
-    meta_title: "Demo · NorteNode",
+    meta_title: "Demo",
     meta_description: "Pruebe nuestro agente de IA en conversación real. El mismo motor que operamos para clientes.",
     hero: {
       eyebrow: "DEMO EN VIVO",
@@ -535,7 +535,7 @@ export const es: Dictionary = {
     },
   },
   contactos: {
-    meta_title: "Contacto · NorteNode",
+    meta_title: "Contacto",
     meta_description: "Hable con nosotros. Email, teléfono, WhatsApp. Vila Nova de Gaia, Portugal.",
     hero: {
       eyebrow: "CONTACTO",
@@ -606,7 +606,7 @@ export const es: Dictionary = {
     },
   },
   quem_somos: {
-    meta_title: "Quiénes Somos · NorteNode",
+    meta_title: "Quiénes Somos",
     meta_description: "Agencia independiente que opera agentes de IA para negocios locales. Fundada en Vila Nova de Gaia.",
     hero: {
       eyebrow: "QUIÉN OPERA",
@@ -900,7 +900,7 @@ export const en: Dictionary = {
     },
   },
   demo: {
-    meta_title: "Demo · NorteNode",
+    meta_title: "Demo",
     meta_description: "Test our AI agent in real conversation. The same engine we run for clients.",
     hero: {
       eyebrow: "LIVE DEMO",
@@ -941,7 +941,7 @@ export const en: Dictionary = {
     },
   },
   contactos: {
-    meta_title: "Contact · NorteNode",
+    meta_title: "Contact",
     meta_description: "Get in touch. Email, phone, WhatsApp. Vila Nova de Gaia, Portugal.",
     hero: {
       eyebrow: "CONTACT",
@@ -1012,7 +1012,7 @@ export const en: Dictionary = {
     },
   },
   quem_somos: {
-    meta_title: "About · NorteNode",
+    meta_title: "About",
     meta_description: "Independent agency operating AI agents for local businesses. Founded in Vila Nova de Gaia.",
     hero: {
       eyebrow: "WHO OPERATES",
@@ -1302,7 +1302,7 @@ export const pt: Dictionary = {
     },
   },
   demo: {
-    meta_title: "Demo · NorteNode",
+    meta_title: "Demo",
     meta_description: "Teste o nosso agente de IA em conversa real. Mesmo motor que operamos para clientes.",
     hero: {
       eyebrow: "DEMO AO VIVO",
@@ -1343,7 +1343,7 @@ export const pt: Dictionary = {
     },
   },
   contactos: {
-    meta_title: "Contactos · NorteNode",
+    meta_title: "Contactos",
     meta_description: "Fale connosco. Email, telefone, WhatsApp. Vila Nova de Gaia, Portugal.",
     hero: {
       eyebrow: "CONTACTOS",
@@ -1414,7 +1414,7 @@ export const pt: Dictionary = {
     },
   },
   quem_somos: {
-    meta_title: "Quem Somos · NorteNode",
+    meta_title: "Quem Somos",
     meta_description: "Agência independente que opera agentes de IA para negócios locais. Fundada em Vila Nova de Gaia.",
     hero: {
       eyebrow: "QUEM OPERA",

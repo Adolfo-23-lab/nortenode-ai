@@ -4,7 +4,7 @@ import WidgetBelowHero from "@/components/solucoes/WidgetBelowHero";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Widget Web IA | NorteNode",
+  title: "Widget Web IA",
   description:
     "Chat en tu site que responde en menos de 2 s y captura el lead con contexto. Instalación en un único script.",
 };
