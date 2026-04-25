@@ -25,6 +25,7 @@ export interface SharedEnv {
   RESEND_API_KEY: string;
   RESEND_FROM_EMAIL: string;         // must be a verified sender
   RESEND_FROM_NAME: string;          // e.g. "NorteNode"
+  RESEND_REPLY_TO: string;           // address shown when recipient hits Reply
 
   // Storage
   STORAGE_MEDIA_BUCKET: string;      // bucket id for WhatsApp media
@@ -53,6 +54,7 @@ export function loadEnv(): SharedEnv {
     RESEND_API_KEY:            read("RESEND_API_KEY", ""),
     RESEND_FROM_EMAIL:         read("RESEND_FROM_EMAIL", "notify@nortenode.com"),
     RESEND_FROM_NAME:          read("RESEND_FROM_NAME",  "NorteNode"),
+    RESEND_REPLY_TO:           read("RESEND_REPLY_TO",   "contacto@nortenode.com"),
     STORAGE_MEDIA_BUCKET:      read("STORAGE_MEDIA_BUCKET", "conversation-media"),
     EDGE_LOG_LEVEL:            (read("EDGE_LOG_LEVEL", "info") as SharedEnv["EDGE_LOG_LEVEL"]),
   };

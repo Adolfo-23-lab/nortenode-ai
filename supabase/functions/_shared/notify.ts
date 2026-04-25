@@ -122,6 +122,7 @@ export async function sendEmail(
     body: JSON.stringify({
       from,
       to,
+      reply_to: env.RESEND_REPLY_TO,
       subject: r.subject,
       text:    r.text,
       html:    r.html,
