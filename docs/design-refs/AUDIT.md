@@ -193,7 +193,7 @@ Total Fase B estimate: **17–19h** focused work across ~3–4 working sessions.
 
 **RISK STATUS — Lenis + fixed Navbar en iOS Safari:** validación pendiente de ejecución en device real por el dueño del proyecto. Protocolo en `docs/design-refs/ios-safari-test-protocol.md`. No bloquea B.4 (demo+contactos no introduce nuevo motion). Debe cerrarse antes de production deploy.
 
-**ASSET DEBT — logo PNG a SVG inline:** `public/nortenode_star_icon.png` (60KB) es el logo de marca usado en Navbar y Footer. Candidato a convertir a SVG inline tokenizado con `currentColor` y `fill` via `--color-snow`. Prioridad baja: no bloquea ninguna fase. Adecuado para un bloque de asset-polish posterior a B.7.
+**~~ASSET DEBT — logo PNG a SVG inline~~** — supersedido por entry B.8-1 más abajo (decisión: diferir post-launch, Next/Image entrega <5 KB downstream).
 
 **META WHATSAPP SANDBOX — deuda DevOps:** La Meta App de NorteNode está en modo development. Solo números pre-registrados en Meta Developers → WhatsApp → API Setup → Test recipients pueden recibir mensajes. Los failed WhatsApp historicos (#131030 "Recipient phone number not in allowed list") son consecuencia de esto, no bugs del dispatcher. Dos caminos para cerrarlo:
   (a) Añadir +351937809995 al allowlist de test recipients (fix inmediato, solo recibe el owner).
@@ -212,7 +212,17 @@ Prioridad: media. No bloquea B.4–B.7. Debe resolverse antes de onboard el prim
 
 **~~useMotionInitial orphan post-B.4.4~~** — RESOLVED B.7-3 audit: falso positivo. El hook tiene 3 consumers activos (`src/app/template.tsx`, `src/components/Navbar.tsx`, `src/components/demo/InteractiveDemo.tsx`). ConversionZone era solo 1 de 4 consumers; tras su kill el hook sigue en uso. La entrada original asumió incorrectamente que ConversionZone era el único consumer.
 
-**adolfo_nortenode.jpg peso elevado:** `public/adolfo_nortenode.jpg` pesa 780KB. Usado en `/quem-somos` hero con `next/image` (fill + priority + sizes responsive), que optimiza on-demand con AVIF para el cliente. El source sigue siendo pesado en disco y afecta el cold transform del edge en el primer request. Candidato a optimizar manualmente (reducir dimensions máximas, pre-generar AVIF) o mover a CDN en B.8. Baja prioridad — next/image cubre el hit inicial para la mayoría de usuarios.
+**~~adolfo_nortenode.jpg peso elevado~~** — RESOLVED B.8-1: re-encode a 1280×1600 q=72 mozjpeg via sharp, 789 KB → 146 KB (-81%). Combined con `next.config.ts` `images.formats: ["image/avif","image/webp"]`, Next/Image sirve <50 KB para viewports comunes. Direct LCP win en `/quem-somos`.
+
+**Hero video over budget B.8-1:** `public/assets/hero/hero-concrete.mp4` pesa 3.4 MB (budget AGENTS.md hero ≤1.5 MB). Diferido post-launch — re-encode con `ffmpeg` CRF 28-30 o resolución 1280×720 puede reducir a ~1.2-1.4 MB. Vercel sirve range requests para `<video preload="metadata">`, impacto en LCP es minimal porque el poster `.jpg` (31 KB) carga instant. Prioridad: media post-deploy.
+
+**First-Load JS budget reality check B.8-1:** rutas marketing ~308 KB gz, `/demo` lazy-loaded ~308 KB (era 407 KB tras lazy-loading de InteractiveDemo via `next/dynamic ssr:false`). Budget AGENTS.md de 180 KB no alcanzable sin remover `framer-motion` del path shared (Navbar, template, FadeIn, TextReveal, MagneticButton — 6 imports). Decisión: aceptar 308 KB como baseline tras evidencia de Vercel Analytics post-launch. Si Core Web Vitals reales fallan en field data, abrir tanda de framer-motion → GSAP migration. Hasta entonces, budget queda aspiracional.
+
+**Logo `nortenode_star_icon.png` 60 KB B.8-1:** optimización SVG inline diferida post-launch (requiere SVG vector del owner o aproximación con Lucide Star). Next/Image sirve AVIF/WebP downstream para los 2 consumers (Navbar 20×20, Footer 22×22) — peso real entregado <5 KB por viewport. Bajo prioridad.
+
+**`apple-icon.png` re-encode B.8-1:** re-encode a 180×180 PNG-9 via sharp, 1.06 MB → 11 KB (-99%). Mata el peor outlier de `public/`. Origen estaba a tamaño nativo de iconset PSD; ahora cabe en el budget de un single icon iOS.
+
+**Lottie cleanup B.8-1:** `lottie-react` removido de dependencies (cero consumers en src/). Tres `.json` orfan eliminados: `public/assets/{Search Processing,loading,voice wave}.json` (estaban tracked, sin imports). Reduce package.json deps + repo size sin bundle impact (no estaba en bundle por no ser importado).
 
 **Email migration to Zoho complete (B.6 epilogue):** `organizations.owner_contact_email` del agency org `nortenode-ai` migrado de `nortenode.ia@gmail.com` a `contacto@nortenode.com` vía migration `20260425000001_org_email_to_contacto_nortenode.sql` (aplicada en remote 2026-04-25 via `supabase db query --linked --file` + `migration repair --status applied`). Coincide con migración de display addresses en `dictionary.ts` (commit `fc3dc49`) y Resend `reply_to` header en notify.ts (commit `3351002`). Notificaciones de leads del dispatcher ahora llegan a bandeja Zoho profesional, no a Gmail personal. La línea histórica de B.4.3a-dx en este documento (`owner_contact_email=nortenode.ia@gmail.com`) queda como referencia de trazabilidad del estado anterior.
 

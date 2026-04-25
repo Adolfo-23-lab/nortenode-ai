@@ -1,10 +1,21 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import InteractiveDemo from "./InteractiveDemo";
+
+const InteractiveDemo = dynamic(() => import("./InteractiveDemo"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex min-h-[500px] items-center justify-center rounded-xl border border-[var(--color-hairline)] bg-[var(--color-ink-50)]">
+      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-text-soft)]">
+        Cargando demo...
+      </div>
+    </div>
+  ),
+});
 
 export default function DemoStage() {
   const rootRef = React.useRef<HTMLElement | null>(null);
