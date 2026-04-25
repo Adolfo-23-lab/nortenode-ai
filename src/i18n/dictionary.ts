@@ -257,6 +257,7 @@ export interface Dictionary {
       sub_v2:       string;
       cta_label_v2: string;
     };
+    disclaimer_v2: string;
   };
   contactos: {
     meta_title: string;
@@ -787,10 +788,11 @@ export const es: Dictionary = {
       sub_v2:       "Primer operador desplegado en 14 días. Alcance fijo. Precio fijo.",
       cta_label_v2: "Hablar con nosotros →",
     },
+    disclaimer_v2: "Demostración — este agente es simulado. Los agentes de producción se configuran con tus servicios, calendario y datos reales.",
   },
   contactos: {
     meta_title: "Contacto",
-    meta_description: "Hable con nosotros. Email, teléfono, WhatsApp. Vila Nova de Gaia, Portugal.",
+    meta_description: "Hable con nosotros. Email, teléfono, WhatsApp. Porto, Portugal.",
     hero: {
       eyebrow: "CONTACTO",
       headline_l1: "Hablemos.",
@@ -798,7 +800,7 @@ export const es: Dictionary = {
       headline_v2: "Conecte.",
       sub: "Respondemos en menos de un día laborable. Elija el canal que prefiera.",
       meta: [
-        { label: "LUGAR",     value: "Vila Nova de Gaia" },
+        { label: "LUGAR",     value: "Porto" },
         { label: "RESPUESTA", value: "< 1 día laborable" },
         { label: "IDIOMAS",   value: "PT · ES · EN" },
         { label: "DESDE",     value: "2026" },
@@ -810,7 +812,7 @@ export const es: Dictionary = {
         { label: "EMAIL",     value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "TELÉFONO",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensaje",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
-        { label: "LUGAR",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+        { label: "LUGAR",     value: "Porto, Portugal", href: null,                            external: false, kind: "location" },
       ],
     },
     process: {
@@ -875,7 +877,7 @@ export const es: Dictionary = {
   },
   quem_somos: {
     meta_title: "Quiénes Somos",
-    meta_description: "Agencia independiente que opera agentes de IA para negocios locales. Fundada en Vila Nova de Gaia.",
+    meta_description: "Agencia independiente que opera agentes de IA para negocios locales. Fundada en Porto.",
     hero: {
       eyebrow: "QUIÉN OPERA",
       headline_l1: "Una agencia independiente.",
@@ -883,11 +885,11 @@ export const es: Dictionary = {
       sub: "No somos una plataforma a escala. Somos un operador local que construye agentes de IA para quien los necesita funcionando mañana.",
       meta: [
         { label: "FUNDADOR",     value: "Adolfo" },
-        { label: "SEDE",         value: "Vila Nova de Gaia" },
+        { label: "SEDE",         value: "Porto" },
         { label: "ESPECIALIDAD", value: "Agentes operativos" },
         { label: "DESDE",        value: "2026" },
       ],
-      photo_alt: "Adolfo, fundador de NorteNode, en Vila Nova de Gaia",
+      photo_alt: "Adolfo, fundador de NorteNode, en Porto",
       photo_caption: "Adolfo · Fundador y Operador",
     },
     manifesto: {
@@ -913,7 +915,7 @@ export const es: Dictionary = {
       title: "Dónde estamos hoy.",
       chapters: [
         { date: "2026 · Q1",      title: "Fundación y primeros prototipos.", body: "Construcción del motor que opera los agentes — Groq, WhatsApp Cloud API, integraciones básicas. Pruebas con barberías ficticias." },
-        { date: "2026 · Q2",      title: "Primeros clientes reales.",        body: "Primera barbería en producción en Vila Nova de Gaia. Iteración sobre tono, contexto, escalado al operador humano." },
+        { date: "2026 · Q2",      title: "Primeros clientes reales.",        body: "Primera barbería en producción en Porto. Iteración sobre tono, contexto, escalado al operador humano." },
         { date: "Capítulo actual", title: "Construyendo en público.",         body: "Abrimos calendario para más negocios locales en Portugal y España. Cada cliente nuevo informa cómo evoluciona el producto y la operación." },
       ],
     },
@@ -1391,10 +1393,11 @@ export const en: Dictionary = {
       sub_v2:       "First operator live in 14 days. Fixed scope. Fixed price.",
       cta_label_v2: "Talk to us →",
     },
+    disclaimer_v2: "Demonstration — this agent is simulated. Production agents are configured with your real services, calendar, and data.",
   },
   contactos: {
     meta_title: "Contact",
-    meta_description: "Get in touch. Email, phone, WhatsApp. Vila Nova de Gaia, Portugal.",
+    meta_description: "Get in touch. Email, phone, WhatsApp. Porto, Portugal.",
     hero: {
       eyebrow: "CONTACT",
       headline_l1: "Talk",
@@ -1402,7 +1405,7 @@ export const en: Dictionary = {
       headline_v2: "Connect.",
       sub: "We answer within one business day. Pick whichever channel you prefer.",
       meta: [
-        { label: "PLACE",     value: "Vila Nova de Gaia" },
+        { label: "PLACE",     value: "Porto" },
         { label: "RESPONSE",  value: "< 1 business day" },
         { label: "LANGUAGES", value: "PT · ES · EN" },
         { label: "SINCE",     value: "2026" },
@@ -1414,7 +1417,7 @@ export const en: Dictionary = {
         { label: "EMAIL",    value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "PHONE",    value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP", value: "Send a message",              href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
-        { label: "PLACE",    value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+        { label: "PLACE",    value: "Porto, Portugal", href: null,                            external: false, kind: "location" },
       ],
     },
     process: {
@@ -1479,7 +1482,7 @@ export const en: Dictionary = {
   },
   quem_somos: {
     meta_title: "About",
-    meta_description: "Independent agency operating AI agents for local businesses. Founded in Vila Nova de Gaia.",
+    meta_description: "Independent agency operating AI agents for local businesses. Founded in Porto.",
     hero: {
       eyebrow: "WHO OPERATES",
       headline_l1: "An independent agency.",
@@ -1487,11 +1490,11 @@ export const en: Dictionary = {
       sub: "We're not a platform at scale. We're a local operator building AI agents for businesses that need them running tomorrow.",
       meta: [
         { label: "FOUNDER",   value: "Adolfo" },
-        { label: "BASED IN",  value: "Vila Nova de Gaia" },
+        { label: "BASED IN",  value: "Porto" },
         { label: "SPECIALTY", value: "Operational agents" },
         { label: "SINCE",     value: "2026" },
       ],
-      photo_alt: "Adolfo, founder of NorteNode, in Vila Nova de Gaia",
+      photo_alt: "Adolfo, founder of NorteNode, in Porto",
       photo_caption: "Adolfo · Founder & Operator",
     },
     manifesto: {
@@ -1517,7 +1520,7 @@ export const en: Dictionary = {
       title: "Where we are today.",
       chapters: [
         { date: "2026 · Q1",       title: "Founding and first prototypes.", body: "Building the engine that runs the agents — Groq, WhatsApp Cloud API, basic integrations. Testing with fictional barbershops." },
-        { date: "2026 · Q2",       title: "First real clients.",            body: "First barbershop in production in Vila Nova de Gaia. Iteration on tone, context, handoff to human operator." },
+        { date: "2026 · Q2",       title: "First real clients.",            body: "First barbershop in production in Porto. Iteration on tone, context, handoff to human operator." },
         { date: "Current chapter", title: "Building in public.",            body: "We're opening calendar for more local businesses in Portugal and Spain. Each new client informs how product and operations evolve." },
       ],
     },
@@ -1991,10 +1994,11 @@ export const pt: Dictionary = {
       sub_v2:       "Primeiro operador implementado em 14 dias. Escopo fixo. Preço fixo.",
       cta_label_v2: "Falar connosco →",
     },
+    disclaimer_v2: "Demonstração — este agente é simulado. Agentes de produção são configurados com os seus serviços, calendário e dados reais.",
   },
   contactos: {
     meta_title: "Contactos",
-    meta_description: "Fale connosco. Email, telefone, WhatsApp. Vila Nova de Gaia, Portugal.",
+    meta_description: "Fale connosco. Email, telefone, WhatsApp. Porto, Portugal.",
     hero: {
       eyebrow: "CONTACTOS",
       headline_l1: "Fale",
@@ -2002,7 +2006,7 @@ export const pt: Dictionary = {
       headline_v2: "Conecte.",
       sub: "Respondemos em menos de um dia útil. Escolha o canal que preferir.",
       meta: [
-        { label: "LOCAL",    value: "Vila Nova de Gaia" },
+        { label: "LOCAL",    value: "Porto" },
         { label: "RESPOSTA", value: "< 1 dia útil" },
         { label: "IDIOMAS",  value: "PT · ES · EN" },
         { label: "DESDE",    value: "2026" },
@@ -2014,7 +2018,7 @@ export const pt: Dictionary = {
         { label: "EMAIL",     value: "contacto@nortenode.com",      href: "mailto:contacto@nortenode.com", external: false, kind: "email" },
         { label: "TELEFONE",  value: "+351 937 809 995",            href: "tel:+351937809995",             external: false, kind: "phone" },
         { label: "WHATSAPP",  value: "Enviar mensagem",             href: "https://wa.me/351937809995",    external: true,  kind: "whatsapp" },
-        { label: "LOCAL",     value: "Vila Nova de Gaia, Portugal", href: null,                            external: false, kind: "location" },
+        { label: "LOCAL",     value: "Porto, Portugal", href: null,                            external: false, kind: "location" },
       ],
     },
     process: {
@@ -2079,7 +2083,7 @@ export const pt: Dictionary = {
   },
   quem_somos: {
     meta_title: "Quem Somos",
-    meta_description: "Agência independente que opera agentes de IA para negócios locais. Fundada em Vila Nova de Gaia.",
+    meta_description: "Agência independente que opera agentes de IA para negócios locais. Fundada em Porto.",
     hero: {
       eyebrow: "QUEM OPERA",
       headline_l1: "Uma agência independente.",
@@ -2087,11 +2091,11 @@ export const pt: Dictionary = {
       sub: "Não somos uma plataforma em escala. Somos um operador local que constrói agentes de IA para quem precisa deles a funcionar amanhã.",
       meta: [
         { label: "FUNDADOR",      value: "Adolfo" },
-        { label: "SEDE",          value: "Vila Nova de Gaia" },
+        { label: "SEDE",          value: "Porto" },
         { label: "ESPECIALIDADE", value: "Agentes operacionais" },
         { label: "DESDE",         value: "2026" },
       ],
-      photo_alt: "Adolfo, fundador da NorteNode, em Vila Nova de Gaia",
+      photo_alt: "Adolfo, fundador da NorteNode, em Porto",
       photo_caption: "Adolfo · Fundador & Operador",
     },
     manifesto: {
@@ -2117,7 +2121,7 @@ export const pt: Dictionary = {
       title: "Onde estamos hoje.",
       chapters: [
         { date: "2026 · Q1",     title: "Fundação e primeiros protótipos.", body: "Construção do motor que opera os agentes — Groq, WhatsApp Cloud API, integrações básicas. Testes com barbearias fictícias." },
-        { date: "2026 · Q2",     title: "Primeiros clientes reais.",        body: "Primeira barbearia em produção em Vila Nova de Gaia. Iteração sobre tom, contexto, escalonamento ao operador humano." },
+        { date: "2026 · Q2",     title: "Primeiros clientes reais.",        body: "Primeira barbearia em produção em Porto. Iteração sobre tom, contexto, escalonamento ao operador humano." },
         { date: "Capítulo atual", title: "A construir em público.",          body: "Abrimos calendário para mais negócios locais em Portugal e Espanha. Cada cliente novo informa como o produto e a operação evoluem." },
       ],
     },

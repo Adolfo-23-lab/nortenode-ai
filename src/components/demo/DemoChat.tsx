@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import dynamic from "next/dynamic";
+import { useT } from "@/i18n/provider";
 
 const InteractiveDemo = dynamic(() => import("./InteractiveDemo"), {
   ssr: false,
@@ -15,6 +16,7 @@ const InteractiveDemo = dynamic(() => import("./InteractiveDemo"), {
 });
 
 export default function DemoChat() {
+  const t = useT();
   return (
     <div className="relative">
       <p className="mono-label-v2 mb-4 flex flex-wrap items-center gap-x-2">
@@ -38,6 +40,11 @@ export default function DemoChat() {
           <InteractiveDemo />
         </div>
       </div>
+      <p
+        className="mx-auto mt-4 max-w-[60ch] text-center font-mono text-[11px] leading-relaxed text-[var(--color-text-muted-v2)]"
+      >
+        {t.demo.disclaimer_v2}
+      </p>
     </div>
   );
 }
