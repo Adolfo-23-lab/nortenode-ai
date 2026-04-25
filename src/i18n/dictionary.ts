@@ -155,7 +155,9 @@ export interface Dictionary {
       eyebrow: string;
       headline_l1: string;
       headline_l2: string;
+      headline_v2: string;
       sub: string;
+      sub_v2: string;
       meta: Array<{ label: string; value: string }>;
     };
     how: {
@@ -168,12 +170,22 @@ export interface Dictionary {
       title: string;
       items: Array<{ label: string; body: string }>;
     };
+    paragraphs: {
+      intent:  { title_v2: string; desc_v2: string };
+      context: { title_v2: string; desc_v2: string };
+      tools:   { title_v2: string; desc_v2: string };
+    };
     final_cta: {
       eyebrow: string;
       title: string;
       body: string;
       cta_label: string;
       cta_href: string;
+    };
+    final: {
+      title_v2:     string;
+      sub_v2:       string;
+      cta_label_v2: string;
     };
   };
   contactos: {
@@ -527,7 +539,9 @@ export const es: Dictionary = {
       eyebrow: "DEMO EN VIVO",
       headline_l1: "Pruébelo ahora.",
       headline_l2: "Conversación real, no vídeo.",
+      headline_v2: "Pruebe el operador.",
       sub: "Este es el mismo motor que operamos para clientes. Escriba como si fuera un cliente real — responde con contexto, no con respuestas pre-grabadas.",
+      sub_v2: "Este es un operador NorteNode real. Envíe cualquier mensaje en PT, ES o EN. Pregunte sobre reservas, precios u horarios.",
       meta: [
         { label: "MODELO",   value: "Groq / Llama 3.3" },
         { label: "LATENCIA", value: "< 500 ms" },
@@ -553,12 +567,31 @@ export const es: Dictionary = {
         { label: "NO ENVÍA POR WHATSAPP", body: "Aquí es chat web. El agente en producción responde directamente en el WhatsApp Business de su negocio, con su número." },
       ],
     },
+    paragraphs: {
+      intent: {
+        title_v2: "Detección de intención",
+        desc_v2:  "Cada mensaje es procesado por un clasificador entrenado en conversaciones portuguesas y españolas de negocios de servicios.",
+      },
+      context: {
+        title_v2: "Memoria de contexto",
+        desc_v2:  "Los operadores mantienen contexto entre sesiones. Reservas anteriores e historial informan cada respuesta.",
+      },
+      tools: {
+        title_v2: "Ejecución de herramientas",
+        desc_v2:  "Cuando el operador confirma una reserva, ejecuta una llamada a la API del calendario (Google, Cal.com, custom).",
+      },
+    },
     final_cta: {
       eyebrow: "SIGUIENTE PASO",
       title: "Si el demo tuvo sentido, hablemos.",
       body: "Una llamada de 30 minutos. Sin formulario intermedio, sin presión comercial.",
       cta_label: "Agendar llamada",
       cta_href: "/contactos",
+    },
+    final: {
+      title_v2:     "¿Listo para desplegar tu operador?",
+      sub_v2:       "Primer operador desplegado en 14 días. Alcance fijo. Precio fijo.",
+      cta_label_v2: "Hablar con nosotros →",
     },
   },
   contactos: {
@@ -977,7 +1010,9 @@ export const en: Dictionary = {
       eyebrow: "LIVE DEMO",
       headline_l1: "Try it now.",
       headline_l2: "Real conversation, not video.",
+      headline_v2: "Test the operator.",
       sub: "This is the same engine we run for clients. Write as if you were a real customer — it replies with context, not canned answers.",
+      sub_v2: "This is a real NorteNode operator. Send any message in PT, ES, or EN. Ask about scheduling, pricing, or hours.",
       meta: [
         { label: "MODEL",   value: "Groq / Llama 3.3" },
         { label: "LATENCY", value: "< 500 ms" },
@@ -1003,12 +1038,31 @@ export const en: Dictionary = {
         { label: "NOT WHATSAPP HERE",         body: "This is web chat. The production agent replies directly in your business's WhatsApp Business, from your number." },
       ],
     },
+    paragraphs: {
+      intent: {
+        title_v2: "Intent Detection",
+        desc_v2:  "Each message is parsed by an intent classifier trained on Portuguese and Spanish service-business conversations.",
+      },
+      context: {
+        title_v2: "Context Memory",
+        desc_v2:  "Operators maintain conversation context across sessions. Previous bookings inform each response.",
+      },
+      tools: {
+        title_v2: "Tool Execution",
+        desc_v2:  "When the operator confirms a booking, it executes a tool call to your calendar (Google, Cal.com, custom).",
+      },
+    },
     final_cta: {
       eyebrow: "NEXT STEP",
       title: "If the demo made sense, let's talk.",
       body: "A 30-minute call. No intermediate form, no sales pressure.",
       cta_label: "Book a call",
       cta_href: "/contactos",
+    },
+    final: {
+      title_v2:     "Ready to deploy your operator?",
+      sub_v2:       "First operator live in 14 days. Fixed scope. Fixed price.",
+      cta_label_v2: "Talk to us →",
     },
   },
   contactos: {
@@ -1423,7 +1477,9 @@ export const pt: Dictionary = {
       eyebrow: "DEMO AO VIVO",
       headline_l1: "Experimente agora.",
       headline_l2: "Conversa real, não vídeo.",
+      headline_v2: "Teste o operador.",
       sub: "Este é o mesmo motor que operamos para clientes. Escreva como se fosse um cliente real — ele responde com contexto, não com respostas pré-gravadas.",
+      sub_v2: "Este é um operador NorteNode real. Envie qualquer mensagem em PT, ES ou EN. Pergunte sobre marcações, preços ou horários.",
       meta: [
         { label: "MODELO",   value: "Groq / Llama 3.3" },
         { label: "LATÊNCIA", value: "< 500 ms" },
@@ -1449,12 +1505,31 @@ export const pt: Dictionary = {
         { label: "NÃO ENVIA POR WHATSAPP", body: "Aqui é chat web. O agente em produção responde diretamente no WhatsApp Business do seu negócio, com o seu número." },
       ],
     },
+    paragraphs: {
+      intent: {
+        title_v2: "Deteção de intenção",
+        desc_v2:  "Cada mensagem é processada por um classificador treinado em conversas portuguesas e espanholas de negócios de serviços.",
+      },
+      context: {
+        title_v2: "Memória de contexto",
+        desc_v2:  "Os operadores mantêm contexto entre sessões. Marcações anteriores e histórico informam cada resposta.",
+      },
+      tools: {
+        title_v2: "Execução de ferramentas",
+        desc_v2:  "Quando o operador confirma uma marcação, executa uma chamada à API do calendário (Google, Cal.com, custom).",
+      },
+    },
     final_cta: {
       eyebrow: "PRÓXIMO PASSO",
       title: "Se o demo fez sentido, falemos.",
       body: "Uma chamada de 30 minutos. Sem formulário intermédio, sem pressão comercial.",
       cta_label: "Agendar chamada",
       cta_href: "/contactos",
+    },
+    final: {
+      title_v2:     "Pronto para implementar o seu operador?",
+      sub_v2:       "Primeiro operador implementado em 14 dias. Escopo fixo. Preço fixo.",
+      cta_label_v2: "Falar connosco →",
     },
   },
   contactos: {

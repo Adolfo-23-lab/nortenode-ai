@@ -3,10 +3,10 @@
 import * as React from "react";
 import { useT } from "@/i18n/provider";
 import DemoHero from "./DemoHero";
-import DemoStage from "./DemoStage";
-import DemoHow from "./DemoHow";
-import DemoLimits from "./DemoLimits";
-import DemoFinalCTA from "./DemoFinalCTA";
+import DemoChat from "./DemoChat";
+import DemoParagraphs from "./DemoParagraphs";
+import DemoSuggestedPrompts from "./DemoSuggestedPrompts";
+import DemoFinal from "./DemoFinal";
 
 export default function DemoBody() {
   const t = useT();
@@ -15,22 +15,19 @@ export default function DemoBody() {
   return (
     <>
       <DemoHero
-        eyebrow={d.hero.eyebrow}
-        headline_l1={d.hero.headline_l1}
-        headline_l2={d.hero.headline_l2}
-        sub={d.hero.sub}
-        meta={d.hero.meta}
+        headline_v2={d.hero.headline_v2}
+        sub_v2={d.hero.sub_v2}
       />
-      <DemoStage />
-      <DemoHow eyebrow={d.how.eyebrow} title={d.how.title} steps={d.how.steps} />
-      <DemoLimits eyebrow={d.limits.eyebrow} title={d.limits.title} items={d.limits.items} />
-      <DemoFinalCTA
-        eyebrow={d.final_cta.eyebrow}
-        title={d.final_cta.title}
-        body={d.final_cta.body}
-        cta_label={d.final_cta.cta_label}
-        cta_href={d.final_cta.cta_href}
-      />
+      <section className="bg-[var(--color-bg-v2)] pb-[80px]">
+        <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
+          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_320px]">
+            <DemoChat />
+            <DemoParagraphs paragraphs={d.paragraphs} />
+          </div>
+          <DemoSuggestedPrompts />
+        </div>
+      </section>
+      <DemoFinal final={d.final} />
     </>
   );
 }
