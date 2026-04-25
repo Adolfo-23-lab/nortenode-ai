@@ -5,11 +5,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 interface Props {
-  headline_v2: string;
-  sub:         string;
+  line: string;
 }
 
-export default function ContactosHero({ headline_v2, sub }: Props) {
+export default function ContactosClosing({ line }: Props) {
   const rootRef = React.useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -31,12 +30,12 @@ export default function ContactosHero({ headline_v2, sub }: Props) {
           }
 
           gsap.from(root.querySelectorAll("[data-reveal]"), {
-            y: 32,
+            y: 24,
             opacity: 0,
             filter: "blur(8px)",
             duration: 1.0,
-            stagger: 0.12,
             ease: "power3.out",
+            scrollTrigger: { trigger: root, start: "top 80%" },
           });
         },
       );
@@ -45,34 +44,15 @@ export default function ContactosHero({ headline_v2, sub }: Props) {
     { scope: rootRef },
   );
 
-  const endsWithDot = headline_v2.endsWith(".");
-  const main        = endsWithDot ? headline_v2.slice(0, -1) : headline_v2;
-  const period      = endsWithDot ? "." : "";
-
   return (
-    <section
-      ref={rootRef}
-      aria-label="CONTACT"
-      className="relative bg-[var(--color-bg-v2)] pt-[160px] pb-[120px] md:pt-[200px]"
-    >
+    <section ref={rootRef} className="bg-[var(--color-bg-v2)] py-[120px]">
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-12">
-        <p data-reveal className="mono-label-v2 text-center">
-          06 / 06 — CONTACT
-        </p>
-        <h1
-          data-reveal
-          className="mt-[120px] text-center font-medium leading-[0.95] tracking-[-0.02em] text-[var(--color-text-primary-v2)]"
-          style={{ fontSize: "var(--text-display-xl-v2)" }}
-        >
-          {main}
-          {period && <span className="cyan-period-v2">{period}</span>}
-        </h1>
         <p
           data-reveal
-          className="mx-auto mt-8 max-w-[60ch] text-center leading-relaxed text-[var(--color-text-secondary-v2)]"
-          style={{ fontSize: "var(--text-body-lg-v2)" }}
+          className="mx-auto max-w-[40ch] text-center font-medium text-[var(--color-text-primary-v2)]"
+          style={{ fontSize: "var(--text-headline-v2)", lineHeight: 1.2 }}
         >
-          {sub}
+          {line}
         </p>
       </div>
     </section>

@@ -409,3 +409,17 @@ body {
 .text-primary-v2   { color: var(--color-text-primary-v2); }
 .text-secondary-v2 { color: var(--color-text-secondary-v2); }
 .text-muted-v2     { color: var(--color-text-muted-v2); }
+
+.dot-pulse-v2 {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-status-live-v2);
+  animation: dot-pulse-v2 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse-v2 {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 255, 170, 0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(77, 255, 170, 0); }
+}

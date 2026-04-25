@@ -183,6 +183,7 @@ export interface Dictionary {
       eyebrow: string;
       headline_l1: string;
       headline_l2: string;
+      headline_v2: string;
       sub: string;
       meta: Array<{ label: string; value: string }>;
     };
@@ -200,6 +201,14 @@ export interface Dictionary {
       title: string;
       items: Array<{ label: string; body: string }>;
     };
+    sidebar: {
+      what_happens_next: {
+        items: string[];
+      };
+    };
+    closing: {
+      line: string;
+    };
     form: {
       eyebrow: string;
       title: string;
@@ -213,6 +222,7 @@ export interface Dictionary {
       };
       submit_idle: string;
       submit_loading: string;
+      submit_v2: string;
       success_title: string;
       success_body: string;
       error_title: string;
@@ -531,6 +541,7 @@ export const es: Dictionary = {
       eyebrow: "CONTACTO",
       headline_l1: "Hablemos.",
       headline_l2: "",
+      headline_v2: "Conecte.",
       sub: "Respondemos en menos de un día laborable. Elija el canal que prefiera.",
       meta: [
         { label: "LUGAR",     value: "Vila Nova de Gaia" },
@@ -566,6 +577,18 @@ export const es: Dictionary = {
         { label: "NO USAMOS BOTS GENÉRICOS",     body: "Cada agente se entrena con el contexto de su negocio — horarios, servicios, precios, objeciones reales. No es un árbol de decisión con 10 respuestas." },
       ],
     },
+    sidebar: {
+      what_happens_next: {
+        items: [
+          "Leemos cada formulario en 4h",
+          "Llamada de descubrimiento de 30 min",
+          "Propuesta fija en <7 días",
+        ],
+      },
+    },
+    closing: {
+      line: "Somos un pequeño equipo en Porto.",
+    },
     form: {
       eyebrow: "O ESCRIBA",
       title: "Cuéntenos el contexto.",
@@ -579,6 +602,7 @@ export const es: Dictionary = {
       },
       submit_idle: "Enviar",
       submit_loading: "Enviando…",
+      submit_v2: "Solicitar demo →",
       success_title: "Recibido.",
       success_body: "Le respondemos por email en menos de un día laborable.",
       error_title: "No pudimos enviar.",
@@ -931,6 +955,7 @@ export const en: Dictionary = {
       eyebrow: "CONTACT",
       headline_l1: "Talk",
       headline_l2: "to us.",
+      headline_v2: "Connect.",
       sub: "We answer within one business day. Pick whichever channel you prefer.",
       meta: [
         { label: "PLACE",     value: "Vila Nova de Gaia" },
@@ -966,6 +991,18 @@ export const en: Dictionary = {
         { label: "WE DON'T USE GENERIC BOTS",   body: "Each agent is trained with the context of your business — hours, services, prices, real objections. Not a decision tree with 10 answers." },
       ],
     },
+    sidebar: {
+      what_happens_next: {
+        items: [
+          "We read every form within 4h",
+          "30-min discovery call",
+          "Fixed proposal in <7 days",
+        ],
+      },
+    },
+    closing: {
+      line: "We're a small team in Porto.",
+    },
     form: {
       eyebrow: "OR WRITE",
       title: "Tell us the context.",
@@ -979,6 +1016,7 @@ export const en: Dictionary = {
       },
       submit_idle: "Send",
       submit_loading: "Sending…",
+      submit_v2: "Request demo →",
       success_title: "Received.",
       success_body: "We'll reply by email within one business day.",
       error_title: "We couldn't send it.",
@@ -1327,6 +1365,7 @@ export const pt: Dictionary = {
       eyebrow: "CONTACTOS",
       headline_l1: "Fale",
       headline_l2: "connosco.",
+      headline_v2: "Conecte.",
       sub: "Respondemos em menos de um dia útil. Escolha o canal que preferir.",
       meta: [
         { label: "LOCAL",    value: "Vila Nova de Gaia" },
@@ -1362,6 +1401,18 @@ export const pt: Dictionary = {
         { label: "NÃO USAMOS BOTS GENÉRICOS",     body: "Cada agente é treinado com o contexto do seu negócio — horários, serviços, preços, objeções reais. Não é uma árvore de decisão com 10 respostas." },
       ],
     },
+    sidebar: {
+      what_happens_next: {
+        items: [
+          "Lemos cada formulário em 4h",
+          "Chamada de descoberta de 30 min",
+          "Proposta fixa em <7 dias",
+        ],
+      },
+    },
+    closing: {
+      line: "Somos uma pequena equipa no Porto.",
+    },
     form: {
       eyebrow: "OU ESCREVA",
       title: "Conte-nos o contexto.",
@@ -1375,6 +1426,7 @@ export const pt: Dictionary = {
       },
       submit_idle: "Enviar",
       submit_loading: "A enviar…",
+      submit_v2: "Pedir demo →",
       success_title: "Recebido.",
       success_body: "Respondemos por email em menos de um dia útil.",
       error_title: "Não conseguimos enviar.",
