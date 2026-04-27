@@ -21,15 +21,34 @@ import type { Database } from "./database.types.ts";
 type NotificationRow = Database["public"]["Tables"]["notifications"]["Row"];
 type NotificationEvent = Database["public"]["Enums"]["notification_event"];
 type OrganizationRow = Database["public"]["Tables"]["organizations"]["Row"];
+type LeadTemperature = Database["public"]["Enums"]["lead_temperature"];
+
+/** Full lead+contact context the dispatcher may pre-fetch for hot_lead_captured. */
+export interface LeadDetails {
+  lead_id:     string;
+  intent:      string | null;
+  source:      string | null;
+  temperature: LeadTemperature | null;
+  notes:       string | null;
+  created_at:  string;
+  contact: {
+    full_name: string | null;
+    email:     string | null;
+    phone:     string | null;
+  };
+}
 
 export interface NotificationRenderCtx {
   org: Pick<OrganizationRow, "name" | "timezone">;
+  lead?: LeadDetails;
 }
 
 export interface RenderedNotification {
   subject: string;
   text: string;
   html: string;
+  /** Per-message Reply-To override (e.g. lead's email so owner can reply directly). */
+  replyTo?: string;
 }
 
 export function renderNotification(
@@ -42,6 +61,12 @@ export function renderNotification(
 
   switch (event) {
     case "hot_lead_captured": {
+      // Rich template when dispatcher pre-fetched the lead + contact.
+      // Falls back to minimal payload-only template otherwise (e.g. WhatsApp
+      // notifications, where we don't run the JOIN).
+      if (ctx.lead) {
+        return renderHotLeadRich(ctx.lead, ctx.org.timezone);
+      }
       const intent = asString(p.intent) ?? "novo contacto";
       const source = asString(p.source) ?? "widget";
       const subject = `🔥 Lead quente — ${brand}`;
@@ -122,7 +147,7 @@ export async function sendEmail(
     body: JSON.stringify({
       from,
       to,
-      reply_to: env.RESEND_REPLY_TO,
+      reply_to: r.replyTo ?? env.RESEND_REPLY_TO,
       subject: r.subject,
       text:    r.text,
       html:    r.html,
@@ -182,6 +207,111 @@ function formatWhen(iso: string | undefined, tz: string): string {
   } catch {
     return iso;
   }
+}
+
+function temperatureLabel(t: LeadTemperature | null | undefined): string {
+  if (t === "hot")  return "QUENTE";
+  if (t === "warm") return "MORNO";
+  if (t === "cold") return "FRIO";
+  return "QUENTE";
+}
+
+function formatLeadTimestamp(iso: string, tz: string): string {
+  try {
+    return new Intl.DateTimeFormat("pt-PT", {
+      timeZone: tz,
+      day:    "2-digit",
+      month:  "2-digit",
+      year:   "numeric",
+      hour:   "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
+
+function escapeHtml(s: string): string {
+  return s.replace(/[<>&"']/g, (c) => (
+    { "<": "&lt;", ">": "&gt;", "&": "&amp;", "\"": "&quot;", "'": "&#39;" }[c] ?? c
+  ));
+}
+
+function renderHotLeadRich(lead: LeadDetails, tz: string): RenderedNotification {
+  const tempUpper = temperatureLabel(lead.temperature);
+  const name      = lead.contact.full_name?.trim() || "(sem nome)";
+  const email     = lead.contact.email?.trim()     || "";
+  const phone     = lead.contact.phone?.trim()     || "";
+  const source    = lead.source                    || "desconhecido";
+  const intent    = lead.intent                    || "(sem intenção registada)";
+  const message   = lead.notes?.trim()             || "(sem mensagem)";
+  const when      = formatLeadTimestamp(lead.created_at, tz);
+
+  const subject = `🔥 Lead ${tempUpper} — ${name} (${source})`;
+
+  const text =
+    `🔥 NOVO LEAD ${tempUpper} — NorteNode\n\n` +
+    `NOME:     ${name}\n` +
+    `EMAIL:    ${email || "(não fornecido)"}\n` +
+    `TELEFONE: ${phone || "(não fornecido)"}\n` +
+    `CANAL:    ${source}\n` +
+    `INTENÇÃO: ${intent}\n` +
+    `RECEBIDO: ${when}\n\n` +
+    `MENSAGEM:\n${message}\n\n` +
+    `—\nLead ID: ${lead.lead_id}\nNorteNode — sistema automático`;
+
+  const emailLink = email
+    ? `<a href="mailto:${escapeHtml(email)}" style="color: #00d4ff; text-decoration: none;">${escapeHtml(email)}</a>`
+    : `<span style="color: #6b7280;">(não fornecido)</span>`;
+  const phoneLink = phone
+    ? `<a href="tel:${escapeHtml(phone)}" style="color: #0a0d12; text-decoration: none;">${escapeHtml(phone)}</a>`
+    : `<span style="color: #6b7280;">(não fornecido)</span>`;
+
+  const labelStyle = `padding: 12px 0; color: #6b7280; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; vertical-align: top; width: 120px;`;
+  const valueStyle = `padding: 12px 0; color: #0a0d12; font-weight: 500;`;
+  const sepLabel   = `${labelStyle} border-top: 1px solid rgba(10,13,18,0.05);`;
+  const sepValue   = `padding: 12px 0; border-top: 1px solid rgba(10,13,18,0.05); color: #0a0d12;`;
+
+  const html = `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Geist Sans', 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background: #ffffff; color: #0a0d12;">
+  <h2 style="font-size: 20px; font-weight: 500; margin: 0 0 24px 0; padding-bottom: 16px; border-bottom: 1px solid rgba(10,13,18,0.08);">🔥 Novo Lead ${escapeHtml(tempUpper)}</h2>
+  <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <tr>
+      <td style="${labelStyle}">NOME</td>
+      <td style="${valueStyle}">${escapeHtml(name)}</td>
+    </tr>
+    <tr>
+      <td style="${sepLabel}">EMAIL</td>
+      <td style="${sepValue}">${emailLink}</td>
+    </tr>
+    <tr>
+      <td style="${sepLabel}">TELEFONE</td>
+      <td style="${sepValue}">${phoneLink}</td>
+    </tr>
+    <tr>
+      <td style="${sepLabel}">CANAL</td>
+      <td style="${sepValue}">${escapeHtml(source)}</td>
+    </tr>
+    <tr>
+      <td style="${sepLabel}">INTENÇÃO</td>
+      <td style="${sepValue}">${escapeHtml(intent)}</td>
+    </tr>
+    <tr>
+      <td style="${sepLabel}">RECEBIDO</td>
+      <td style="${sepValue}">${escapeHtml(when)}</td>
+    </tr>
+  </table>
+  <div style="margin-top: 32px; padding: 16px; background: #f5f5f5; border-left: 3px solid #00d4ff; border-radius: 4px;">
+    <div style="color: #6b7280; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; margin-bottom: 8px;">MENSAGEM</div>
+    <div style="color: #0a0d12; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(message)}</div>
+  </div>
+  <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid rgba(10,13,18,0.08); font-size: 12px; color: #6b7280;">
+    Lead ID: ${escapeHtml(lead.lead_id)}<br/>
+    NorteNode — sistema automático de notificações
+  </div>
+</div>`;
+
+  return { subject, text, html, replyTo: email || undefined };
 }
 
 function toHtml(subject: string, text: string): string {
