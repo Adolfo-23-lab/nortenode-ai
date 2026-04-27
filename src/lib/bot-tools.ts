@@ -153,10 +153,21 @@ const escalateSchema = jsonSchema<EscalateInput>({
 
 // ---------------------------------------------------------------------
 // Factory
+//
+// `allowlist` is the per-bot `bot_configs.tools` array (jsonb column).
+// When empty, no tools are exposed — the LLM is forced into a single
+// text-only step, which avoids the duplicate-message bug we hit when
+// the model emits a tool-call step plus a follow-up text step (each
+// surfacing as its own UI message under stopWhen: stepCountIs > 1).
+//
+// Recognised tool names: "qualify_lead", "book_appointment",
+// "escalate_to_human". Unknown entries are ignored. Pass `null` /
+// `undefined` to expose ALL tools (legacy behaviour).
 // ---------------------------------------------------------------------
 export function createBotTools(
   sb: TypedAdmin,
   ctx: BotToolContext,
+  allowlist?: readonly string[] | null,
 ): Record<string, Tool> {
   const { conversationId } = ctx;
 
@@ -228,7 +239,14 @@ export function createBotTools(
     },
   });
 
-  return { qualify_lead, book_appointment, escalate_to_human };
+  const all: Record<string, Tool> = { qualify_lead, book_appointment, escalate_to_human };
+  if (allowlist === undefined || allowlist === null) return all;
+
+  const out: Record<string, Tool> = {};
+  for (const name of allowlist) {
+    if (name in all) out[name] = all[name];
+  }
+  return out;
 }
 
 // ---------------------------------------------------------------------

@@ -144,7 +144,9 @@ export async function POST(req: Request): Promise<Response> {
   // 5. Stream LLM reply (with tool-calling) + persist on finish
   // ------------------------------------------------------------------
   const modelMessages: ModelMessage[] = history.map(rowToModelMessage).filter(nonNull);
-  const tools = createBotTools(supabase, { conversationId });
+  const allowlist = parseToolAllowlist(botCfg.tools);
+  const tools     = createBotTools(supabase, { conversationId }, allowlist);
+  const toolCount = Object.keys(tools).length;
 
   const result = streamText({
     model:       groq(botCfg.model),
@@ -152,7 +154,12 @@ export async function POST(req: Request): Promise<Response> {
     messages:    modelMessages,
     temperature: Number(botCfg.temperature ?? 0.4),
     tools,
-    stopWhen:    stepCountIs(3),
+    // When no tools are exposed we cap at 1 step so the LLM is forced
+    // into a single text response. Multi-step (3) is reserved for flows
+    // that genuinely need tool calls; otherwise the SDK can surface a
+    // tool-call step + follow-up text step as two separate UI messages,
+    // showing the user a duplicate reply.
+    stopWhen:    stepCountIs(toolCount > 0 ? 3 : 1),
     onFinish: async ({ text, totalUsage }) => {
       const reply = sanitizeForUser(text?.trim() ?? "");
       if (!reply) return;
@@ -261,6 +268,17 @@ function rowToModelMessage(
 
 function nonNull<T>(v: T | null): v is T {
   return v !== null;
+}
+
+/**
+ * Coerce the `bot_configs.tools` jsonb column into a string allowlist.
+ * Returns an empty array (= no tools exposed) when the column is empty
+ * or absent. Returns `null` when the column is unreadable, signalling
+ * "expose every tool" to createBotTools (legacy behaviour).
+ */
+function parseToolAllowlist(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return [];
+  return raw.filter((v): v is string => typeof v === "string");
 }
 
 // Safety net: Llama 3.x on Groq sometimes leaks its native tool-call format

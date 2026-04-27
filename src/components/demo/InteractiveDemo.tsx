@@ -23,7 +23,7 @@ const INITIAL_GREETING: UIMessage[] = [
       {
         type: "text",
         text:
-          "Hola, soy el operador de Barbería Norte. Disponible 24/7 para agendar tu cita o resolver dudas. ¿En qué te ayudo?",
+          "Olá 👋 Sou o assistente da NorteNode. Posso explicar-te o que entregamos, marcar uma chamada de descoberta, ou simular o operador de uma barbearia se quiseres ver como funcionaria. Em que posso ajudar?",
       },
     ],
   },
