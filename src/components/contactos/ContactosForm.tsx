@@ -95,39 +95,13 @@ export default function ContactosForm() {
     setFormData(INITIAL_STATE);
   };
 
-  if (status === "success") {
-    return (
-      <div className="mx-auto flex w-full max-w-[600px] flex-col items-center py-16 text-center">
-        <p className="mono-label-v2 mb-6">TRANSMISSION RECEIVED</p>
-        <svg
-          aria-hidden="true"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mb-6 text-[var(--color-accent-v2)]"
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-        <h2
-          className="font-medium text-[var(--color-text-primary-v2)]"
-          style={{ fontSize: "var(--text-headline-sm-v2)", lineHeight: 1.1 }}
-        >
-          {f.success_title}
-        </h2>
-        <p
-          className="mt-4 max-w-[50ch] text-[var(--color-text-secondary-v2)]"
-          style={{ fontSize: "var(--text-body-v2)" }}
-        >
-          {f.success_body}
-        </p>
-      </div>
-    );
-  }
+  React.useEffect(() => {
+    if (status !== "success") return;
+    const el = rootRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, [status]);
 
   const fields: Array<{
     num:         string;
@@ -146,47 +120,81 @@ export default function ContactosForm() {
 
   return (
     <div ref={rootRef} className="w-full max-w-[600px]">
-      {status === "error" && errorMessage ? (
-        <div
-          role="alert"
-          className="mb-8 border-l-4 border-[var(--color-status-warn-v2)] bg-[var(--color-bg-elevated-v2)] p-4"
-        >
-          <p className="mono-label-v2 mb-2">{f.error_title}</p>
-          <p
-            className="text-[var(--color-text-secondary-v2)]"
-            style={{ fontSize: "var(--text-body-sm-v2)" }}
+      {status === "success" ? (
+        <div className="mx-auto flex w-full flex-col items-center py-16 text-center">
+          <p className="mono-label-v2 mb-6">TRANSMISSION RECEIVED</p>
+          <svg
+            aria-hidden="true"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mb-6 text-[var(--color-accent-v2)]"
           >
-            {errorMessage}
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <h2
+            className="font-medium text-[var(--color-text-primary-v2)]"
+            style={{ fontSize: "var(--text-headline-sm-v2)", lineHeight: 1.1 }}
+          >
+            {f.success_title}
+          </h2>
+          <p
+            className="mt-4 max-w-[50ch] text-[var(--color-text-secondary-v2)]"
+            style={{ fontSize: "var(--text-body-v2)" }}
+          >
+            {f.success_body}
           </p>
         </div>
-      ) : null}
+      ) : (
+        <>
+          {status === "error" && errorMessage ? (
+            <div
+              role="alert"
+              className="mb-8 border-l-4 border-[var(--color-status-warn-v2)] bg-[var(--color-bg-elevated-v2)] p-4"
+            >
+              <p className="mono-label-v2 mb-2">{f.error_title}</p>
+              <p
+                className="text-[var(--color-text-secondary-v2)]"
+                style={{ fontSize: "var(--text-body-sm-v2)" }}
+              >
+                {errorMessage}
+              </p>
+            </div>
+          ) : null}
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-y-8">
-        {fields.map((field) => (
-          <FieldRow
-            key={field.id}
-            num={field.num}
-            id={field.id}
-            label={field.label}
-            value={formData[field.id]}
-            placeholder={field.placeholder}
-            required={field.required}
-            type={field.type}
-            multiline={field.multiline}
-            onChange={handleChange(field.id)}
-          />
-        ))}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-y-8">
+            {fields.map((field) => (
+              <FieldRow
+                key={field.id}
+                num={field.num}
+                id={field.id}
+                label={field.label}
+                value={formData[field.id]}
+                placeholder={field.placeholder}
+                required={field.required}
+                type={field.type}
+                multiline={field.multiline}
+                onChange={handleChange(field.id)}
+              />
+            ))}
 
-        <div data-reveal className="mt-12">
-          <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="inline-flex items-center justify-center rounded-[var(--radius-v2)] bg-white px-8 py-4 font-mono text-[14px] font-medium uppercase tracking-[0.1em] text-[var(--color-bg-v2)] transition-shadow duration-200 hover:shadow-[var(--shadow-glow-soft-v2)] disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {status === "submitting" ? f.submit_loading : f.submit_v2}
-          </button>
-        </div>
-      </form>
+            <div data-reveal className="mt-12">
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="inline-flex items-center justify-center rounded-[var(--radius-v2)] bg-white px-8 py-4 font-mono text-[14px] font-medium uppercase tracking-[0.1em] text-[var(--color-bg-v2)] transition-shadow duration-200 hover:shadow-[var(--shadow-glow-soft-v2)] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {status === "submitting" ? f.submit_loading : f.submit_v2}
+              </button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 }

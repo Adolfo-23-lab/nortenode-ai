@@ -42,7 +42,7 @@ export default function InteractiveDemo() {
 
   const [input, setInput] = useState("");
   const [isInitialized, setIsInitialized] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const transport = useMemo(
     () =>
@@ -64,10 +64,10 @@ export default function InteractiveDemo() {
   }, []);
 
   useEffect(() => {
-    if (isInitialized && messages.length > 1) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages, isInitialized]);
+    if (!isInitialized || messages.length <= 1) return;
+    const el = messagesContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages, isInitialized, status]);
 
   const handleSendWrapper = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,7 +92,7 @@ export default function InteractiveDemo() {
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4">
+      <div ref={messagesContainerRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 py-4">
         <div className="flex flex-col justify-end gap-4 min-h-full">
           <AnimatePresence>
             {(messages as unknown as ChatMessage[]).map((msg: ChatMessage, i: number) => (
@@ -134,7 +134,6 @@ export default function InteractiveDemo() {
               </motion.div>
             )}
           </AnimatePresence>
-          <div ref={messagesEndRef} />
         </div>
       </div>
 
